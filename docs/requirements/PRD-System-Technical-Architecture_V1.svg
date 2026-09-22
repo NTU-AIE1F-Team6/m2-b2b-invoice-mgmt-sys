@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+<title id="title">B2B Invoice Management — Proposed React Architecture</title>
+<desc id="desc">React and Vite browser application hosted on Vercel. React Router pages use local form state and shared Context with useReducer. Yup validates forms. Pure domain functions handle totals, permissions, and approval transitions. An API service calls two MockAPI resources: invoices and referenceData. Vitest, React Testing Library, and GitHub Actions support automated verification. External business integrations and authentication are simulated. No AI model service is proposed.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#60758a"/></marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif} .title{font-size:30px;font-weight:700;fill:#12283e}.subtitle{font-size:16px;fill:#53677b}.section{font-size:13px;font-weight:700;letter-spacing:1.5px;fill:#48647d}.heading{font-size:19px;font-weight:700;fill:#18334d}.body{font-size:15px;fill:#40576d}.small{font-size:13px;fill:#60758a}.tag{font-size:12px;font-weight:700;letter-spacing:.7px;fill:#426a60}</style>
+<rect width="1600" height="1100" fill="#ffffff"/>
+
+<text x="48" y="55" class="title">B2B Invoice Management</text>
+<text x="48" y="84" class="subtitle">Proposed system architecture · PRD v1 / Starter Prompt V4 · Build starting point</text>
+<rect x="1290" y="34" width="262" height="49" rx="12" fill="#edf5f2" stroke="#d5e5dd"/>
+<text x="1310" y="64" class="tag">REACT + MOCKAPI MVP</text>
+<rect x="48" y="114" width="1504" height="79" rx="12" fill="#f7f9fc" stroke="#d5dfe8"/>
+<text x="70" y="143" class="section">DELIVERY</text>
+<text x="70" y="172" class="heading">Shared GitHub repository</text>
+<path d="M 340 162 H 407" fill="none" stroke="#60758a" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="431" y="172" class="heading">Vite build → static assets</text>
+<path d="M 722 162 H 790" fill="none" stroke="#60758a" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="814" y="172" class="heading">Vercel hosting + SPA route fallback</text>
+<text x="1274" y="144" class="small">Serves the frontend</text>
+<text x="1274" y="170" class="small">Data lives in MockAPI</text>
+<rect x="48" y="225" width="1020" height="576" rx="12" fill="#f7faff" stroke="#cbdce9"/>
+<text x="70" y="256" class="section">BROWSER · REACT APPLICATION</text>
+<text x="70" y="283" class="subtitle">Functional components · JSX / props / composition · React hooks</text>
+<rect x="70" y="306" width="976" height="103" rx="12" fill="#ffffff" stroke="#d5dfe8"/>
+<text x="92" y="337" class="heading">Pages &amp; reusable UI — React Router</text>
+<text x="92" y="365" class="body">Login   /   Dashboard &amp; filters   /   New Invoice   /   Invoice Detail &amp; Approval</text>
+<text x="92" y="388" class="body">ProtectedRoute · shared layout · invoice list · line-item editor · loading / error / empty states</text>
+<path d="M 314 409 V 439" fill="none" stroke="#60758a" stroke-width="1.7" marker-end="url(#arrow)"/>
+<path d="M 802 409 V 439" fill="none" stroke="#60758a" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="70" y="440" width="474" height="133" rx="12" fill="#ffffff" stroke="#d5dfe8"/>
+<text x="92" y="471" class="heading">Forms &amp; local state</text>
+<text x="92" y="499" class="body">useState → controlled inputs, search, filters</text>
+<text x="92" y="522" class="body">Yup → field-on-blur + form-on-submit validation</text>
+<text x="92" y="545" class="body">Events update inputs; derived totals update the UI</text>
+<rect x="568" y="440" width="478" height="133" rx="12" fill="#ffffff" stroke="#d5dfe8"/>
+<text x="590" y="471" class="heading">Shared state &amp; identity</text>
+<text x="590" y="499" class="body">Context + useReducer → invoices, loading, errors</text>
+<text x="590" y="522" class="body">useEffect → fetch on screen entry / refresh</text>
+<text x="590" y="545" class="body">AuthContext → demo user + View-only / Edit role</text>
+<path d="M 307 573 V 612" fill="none" stroke="#60758a" stroke-width="1.7" marker-end="url(#arrow)"/>
+<path d="M 807 573 V 612" fill="none" stroke="#60758a" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="70" y="613" width="474" height="139" rx="12" fill="#eff6f3" stroke="#d5dfe8"/>
+<text x="92" y="644" class="heading">Domain rules — pure functions</text>
+<text x="92" y="672" class="body">Invoice totals &amp; rounding · overdue calculation</text>
+<text x="92" y="695" class="body">Role checks · maker ≠ approver · state transitions</text>
+<text x="92" y="718" class="body">States: Draft · Transmitted · Pending Approval · Paid</text>
+<rect x="568" y="613" width="478" height="139" rx="12" fill="#eff6f3" stroke="#d5dfe8"/>
+<text x="590" y="644" class="heading">API service — fetch / async / await</text>
+<text x="590" y="672" class="body">Create · read · update · delete invoice records</text>
+<text x="590" y="695" class="body">Validate action → request → confirm → update state</text>
+<text x="590" y="718" class="body">Refetch before approval; retain input on failure</text>
+<path d="M 544 680 H 568" fill="none" stroke="#60758a" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="70" y="782" class="small">Domain rules also govern UI actions; client-side roles are demonstration controls, not backend security.</text>
+<rect x="1120" y="225" width="432" height="576" rx="12" fill="#fafbf9" stroke="#d5e0d6"/>
+<text x="1142" y="256" class="section">REMOTE DATA · MOCKAPI</text>
+<text x="1142" y="283" class="subtitle">Shared persistence across users &amp; sessions</text>
+<rect x="1142" y="306" width="388" height="164" rx="12" fill="#ffffff" stroke="#d5dfe8"/>
+<text x="1164" y="337" class="heading">/invoices</text>
+<text x="1164" y="365" class="body">Customer snapshot · dates · line items[]</text>
+<text x="1164" y="388" class="body">Totals · status · creator · timestamps</text>
+<text x="1164" y="411" class="body">pendingRequest + lastDecision</text>
+<text x="1164" y="434" class="body">Simulated transmission / QR selection</text>
+<rect x="1142" y="490" width="388" height="127" rx="12" fill="#ffffff" stroke="#d5dfe8"/>
+<text x="1164" y="521" class="heading">/referenceData</text>
+<text x="1164" y="549" class="body">Typed records: customers, products, users</text>
+<text x="1164" y="572" class="body">Predefined data for dropdowns / demo login</text>
+<text x="1164" y="595" class="body">Two resources proposed; verify account quota</text>
+<text x="1142" y="651" class="section">HTTP / JSON</text>
+<text x="1142" y="684" class="body">React state is a working copy.</text>
+<text x="1142" y="710" class="body">MockAPI is the invoice source of truth.</text>
+<text x="1142" y="750" class="small">No separate backend server in this MVP.</text>
+<text x="1142" y="775" class="small">Concurrent approvals are not atomic.</text>
+<path d="M 1046 684 H 1130" marker-start="url(#arrow)" fill="none" stroke="#60758a" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="48" y="833" width="738" height="160" rx="12" fill="#f8f7fc" stroke="#d5dfe8"/>
+<text x="70" y="864" class="heading">Automated verification &amp; team workflow</text>
+<text x="70" y="892" class="body">Vitest → calculations, validation, permissions, approval transitions</text>
+<text x="70" y="915" class="body">React Testing Library → form and component behaviour; mocked API responses</text>
+<text x="70" y="938" class="body">GitHub Actions → tests on pushes / pull requests; lint + production build</text>
+<text x="70" y="961" class="body">Feature branches &amp; reviews → human-reviewed, AI-assisted implementation</text>
+<rect x="810" y="833" width="742" height="160" rx="12" fill="#fafaf7" stroke="#d5dfe8"/>
+<text x="832" y="864" class="heading">Simulation boundary &amp; future extension</text>
+<text x="832" y="892" class="body">IRAS / Peppol submission and PayNow QR are simulations; no live calls.</text>
+<text x="832" y="915" class="body">Basic maker-checker is in scope; full audit trail and advanced queues are deferred.</text>
+<text x="832" y="938" class="body">Future PostgreSQL: replace API service and add authenticated backend rules.</text>
+<text x="832" y="961" class="body">AI Engineering relevance: API integration, explicit state, validation &amp; repeatable tests.</text>
+<text x="48" y="1030" class="small">Reading guide: top = deployment · centre = runtime responsibilities · bottom = verification and boundaries</text>
+<text x="48" y="1057" class="small">No LLM / AI runtime is specified in the PRD. Proposed defaults (especially approval rules) require review before implementation.</text>
+<text x="1445" y="1057" class="small">22 Sep 2026</text>
+</svg>

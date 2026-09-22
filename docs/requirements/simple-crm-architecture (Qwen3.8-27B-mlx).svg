@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" width="1280" height="900" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#64748B"/>
+    </marker>
+    <marker id="arrBoth" markerWidth="9" markerHeight="9" refX="1" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M8,0 L0,4 L8,8 Z" fill="#64748B"/>
+    </marker>
+    <marker id="arrBlue" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#3E6E9E"/>
+    </marker>
+    <marker id="arrBlueBoth" markerWidth="9" markerHeight="9" refX="1" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M8,0 L0,4 L8,8 Z" fill="#3E6E9E"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="900" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="640" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#0F172A">Simple CRM Web — Architecture &amp; Design</text>
+  <text x="640" y="64" text-anchor="middle" font-size="11.5" fill="#64748B">React 19 · Vite 8 · React Router 7 · Context + useReducer · Yup validation · json-server mock API · static SPA deployment</text>
+
+  <!-- ============ ZONE A : BROWSER SPA ============ -->
+  <rect x="40" y="88" width="716" height="700" rx="10" fill="#F8FAFC" stroke="#D8E0E8"/>
+  <text x="60" y="112" font-size="11" font-weight="700" fill="#475569" letter-spacing="1.5">BROWSER · SPA CLIENT</text>
+
+  <!-- R1 entry -->
+  <rect x="72" y="128" width="132" height="44" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+  <text x="138" y="146" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">index.html</text>
+  <text x="138" y="161" text-anchor="middle" font-size="9.5" fill="#64748B">Vite entry · HTML shell</text>
+  <line x1="204" y1="150" x2="268" y2="150" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+  <rect x="268" y="128" width="220" height="44" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+  <text x="378" y="146" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">main.jsx</text>
+  <text x="378" y="161" text-anchor="middle" font-size="9.5" fill="#64748B">createRoot · StrictMode</text>
+
+  <!-- R1 -> R2 arrows -->
+  <line x1="300" y1="172" x2="182" y2="196" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="430" y1="172" x2="560" y2="196" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- R2 providers -->
+  <rect x="72" y="196" width="296" height="64" rx="6" fill="#EEF3F9" stroke="#7E96AF"/>
+  <text x="220" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">AuthProvider — Context</text>
+  <text x="220" y="232" text-anchor="middle" font-size="9.5" fill="#64748B">session user · login / logout / hasRole</text>
+  <text x="220" y="246" text-anchor="middle" font-size="9.5" fill="#64748B">persisted in localStorage “user”</text>
+  <rect x="400" y="196" width="324" height="64" rx="6" fill="#EEF3F9" stroke="#7E96AF"/>
+  <text x="562" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">CustomerProvider — Context + useReducer</text>
+  <text x="562" y="232" text-anchor="middle" font-size="9.5" fill="#64748B">customerReducer: customers · loading · error · submitting</text>
+  <text x="562" y="246" text-anchor="middle" font-size="9.5" fill="#64748B">derived filteredCustomers (search + status) · fetch CRUD via API_BASE</text>
+
+  <!-- R2 -> R3 -->
+  <line x1="168" y1="260" x2="162" y2="288" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="562" y1="260" x2="562" y2="288" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- R3 routing -->
+  <rect x="72" y="288" width="180" height="72" rx="6" fill="#FDF3F5" stroke="#C98A97"/>
+  <text x="162" y="308" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">ProtectedRoute</text>
+  <text x="162" y="324" text-anchor="middle" font-size="9.5" fill="#64748B">no user → Navigate /login</text>
+  <text x="162" y="338" text-anchor="middle" font-size="9.5" fill="#64748B">(state.from) · optional role</text>
+  <line x1="252" y1="324" x2="284" y2="324" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+  <rect x="284" y="288" width="440" height="72" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+  <text x="504" y="306" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">React Router 7 — BrowserRouter</text>
+  <text x="504" y="322" text-anchor="middle" font-size="9.5" fill="#64748B">public: / → Welcome · /login → Login · * → NotFound</text>
+  <text x="504" y="337" text-anchor="middle" font-size="9.5" fill="#64748B">protected /app → RootLayout (Sidebar + Outlet):</text>
+  <text x="504" y="351" text-anchor="middle" font-size="9.5" fill="#64748B">Dashboard · Customers · New · Detail/:id · Edit · Products (React.lazy + Suspense)</text>
+
+  <!-- route -> pages bus -->
+  <line x1="504" y1="360" x2="504" y2="378" stroke="#64748B" stroke-width="1.2"/>
+  <line x1="116" y1="378" x2="680" y2="378" stroke="#94A3B8" stroke-width="1"/>
+  <g stroke="#94A3B8" stroke-width="1" marker-end="url(#arr)">
+    <line x1="116" y1="378" x2="116" y2="392"/>
+    <line x1="210" y1="378" x2="210" y2="392"/>
+    <line x1="304" y1="378" x2="304" y2="392"/>
+    <line x1="398" y1="378" x2="398" y2="392"/>
+    <line x1="492" y1="378" x2="492" y2="392"/>
+    <line x1="586" y1="378" x2="586" y2="392"/>
+    <line x1="680" y1="378" x2="680" y2="392"/>
+  </g>
+
+  <!-- R4 pages -->
+  <g>
+    <rect x="73" y="392" width="86" height="58" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+    <text x="116" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B">Welcome</text>
+    <text x="116" y="430" text-anchor="middle" font-size="9" fill="#64748B">landing</text>
+
+    <rect x="167" y="392" width="86" height="58" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+    <text x="210" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B">Login</text>
+    <text x="210" y="430" text-anchor="middle" font-size="9" fill="#64748B">checks static USERS</text>
+
+    <rect x="261" y="392" width="86" height="58" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+    <text x="304" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B">Dashboard</text>
+    <text x="304" y="430" text-anchor="middle" font-size="9" fill="#64748B">summary</text>
+
+    <rect x="355" y="392" width="86" height="58" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+    <text x="398" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B">Customers</text>
+    <text x="398" y="430" text-anchor="middle" font-size="9" fill="#64748B">cards · filters</text>
+
+    <rect x="449" y="392" width="86" height="58" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+    <text x="492" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B">New / Edit</text>
+    <text x="492" y="430" text-anchor="middle" font-size="9" fill="#64748B">Yup forms</text>
+
+    <rect x="543" y="392" width="86" height="58" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+    <text x="586" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B">Detail</text>
+    <text x="586" y="430" text-anchor="middle" font-size="9" fill="#64748B">profile · interactions</text>
+
+    <rect x="637" y="392" width="86" height="58" rx="6" fill="#FFFFFF" stroke="#94A3B8" stroke-dasharray="5 4"/>
+    <text x="680" y="416" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B">Products</text>
+    <text x="680" y="430" text-anchor="middle" font-size="9" fill="#64748B">lazy chunk · Suspense</text>
+  </g>
+
+  <!-- pages -> R5 bus -->
+  <line x1="250" y1="450" x2="250" y2="464" stroke="#94A3B8" stroke-width="1"/>
+  <line x1="592" y1="450" x2="592" y2="464" stroke="#94A3B8" stroke-width="1"/>
+  <line x1="250" y1="464" x2="592" y2="464" stroke="#94A3B8" stroke-width="1"/>
+  <line x1="250" y1="464" x2="250" y2="470" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="592" y1="464" x2="592" y2="470" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- R5 components + validation -->
+  <rect x="72" y="470" width="356" height="64" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+  <text x="250" y="490" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">Shared components</text>
+  <text x="250" y="506" text-anchor="middle" font-size="9.5" fill="#64748B">Sidebar · Header · SearchBar · CustomerCard · CustomerDetail</text>
+  <text x="250" y="520" text-anchor="middle" font-size="9.5" fill="#64748B">ProductList · ProductSearchBar · Spinner · ExpensiveDisplay · lucide-react icons</text>
+  <rect x="460" y="470" width="264" height="64" rx="6" fill="#EDF5EE" stroke="#7FA985"/>
+  <text x="592" y="488" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">Form validation — Yup</text>
+  <text x="592" y="503" text-anchor="middle" font-size="9.5" fill="#64748B">customerSchema (New/Edit): required · email</text>
+  <text x="592" y="516" text-anchor="middle" font-size="9.5" fill="#64748B">interactionSchema: min 10 chars · no future date</text>
+  <text x="592" y="529" text-anchor="middle" font-size="9.5" fill="#64748B">validateAt on blur · validate on submit</text>
+
+  <!-- R6 static data -->
+  <rect x="72" y="554" width="200" height="58" rx="6" fill="#F3F1F8" stroke="#9A8FB8"/>
+  <text x="172" y="574" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">src/data/users.js</text>
+  <text x="172" y="590" text-anchor="middle" font-size="9.5" fill="#64748B">demo accounts (admin / user)</text>
+  <text x="172" y="603" text-anchor="middle" font-size="9" fill="#64748B">matched by LoginPage</text>
+  <rect x="292" y="554" width="180" height="58" rx="6" fill="#F3F1F8" stroke="#9A8FB8"/>
+  <text x="382" y="574" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">src/mockData.js</text>
+  <text x="382" y="590" text-anchor="middle" font-size="9.5" fill="#64748B">seed customers</text>
+  <text x="382" y="603" text-anchor="middle" font-size="9" fill="#64748B">kept, not imported</text>
+  <rect x="492" y="554" width="232" height="58" rx="6" fill="#F3F1F8" stroke="#9A8FB8"/>
+  <text x="608" y="574" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">data/products.js (repo root)</text>
+  <text x="608" y="590" text-anchor="middle" font-size="9.5" fill="#64748B">mockProducts · by scripts/generate-products.js</text>
+  <text x="608" y="603" text-anchor="middle" font-size="9" fill="#64748B">bundled into lazy Products chunk</text>
+  <text x="350" y="630" text-anchor="middle" font-size="9" fill="#8A94A6">Static data — bundled at build time (no runtime fetch)</text>
+
+  <!-- R7 styling -->
+  <rect x="72" y="648" width="652" height="50" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+  <text x="398" y="668" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">Styling &amp; UI libraries</text>
+  <text x="398" y="684" text-anchor="middle" font-size="9.5" fill="#64748B">CSS Modules (*.module.css) · global index.css / App.css · react-spinners · lucide-react icons</text>
+
+  <!-- R8 design notes -->
+  <rect x="72" y="716" width="652" height="50" rx="6" fill="#FFFFFF" stroke="#94A3B8" stroke-dasharray="5 4"/>
+  <text x="398" y="736" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">Design notes</text>
+  <text x="398" y="752" text-anchor="middle" font-size="9.5" fill="#64748B">code-split Products (React.lazy + Suspense) · useMemo / useCallback · Context + useReducer for shared state · API_BASE from import.meta.env</text>
+
+  <!-- ============ ZONE B : BUILD & DEPLOY ============ -->
+  <rect x="796" y="88" width="444" height="300" rx="10" fill="#FBF9F5" stroke="#D8E0E8"/>
+  <text x="816" y="112" font-size="11" font-weight="700" fill="#475569" letter-spacing="1.5">BUILD &amp; DEPLOY TOOLING</text>
+
+  <rect x="816" y="128" width="190" height="64" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+  <text x="911" y="148" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">Vite 8 + plugin-react (Oxc)</text>
+  <text x="911" y="164" text-anchor="middle" font-size="9.5" fill="#64748B">dev server :5173 · HMR</text>
+  <text x="911" y="178" text-anchor="middle" font-size="9.5" fill="#64748B">build · code splitting</text>
+  <rect x="1028" y="128" width="192" height="64" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+  <text x="1124" y="148" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">ESLint 10 + Prettier</text>
+  <text x="1124" y="164" text-anchor="middle" font-size="9.5" fill="#64748B">react-hooks · react-refresh</text>
+  <text x="1124" y="178" text-anchor="middle" font-size="9.5" fill="#64748B">npm run lint</text>
+  <line x1="1028" y1="160" x2="1006" y2="160" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <rect x="816" y="228" width="190" height="56" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+  <text x="911" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">npm scripts</text>
+  <text x="911" y="264" text-anchor="middle" font-size="9.5" fill="#64748B">dev · server · build · lint · preview</text>
+  <rect x="1028" y="228" width="192" height="56" rx="6" fill="#FFFFFF" stroke="#94A3B8" stroke-dasharray="5 4"/>
+  <text x="1124" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">.env.development / .production</text>
+  <text x="1124" y="264" text-anchor="middle" font-size="9.5" fill="#64748B">VITE_API_BASE_URL (placeholder in prod)</text>
+
+  <line x1="911" y1="228" x2="911" y2="192" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="1015" y1="192" x2="1015" y2="324" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <rect x="816" y="324" width="404" height="56" rx="6" fill="#FBF3E4" stroke="#C4A25E"/>
+  <text x="1018" y="344" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">dist/ static build + public/_redirects</text>
+  <text x="1018" y="360" text-anchor="middle" font-size="9.5" fill="#64748B">hashed assets · Products chunk · /* → /index.html 200 (SPA fallback) → static host</text>
+
+  <!-- env -> SPA (build-time, dashed) -->
+  <path d="M1028,252 H750 V244 H724" fill="none" stroke="#8FA1B3" stroke-width="1.3" stroke-dasharray="6 4" marker-end="url(#arr)"/>
+  <text x="886" y="240" text-anchor="middle" font-size="9" fill="#8A94A6">injected at build time → import.meta.env</text>
+
+  <!-- ============ ZONE C : MOCK API ============ -->
+  <rect x="796" y="430" width="444" height="426" rx="10" fill="#F4F8FB" stroke="#D8E0E8"/>
+  <text x="816" y="454" font-size="11" font-weight="700" fill="#475569" letter-spacing="1.5">MOCK REST API · DEV</text>
+
+  <rect x="816" y="470" width="404" height="64" rx="6" fill="#EAF1F9" stroke="#5B7FA6"/>
+  <text x="1018" y="492" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1E293B">json-server (Node)</text>
+  <text x="1018" y="508" text-anchor="middle" font-size="9.5" fill="#64748B">--watch data/db.json · port 3001 · auto-generated REST</text>
+  <text x="1018" y="522" text-anchor="middle" font-size="9" fill="#64748B">npm run server</text>
+
+  <line x1="1018" y1="534" x2="1018" y2="566" stroke="#64748B" stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="1030" y="554" font-size="9" fill="#8A94A6">serves JSON</text>
+
+  <rect x="816" y="566" width="404" height="84" rx="6" fill="#FFFFFF" stroke="#94A3B8"/>
+  <text x="1018" y="588" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">Generated routes</text>
+  <text x="1018" y="606" text-anchor="middle" font-size="9.5" fill="#64748B">GET /customers · POST /customers</text>
+  <text x="1018" y="621" text-anchor="middle" font-size="9.5" fill="#64748B">PUT /customers/:id · DELETE /customers/:id</text>
+  <text x="1018" y="636" text-anchor="middle" font-size="9.5" fill="#64748B">POST /interactions</text>
+
+  <line x1="900" y1="650" x2="900" y2="682" stroke="#3E6E9E" stroke-width="1.3" marker-end="url(#arrBlue)" marker-start="url(#arrBlueBoth)"/>
+  <text x="912" y="670" font-size="9" fill="#8A94A6">reads / writes (--watch)</text>
+
+  <rect x="816" y="682" width="404" height="56" rx="6" fill="#F3F1F8" stroke="#9A8FB8"/>
+  <text x="1018" y="702" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">data/db.json — JSON “database”</text>
+  <text x="1018" y="718" text-anchor="middle" font-size="9.5" fill="#64748B">customers · interactions · seed data</text>
+
+  <rect x="816" y="760" width="404" height="52" rx="6" fill="#FFFFFF" stroke="#94A3B8" stroke-dasharray="5 4"/>
+  <text x="1018" y="780" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B">Production note</text>
+  <text x="1018" y="796" text-anchor="middle" font-size="9.5" fill="#64748B">mock API is dev-only · prod: set VITE_API_BASE_URL to real backend</text>
+
+  <!-- ============ CROSS-ZONE ARROWS ============ -->
+  <!-- CustomerProvider -> json-server (customers CRUD) -->
+  <path d="M724,236 H776 V494 H816" fill="none" stroke="#3E6E9E" stroke-width="1.4" marker-end="url(#arrBlue)"/>
+  <text x="770" y="380" font-size="9.5" fill="#3E6E9E" transform="rotate(-90 770 380)">REST (JSON) — customers CRUD</text>
+  <!-- Detail page -> json-server (interactions) -->
+  <path d="M570,450 V456 H776 V520 H816" fill="none" stroke="#3E6E9E" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#arrBlue)"/>
+  <text x="700" y="452" text-anchor="middle" font-size="9" fill="#3E6E9E">POST /interactions</text>
+
+  <!-- ============ LEGEND ============ -->
+  <line x1="40" y1="868" x2="80" y2="868" stroke="#64748B" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="90" y="872" font-size="10" fill="#475569">runtime data flow</text>
+  <line x1="210" y1="868" x2="250" y2="868" stroke="#3E6E9E" stroke-width="1.4" marker-end="url(#arrBlue)"/>
+  <text x="260" y="872" font-size="10" fill="#475569">REST call (fetch)</text>
+  <line x1="380" y1="868" x2="420" y2="868" stroke="#8FA1B3" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#arr)"/>
+  <text x="430" y="872" font-size="10" fill="#475569">build-time / static import</text>
+  <rect x="580" y="860" width="24" height="14" rx="4" fill="none" stroke="#94A3B8" stroke-dasharray="5 4"/>
+  <text x="614" y="872" font-size="10" fill="#475569">lazy-loaded chunk</text>
+
+  <text x="40" y="892" font-size="10" fill="#64748B">Key flows:  ① login — Login page matches static users.js → AuthContext + localStorage        ② customers — pages ⇄ CustomerProvider (useReducer) ⇄ json-server ⇄ db.json        ③ deploy — vite build → dist + _redirects → static host</text>
+</svg>
