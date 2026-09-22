@@ -1,0 +1,13 @@
+{
+  "source": "mock product and service catalogue (static JSON)",
+  "products": [
+    { "sku": "SVC-CLOUD", "description": "Cloud Infrastructure Setup", "unitPrice": 3500, "unit": "per project", "category": "Services" },
+    { "sku": "SVC-CONSULT", "description": "Professional Consulting Services", "unitPrice": 1500, "unit": "per day", "category": "Services" },
+    { "sku": "HW-GPS", "description": "Enterprise Fleet GPS Tracking Unit", "unitPrice": 250, "unit": "each", "category": "Hardware" },
+    { "sku": "SVC-MAINT", "description": "Annual Software Maintenance", "unitPrice": 1200, "unit": "per year", "category": "Services" },
+    { "sku": "HW-POS", "description": "POS Terminal Hardware Integration", "unitPrice": 850, "unit": "each", "category": "Hardware" },
+    { "sku": "SVC-CNC", "description": "CNC Calibration Service", "unitPrice": 640, "unit": "per machine", "category": "Services" },
+    { "sku": "SVC-TRAIN", "description": "On-site Staff Training (half day)", "unitPrice": 900, "unit": "per session", "category": "Training" },
+    { "sku": "SVC-SUPPORT", "description": "Priority Support Retainer", "unitPrice": 400, "unit": "per month", "category": "Services" }
+  ]
+}
