@@ -1,0 +1,11 @@
+{
+  "source": "mock buyer directory (static JSON)",
+  "customers": [
+    { "uen": "202012345E", "name": "Temasek Tech Solutions Pte Ltd", "industry": "IT Services", "area": "Raffles Place", "peppolRegistered": true },
+    { "uen": "199854321W", "name": "Marina Bay Logistics Pte Ltd", "industry": "Logistics", "area": "Tuas", "peppolRegistered": true },
+    { "uen": "201598764Z", "name": "Singapura Retail Group", "industry": "Retail", "area": "Orchard", "peppolRegistered": true },
+    { "uen": "53412345A", "name": "Jurong Precision Engineering", "industry": "Manufacturing", "area": "Jurong East", "peppolRegistered": false },
+    { "uen": "T18LL0123K", "name": "Kopi and Co LLP", "industry": "Food and Beverage", "area": "Tanjong Pagar", "peppolRegistered": true },
+    { "uen": "201812345K", "name": "Sentosa Wellness Pte Ltd", "industry": "Healthcare", "area": "Harbourfront", "peppolRegistered": true }
+  ]
+}
