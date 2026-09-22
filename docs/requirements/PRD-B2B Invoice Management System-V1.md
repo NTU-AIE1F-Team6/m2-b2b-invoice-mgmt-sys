@@ -236,7 +236,9 @@ Reuse the supplied mockup's visual structure as a guide, while replacing claims 
 
 **Visual Mockup** 
 
-[View Mockup](./singapore_invoicenow_app.html)
+[View Mockup 1](./singapore_invoicenow_app.html)
+
+[View Mockup 2](https://artificialintelligence.sg/invoicenow/)
 
 ### 9.2 Implementation constraints
 
@@ -257,7 +259,7 @@ Reuse the supplied mockup's visual structure as a guide, while replacing claims 
 | 4 | Invoices + customers + products + mock users |
 
 ### 9.4 Starting Highlevel Architecture
-![System Architecture](./B2B-Invoice-System-Technical-Architecture_PRD-V1.svg)
+![Starting System Architecture](./PRD-System-Technical-Architecture_V1.svg)
 
 
 ## 10. Automated Testing and Verification
