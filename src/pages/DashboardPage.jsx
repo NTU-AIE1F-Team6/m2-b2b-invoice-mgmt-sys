@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext.jsx'
+import { can } from '../data/roles.js'
 import StatCards from '../components/StatCards.jsx'
 import FxRatesCard from '../components/FxRatesCard.jsx'
 import SearchFilter from '../components/SearchFilter.jsx'
@@ -10,9 +12,10 @@ import Hint from '../components/Hint.jsx'
 
 export default function DashboardPage({ store, notify }) {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [search, setSearch] = useState('')
   const [status, setStatus] = useState('All')
-  const { invoices, loading, error, busyId } = store
+  const { invoices, loading, error, busyId, offline } = store
 
   const term = search.trim().toLowerCase()
   const visible = invoices.filter((inv) => {
@@ -20,33 +23,42 @@ export default function DashboardPage({ store, notify }) {
       !term ||
       inv.buyerName.toLowerCase().includes(term) ||
       inv.buyerUEN.toLowerCase().includes(term) ||
-      inv.id.toLowerCase().includes(term)
+      (inv.invoiceNumber || '').toLowerCase().includes(term)
     const matchesStatus = status === 'All' || inv.status === status
     return matchesSearch && matchesStatus
   })
 
-  const handleDelete = (id) => {
-    if (window.confirm(`Delete invoice ${id}? This cannot be undone.`)) {
-      store.deleteInvoice(id)
-      notify(`Invoice ${id} deleted.`, 'info')
+  const labelFor = (id) => invoices.find((inv) => inv.id === id)?.invoiceNumber || id
+
+  const handleDelete = async (id) => {
+    const label = labelFor(id)
+    if (!window.confirm(`Delete invoice ${label}? This cannot be undone.`)) return
+    try {
+      await store.deleteInvoice(id)
+      notify(`Invoice ${label} deleted.`, 'info')
+    } catch (err) {
+      notify(`Could not delete invoice ${label}: ${err.message}`, 'error')
     }
   }
 
   const handleTransmit = async (id) => {
-    const ok = await store.transmitInvoice(id)
-    if (ok) notify(`Invoice ${id} routed via the InvoiceNow Access Point.`)
-    else notify(`Invoice ${id} was rejected by the Access Point.`, 'error')
+    const label = labelFor(id)
+    try {
+      const ok = await store.transmitInvoice(id)
+      if (ok) notify(`Invoice ${label} routed via the InvoiceNow Access Point.`)
+      else notify(`Invoice ${label} was rejected by the Access Point.`, 'error')
+    } catch (err) {
+      notify(`Could not transmit invoice ${label}: ${err.message}`, 'error')
+    }
   }
 
-  const handleMarkPaid = (id) => {
-    store.markPaid(id)
-    notify(`Invoice ${id} marked as paid.`)
-  }
-
-  const handleReset = async () => {
-    if (window.confirm('Reset the demo data? Your local changes will be replaced by the seed invoices.')) {
-      await store.resetDemo()
-      notify('Demo data reloaded from the mock API.', 'info')
+  const handleMarkPaid = async (id) => {
+    const label = labelFor(id)
+    try {
+      await store.markPaid(id)
+      notify(`Invoice ${label} marked as paid.`)
+    } catch (err) {
+      notify(`Could not update invoice ${label}: ${err.message}`, 'error')
     }
   }
 
@@ -69,22 +81,22 @@ export default function DashboardPage({ store, notify }) {
             <Hint label="useState: search + status filter" />
           </div>
         </div>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={handleReset}
-            className="text-sm font-medium text-slate-500 hover:text-slate-800 px-3 py-2.5 rounded-xl hover:bg-slate-100 transition"
-          >
-            Reset demo
-          </button>
+        {can(user, 'create') && (
           <Link
             to="/create"
             className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2.5 rounded-xl shadow-md transition text-sm whitespace-nowrap"
           >
             + Create invoice
           </Link>
-        </div>
+        )}
       </div>
+
+      {offline && !loading && !error && (
+        <div className="bg-amber-50 border border-amber-200 text-amber-700 px-4 py-3 rounded-xl text-sm">
+          Offline demo data: set <code className="font-mono">VITE_MOCKAPI_URL</code> in <code className="font-mono">.env.local</code> to
+          save changes across browsers.
+        </div>
+      )}
 
       {error && <ErrorBanner title="Could not load invoices" message={error} onRetry={store.retryLoad} />}
 
@@ -101,6 +113,7 @@ export default function DashboardPage({ store, notify }) {
           {busyId && <LoadingSpinner label="Processing Peppol transmission..." className="py-1" />}
           <InvoiceList
             invoices={visible}
+            user={user}
             busyId={busyId}
             onTransmit={handleTransmit}
             onMarkPaid={handleMarkPaid}
@@ -108,7 +121,8 @@ export default function DashboardPage({ store, notify }) {
             onDelete={handleDelete}
           />
           <p className="text-xs text-slate-400 text-center">
-            Showing {visible.length} of {invoices.length} invoices. Data is fetched from a mock API on first load and then kept in your browser.
+            Showing {visible.length} of {invoices.length} invoices.{' '}
+            {offline ? 'Static offline demo data (not shared across browsers).' : 'Synced with the shared MockAPI backend.'}
           </p>
         </>
       )}

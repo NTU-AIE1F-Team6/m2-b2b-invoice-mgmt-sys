@@ -1,11 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { AuthProvider } from '../context/AuthContext.jsx'
 import DashboardPage from './DashboardPage.jsx'
 
 const invoices = [
   {
-    id: 'INV-2026-001',
+    id: 'mock-id-1',
+    invoiceNumber: 'INV-2026-001',
     buyerName: 'Temasek Tech Solutions',
     buyerUEN: '202012345E',
     peppolId: '202012345E@SGUEN',
@@ -16,7 +18,8 @@ const invoices = [
     status: 'Draft',
   },
   {
-    id: 'INV-2026-002',
+    id: 'mock-id-2',
+    invoiceNumber: 'INV-2026-002',
     buyerName: 'Marina Bay Logistics',
     buyerUEN: '199854321W',
     peppolId: '199854321W@SGUEN',
@@ -28,21 +31,24 @@ const invoices = [
   },
 ]
 
+const EDIT_SESSION = { username: 'john', name: 'John', role: 'EDIT', loginAt: new Date().toISOString() }
+
 function createStore() {
   return {
     invoices,
     loading: false,
     error: null,
     busyId: null,
+    offline: false,
     transmitInvoice: vi.fn(),
     markPaid: vi.fn(),
-    deleteInvoice: vi.fn(),
-    resetDemo: vi.fn(),
+    deleteInvoice: vi.fn().mockResolvedValue(undefined),
     retryLoad: vi.fn(),
   }
 }
 
 beforeEach(() => {
+  sessionStorage.setItem('invoicenow-session', JSON.stringify(EDIT_SESSION))
   vi.spyOn(global, 'fetch').mockResolvedValue({
     ok: true,
     json: async () => ({
@@ -53,23 +59,26 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  sessionStorage.clear()
   vi.restoreAllMocks()
 })
 
 function renderDashboard(store = createStore()) {
   return render(
-    <MemoryRouter initialEntries={['/']}>
-      <Routes>
-        <Route
-          path="/"
-          element={<DashboardPage store={store} notify={vi.fn()} />}
-        />
-        <Route
-          path="/edit"
-          element={<div>Edit invoice page</div>}
-        />
-      </Routes>
-    </MemoryRouter>,
+    <AuthProvider>
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route
+            path="/"
+            element={<DashboardPage store={store} notify={vi.fn()} />}
+          />
+          <Route
+            path="/edit"
+            element={<div>Edit invoice page</div>}
+          />
+        </Routes>
+      </MemoryRouter>
+    </AuthProvider>,
   )
 }
 
@@ -139,5 +148,5 @@ it('deletes an invoice after confirmation', async () => {
 
   await user.click(screen.getAllByRole('button', { name: 'Delete' })[0])
 
-  expect(store.deleteInvoice).toHaveBeenCalledWith('INV-2026-001')
+  expect(store.deleteInvoice).toHaveBeenCalledWith('mock-id-1')
 })

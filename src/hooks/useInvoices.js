@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useReducer } from 'react'
 import { STATUS, UEN_PATTERN } from '../data/constants.js'
 import { nextInvoiceId } from '../utils/invoice.js'
+import { hasMockApi } from '../api/client.js'
+import * as invoicesApi from '../api/invoices.js'
 
-// Invoice store: useReducer for the collection, useEffect to fetch the mock API on first load
-// and to persist every change to localStorage (so the demo survives a refresh).
-const STORAGE_KEY = 'invoicenow-sg-invoices-v1'
-const API_URL = `${import.meta.env.BASE_URL}api/invoices.json`
+// Invoice store: useReducer for the collection, backed by MockAPI (or the static demo JSON when
+// VITE_MOCKAPI_URL is unset). State only changes after the API confirms a write, so a failed
+// create/update/delete leaves the list exactly as it was and the caller sees the error.
 const NETWORK_DELAY_MS = 900
 
 const initialState = { invoices: [], loading: true, loaded: false, error: null, busyId: null }
@@ -15,57 +16,37 @@ function reducer(state, action) {
     case 'load/start':
       return { ...state, loading: true, error: null }
     case 'load/success':
-      return { ...state, loading: false, loaded: true, invoices: action.invoices }
+      return { ...state, loading: false, loaded: true, invoices: action.invoices, error: null }
     case 'load/error':
       return { ...state, loading: false, error: action.error }
     case 'busy':
       return { ...state, busyId: action.id }
     case 'add':
-      return { ...state, invoices: [action.invoice, ...state.invoices] }
-    case 'update':
-      return { ...state, invoices: state.invoices.map((i) => (i.id === action.invoice.id ? action.invoice : i)) }
-    case 'delete':
-      return { ...state, invoices: state.invoices.filter((i) => i.id !== action.id) }
-    case 'status':
+      return { ...state, invoices: [action.invoice, ...state.invoices], busyId: null }
+    case 'replace':
       return {
         ...state,
-        invoices: state.invoices.map((i) =>
-          i.id === action.id
-            ? { ...i, status: action.status, failureReason: action.failureReason, updatedAt: action.at }
-            : i,
-        ),
+        invoices: state.invoices.map((i) => (i.id === action.invoice.id ? action.invoice : i)),
+        busyId: null,
       }
+    case 'remove':
+      return { ...state, invoices: state.invoices.filter((i) => i.id !== action.id), busyId: null }
     default:
       return state
   }
 }
 
-function readCache() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : null
-  } catch {
-    return null
-  }
-}
-
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-export function useInvoices() {
+// `username` (from the session) is stamped onto every write as createdBy/updatedBy.
+export function useInvoices(username) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const load = useCallback(async (signal, { ignoreCache = false } = {}) => {
+  const load = useCallback(async (signal) => {
     dispatch({ type: 'load/start' })
-    const cached = ignoreCache ? null : readCache()
-    if (cached) {
-      dispatch({ type: 'load/success', invoices: cached })
-      return
-    }
     try {
-      const res = await fetch(API_URL, { signal })
-      if (!res.ok) throw new Error(`Mock API returned HTTP ${res.status}`)
-      const json = await res.json()
-      dispatch({ type: 'load/success', invoices: json.invoices })
+      const invoices = await invoicesApi.listInvoices(signal)
+      dispatch({ type: 'load/success', invoices })
     } catch (err) {
       if (err.name !== 'AbortError') dispatch({ type: 'load/error', error: err.message })
     }
@@ -78,56 +59,90 @@ export function useInvoices() {
     return () => controller.abort()
   }, [load])
 
-  // Persist after every successful change.
-  useEffect(() => {
-    if (!state.loaded) return
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.invoices))
-    } catch {
-      // storage full or blocked: the in-memory copy still works
-    }
-  }, [state.invoices, state.loaded])
+  const putInvoice = useCallback(async (invoice) => {
+    const saved = await invoicesApi.updateInvoice(invoice.id, invoice)
+    dispatch({ type: 'replace', invoice: saved })
+    return saved
+  }, [])
 
   const simulateTransmit = useCallback(async (invoice) => {
     dispatch({ type: 'busy', id: invoice.id })
-    dispatch({ type: 'status', id: invoice.id, status: STATUS.QUEUED, at: new Date().toISOString() })
-    await wait(NETWORK_DELAY_MS)
-    const ok = UEN_PATTERN.test(invoice.buyerUEN)
-    dispatch({
-      type: 'status',
-      id: invoice.id,
-      status: ok ? STATUS.TRANSMITTED : STATUS.FAILED,
-      failureReason: ok ? undefined : 'Access Point rejected: buyer UEN is not a valid Singapore UEN',
-      at: new Date().toISOString(),
-    })
-    dispatch({ type: 'busy', id: null })
-    return ok
+    try {
+      const queued = { ...invoice, status: STATUS.QUEUED, updatedAt: new Date().toISOString() }
+      await invoicesApi.updateInvoice(invoice.id, queued)
+      dispatch({ type: 'replace', invoice: queued })
+
+      await wait(NETWORK_DELAY_MS)
+
+      const ok = UEN_PATTERN.test(invoice.buyerUEN)
+      const settled = {
+        ...queued,
+        status: ok ? STATUS.TRANSMITTED : STATUS.FAILED,
+        failureReason: ok ? null : 'Access Point rejected: buyer UEN is not a valid Singapore UEN',
+        updatedAt: new Date().toISOString(),
+      }
+      const saved = await invoicesApi.updateInvoice(invoice.id, settled)
+      dispatch({ type: 'replace', invoice: saved })
+      return ok
+    } finally {
+      dispatch({ type: 'busy', id: null })
+    }
   }, [])
 
   const addInvoice = useCallback(
     async (payload, { transmit = false } = {}) => {
-      const invoice = {
-        ...payload,
-        id: nextInvoiceId(state.invoices),
-        peppolId: `${payload.buyerUEN}@SGUEN`,
-        status: STATUS.DRAFT,
-        createdAt: new Date().toISOString(),
+      dispatch({ type: 'busy', id: 'new' })
+      try {
+        const now = new Date().toISOString()
+        const draft = {
+          invoiceNumber: nextInvoiceId(state.invoices),
+          ...payload,
+          peppolId: `${payload.buyerUEN}@SGUEN`,
+          status: STATUS.DRAFT,
+          failureReason: null,
+          createdBy: username ?? null,
+          createdAt: now,
+          updatedAt: now,
+          pendingRequest: null,
+        }
+        const created = await invoicesApi.createInvoice(draft)
+        dispatch({ type: 'add', invoice: created })
+        const ok = transmit ? await simulateTransmit(created) : null
+        return { invoice: created, transmitted: ok }
+      } finally {
+        dispatch({ type: 'busy', id: null })
       }
-      dispatch({ type: 'add', invoice })
-      const ok = transmit ? await simulateTransmit(invoice) : null
-      return { invoice, transmitted: ok }
     },
-    [state.invoices, simulateTransmit],
+    [state.invoices, username, simulateTransmit],
   )
 
-  const updateInvoice = useCallback((invoice) => {
-    dispatch({
-      type: 'update',
-      invoice: { ...invoice, peppolId: `${invoice.buyerUEN}@SGUEN`, updatedAt: new Date().toISOString() },
-    })
-  }, [])
+  const updateInvoice = useCallback(
+    async (invoice) => {
+      dispatch({ type: 'busy', id: invoice.id })
+      try {
+        const updated = {
+          ...invoice,
+          peppolId: `${invoice.buyerUEN}@SGUEN`,
+          updatedBy: username ?? null,
+          updatedAt: new Date().toISOString(),
+        }
+        return await putInvoice(updated)
+      } finally {
+        dispatch({ type: 'busy', id: null })
+      }
+    },
+    [putInvoice, username],
+  )
 
-  const deleteInvoice = useCallback((id) => dispatch({ type: 'delete', id }), [])
+  const deleteInvoice = useCallback(async (id) => {
+    dispatch({ type: 'busy', id })
+    try {
+      await invoicesApi.deleteInvoice(id)
+      dispatch({ type: 'remove', id })
+    } finally {
+      dispatch({ type: 'busy', id: null })
+    }
+  }, [])
 
   const transmitInvoice = useCallback(
     async (id) => {
@@ -138,18 +153,24 @@ export function useInvoices() {
     [state.invoices, simulateTransmit],
   )
 
-  const markPaid = useCallback((id) => {
-    dispatch({ type: 'status', id, status: STATUS.PAID, at: new Date().toISOString() })
-  }, [])
-
-  const resetDemo = useCallback(() => {
-    try {
-      localStorage.removeItem(STORAGE_KEY)
-    } catch {
-      // ignore
-    }
-    return load(undefined, { ignoreCache: true })
-  }, [load])
+  const markPaid = useCallback(
+    async (id) => {
+      const invoice = state.invoices.find((i) => i.id === id)
+      if (!invoice) return
+      dispatch({ type: 'busy', id })
+      try {
+        await putInvoice({
+          ...invoice,
+          status: STATUS.PAID,
+          updatedBy: username ?? null,
+          updatedAt: new Date().toISOString(),
+        })
+      } finally {
+        dispatch({ type: 'busy', id: null })
+      }
+    },
+    [state.invoices, putInvoice, username],
+  )
 
   const retryLoad = useCallback(() => load(undefined), [load])
 
@@ -158,12 +179,12 @@ export function useInvoices() {
     loading: state.loading,
     error: state.error,
     busyId: state.busyId,
+    offline: !hasMockApi(),
     addInvoice,
     updateInvoice,
     deleteInvoice,
     transmitInvoice,
     markPaid,
-    resetDemo,
     retryLoad,
   }
 }

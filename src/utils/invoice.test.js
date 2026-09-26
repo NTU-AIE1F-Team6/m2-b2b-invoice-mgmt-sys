@@ -30,9 +30,9 @@ describe('invoice utilities', () => {
 
   it('generates the next invoice ID for the selected year', () => {
     const invoices = [
-      { id: 'INV-2026-001' },
-      { id: 'INV-2026-004' },
-      { id: 'INV-2025-009' },
+      { invoiceNumber: 'INV-2026-001' },
+      { invoiceNumber: 'INV-2026-004' },
+      { invoiceNumber: 'INV-2025-009' },
     ]
 
     expect(nextInvoiceId(invoices, 2026)).toBe('INV-2026-005')

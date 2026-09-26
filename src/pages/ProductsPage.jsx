@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useFetch } from '../hooks/useFetch.js'
+import { listProducts } from '../api/referenceData.js'
 import { formatSGD } from '../utils/invoice.js'
 import LoadingSpinner from '../components/LoadingSpinner.jsx'
 import ErrorBanner from '../components/ErrorBanner.jsx'
 import Hint from '../components/Hint.jsx'
 
-// Third data endpoint: the product and service catalogue. "Add to new invoice" carries the
-// product into the create form through the URL, so no shared state is needed.
+// Third data endpoint: the product and service catalogue (MockAPI `referenceData`, or the static
+// JSON fallback). "Add to new invoice" carries the product into the create form through the URL.
 export default function ProductsPage() {
-  const products = useFetch(`${import.meta.env.BASE_URL}api/products.json`, { transform: (j) => j.products })
+  const products = useFetch(listProducts)
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-5">
@@ -18,7 +19,7 @@ export default function ProductsPage() {
           Items you can bill. Pick one here or from the line-item dropdown on the invoice form.
         </p>
         <div className="flex flex-wrap gap-1.5 mt-2">
-          <Hint label="useFetch #3: mock products.json" />
+          <Hint label="useFetch #3: MockAPI referenceData" />
           <Hint label="Link to /create?item=&price= (React Router)" />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import InvoiceCard from './InvoiceCard.jsx'
 import Hint from './Hint.jsx'
 
-export default function InvoiceList({ invoices, busyId, onTransmit, onMarkPaid, onEdit, onDelete }) {
+export default function InvoiceList({ invoices, user, busyId, onTransmit, onMarkPaid, onEdit, onDelete }) {
   if (invoices.length === 0) {
     return (
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 text-center py-14 px-4 text-slate-400 text-sm">
@@ -17,6 +17,7 @@ export default function InvoiceList({ invoices, busyId, onTransmit, onMarkPaid, 
         <InvoiceCard
           key={invoice.id}
           invoice={invoice}
+          user={user}
           busy={busyId === invoice.id}
           onTransmit={onTransmit}
           onMarkPaid={onMarkPaid}
