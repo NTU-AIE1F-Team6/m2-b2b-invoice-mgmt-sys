@@ -8,6 +8,7 @@ import EditInvoicePage from '../pages/EditInvoicePage.jsx'
 import CustomersPage from '../pages/CustomersPage.jsx'
 import ProductsPage from '../pages/ProductsPage.jsx'
 import { useInvoices } from '../hooks/useInvoices.js'
+import { useAuth } from '../context/AuthContext.jsx'
 
 const HINTS_KEY = 'invoicenow-hints'
 
@@ -23,7 +24,8 @@ function readHints() {
 // (state is lifted here because Dashboard, Create and Edit all read or change the same list).
 // Also owns the "React hints" toggle: a class on the wrapper shows every <Hint> label at once.
 export default function AppShell() {
-  const store = useInvoices()
+  const { user } = useAuth()
+  const store = useInvoices(user?.username)
   const [toast, setToast] = useState(null)
   const [hints, setHints] = useState(readHints)
 
