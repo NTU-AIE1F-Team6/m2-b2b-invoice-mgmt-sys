@@ -17,4 +17,4 @@ export const UEN_PATTERN = /^(\d{8}[A-Z]|\d{9}[A-Z]|[TSR]\d{2}[A-Z]{2}\d{4}[A-Z]
 // Free public APIs (no key, CORS enabled). Frankfurter moved to api.frankfurter.dev/v1; the old
 // api.frankfurter.app host only answers with a redirect that browsers block for cross-origin fetches.
 export const FX_API = 'https://api.frankfurter.dev/v1/latest?base=SGD&symbols=USD,EUR,MYR,JPY,CNY'
-export const CONTACTS_API = 'https://randomuser.me/api/?results=6&seed=invoicenow-sg&nat=au,gb,us,nz&inc=name,email,phone,picture'
+export const CONTACTS_API = 'https://randomuser.me/api/?results=6&seed=easyinvoice&nat=au,gb,us,nz&inc=name,email,phone,picture'

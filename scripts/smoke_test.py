@@ -1,11 +1,11 @@
 """Headless smoke test of the built app. Run `npm run preview` first, then:
-    python scripts/smoke_test.py http://localhost:4173/invoicenow/ <admin-password>
+    python scripts/smoke_test.py http://localhost:4173/easyinvoice/ <admin-password>
 Needs Python Playwright with Chromium (pip install playwright; playwright install chromium)."""
 import sys
 from playwright.sync_api import sync_playwright
 
-BASE = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:4173/invoicenow/"
-PASSWORD = sys.argv[2] if len(sys.argv) > 2 else "invoicenow2026"
+BASE = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:4173/easyinvoice/"
+PASSWORD = sys.argv[2] if len(sys.argv) > 2 else "Password123"
 errors = []
 
 with sync_playwright() as p:
@@ -16,7 +16,7 @@ with sync_playwright() as p:
     page.on("dialog", lambda d: d.accept())
 
     page.goto(BASE + "tour/")
-    page.wait_for_selector("h1:has-text('How InvoiceNow SG is built')")
+    page.wait_for_selector("h1:has-text('How EasyInvoice is built')")
     concepts = page.locator("article[data-concept]").count()
     assert concepts >= 11, f"expected 11+ concept cards on the tour, got {concepts}"
     print(f"0. public tour page renders {concepts} concept cards without login")
@@ -49,7 +49,7 @@ with sync_playwright() as p:
     page.wait_for_selector(".react-hint", state="hidden")
     print(f"3b. hints toggle shows {shown} React labels, then hides them again")
 
-    assert page.url.endswith("/invoicenow/"), f"dashboard URL should end with a slash, got {page.url}"
+    assert page.url.endswith("/easyinvoice/"), f"dashboard URL should end with a slash, got {page.url}"
     page.wait_for_selector("text=Live FX", timeout=10000)
     page.wait_for_selector("li:has-text('USD')", timeout=15000)
     print("4. FX rates loaded from api.frankfurter.dev:", page.inner_text("li:has-text('USD')"))

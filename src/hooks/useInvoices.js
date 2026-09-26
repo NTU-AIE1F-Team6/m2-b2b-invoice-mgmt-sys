@@ -4,7 +4,7 @@ import { nextInvoiceId } from '../utils/invoice.js'
 
 // Invoice store: useReducer for the collection, useEffect to fetch the mock API on first load
 // and to persist every change to localStorage (so the demo survives a refresh).
-const STORAGE_KEY = 'invoicenow-sg-invoices-v1'
+const STORAGE_KEY = 'easyinvoice-invoices-v1'
 const API_URL = `${import.meta.env.BASE_URL}api/invoices.json`
 const NETWORK_DELAY_MS = 900
 

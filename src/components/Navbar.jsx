@@ -28,7 +28,7 @@ export default function Navbar({ hints, onToggleHints }) {
             </div>
             <div>
               <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-300 bg-clip-text text-transparent">
-                InvoiceNow SG
+                EasyInvoice
               </span>
               <span className="hidden sm:block text-xs text-slate-400">Singapore Peppol E-Invoicing Portal</span>
             </div>
