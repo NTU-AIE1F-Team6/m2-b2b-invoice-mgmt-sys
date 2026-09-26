@@ -24,14 +24,15 @@ to `.env.local` and set `VITE_MOCKAPI_URL` (see "MockAPI setup" below).
 The app is gated like artificialintelligence.sg/citylife/: the password is hashed with SHA-256 in
 the browser and compared with a stored digest, and the session lives in `sessionStorage` (it ends
 when the tab closes). This is a demo gate, not real security: everything runs in the browser.
-Demo accounts (defined in `src/data/users.js`):
+Demo accounts (defined in `src/data/users.js`) all share one password, `Password123` - this is a
+learning-project demo gate, not production security:
 
 | username | password | role |
 |---|---|---|
-| `viewer` | `viewer123` | VIEW_ONLY (read-only, no create/edit/transmit/delete) |
-| `john` | `john123` | EDIT |
-| `jenn` | `jenn123` | EDIT |
-| `ralph` | `ralph123` | EDIT |
+| `viewer` | `Password123` | VIEW_ONLY (read-only, no create/edit/transmit/delete) |
+| `john` | `Password123` | EDIT |
+| `jenn` | `Password123` | EDIT |
+| `ralph` | `Password123` | EDIT |
 
 ## Demo aids
 
