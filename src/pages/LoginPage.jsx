@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router'
 import { useAuth } from '../context/AuthContext.jsx'
 
 // Password gate in the style of artificialintelligence.sg/citylife/: a centred card, the password is

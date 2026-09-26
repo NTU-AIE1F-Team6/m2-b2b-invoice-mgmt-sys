@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router'
 import StatCards from '../components/StatCards.jsx'
 import FxRatesCard from '../components/FxRatesCard.jsx'
 import SearchFilter from '../components/SearchFilter.jsx'

@@ -1,4 +1,4 @@
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router'
 import InvoiceForm from '../components/InvoiceForm.jsx'
 import LoadingSpinner from '../components/LoadingSpinner.jsx'
 import PeppolStatusBadge from '../components/PeppolStatusBadge.jsx'

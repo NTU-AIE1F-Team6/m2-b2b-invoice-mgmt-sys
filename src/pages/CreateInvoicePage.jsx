@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router'
 import InvoiceForm from '../components/InvoiceForm.jsx'
 import Hint from '../components/Hint.jsx'
 
