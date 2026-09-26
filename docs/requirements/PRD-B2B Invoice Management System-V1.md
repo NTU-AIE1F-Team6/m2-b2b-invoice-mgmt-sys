@@ -236,7 +236,7 @@ Reuse the supplied mockup's visual structure as a guide, while replacing claims 
 
 **Visual Mockup** 
 
-[View Mockup 1](./singapore_invoicenow_app.html)
+[View Mockup 1](../../mockup/singapore_invoicenow_app.html)
 
 [View Mockup 2](https://artificialintelligence.sg/invoicenow/)
 
@@ -259,7 +259,7 @@ Reuse the supplied mockup's visual structure as a guide, while replacing claims 
 | 4 | Invoices + customers + products + mock users |
 
 ### 9.4 Starting Highlevel Architecture
-![Starting System Architecture](./PRD-System-Technical-Architecture_V1.svg)
+(Original diagram removed; see `docs/design/` for the current architecture diagram.)
 
 
 ## 10. Automated Testing and Verification
