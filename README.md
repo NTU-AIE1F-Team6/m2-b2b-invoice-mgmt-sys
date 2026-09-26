@@ -31,7 +31,7 @@ learning-project demo gate, not production security:
 |---|---|---|
 | `viewer` | `Password123` | VIEW_ONLY (read-only, no create/edit/transmit/delete) |
 | `john` | `Password123` | EDIT |
-| `jenn` | `Password123` | EDIT |
+| `jennfang` | `Password123` | EDIT |
 | `ralph` | `Password123` | EDIT |
 
 ## Demo aids

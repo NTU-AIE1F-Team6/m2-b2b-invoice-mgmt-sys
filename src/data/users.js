@@ -22,7 +22,7 @@ export const USERS = [
     passwordHash: DEMO_PASSWORD_HASH,
   },
   {
-    username: 'jenn',
+    username: 'jennfang',
     name: 'Jenn Fang',
     role: ROLES.EDIT,
     passwordHash: DEMO_PASSWORD_HASH,
