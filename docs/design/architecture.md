@@ -13,9 +13,9 @@ EasyInvoice is a React + Vite simulation of Singapore's Peppol e-invoicing netwo
 for a small business finance/AR team to create, transmit, track and collect payment on e-invoices.
 Built for the NTU AI Engineering Module 2 group project.
 
-For the architecture diagram, see `docs/design/InvoiceNow-SG-architecture_*.svg` (naming predates
-the rename; content still applies) — high level, this is a single-page React app talking directly
-to a hosted mock REST API (MockAPI) and two free public APIs, with no backend of its own.
+For the architecture diagram, see `docs/design/easyinvoice-architecture_*.svg` (the superseded
+pre-rename version is in `docs/archive/`) — high level, this is a single-page React app talking
+directly to a hosted mock REST API (MockAPI) and two free public APIs, with no backend of its own.
 
 ## 2. Tech stack (final state)
 

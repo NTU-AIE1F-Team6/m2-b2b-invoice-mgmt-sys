@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900" font-family="Helvetica Neue, Arial, sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#475569"/>
+    </marker>
+    <marker id="ahf" markerWidth="7" markerHeight="7" refX="5.5" refY="2.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L6,2.5 L0,5 Z" fill="#94a3b8"/>
+    </marker>
+    <marker id="ahv" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="900" fill="#ffffff"/>
+
+  <!-- ===== Header ===== -->
+  <text x="40" y="46" font-size="20" font-weight="700" fill="#0f172a">EasyInvoice — Technical Architecture</text>
+  <text x="40" y="70" font-size="11.5" fill="#64748b">React SPA simulating Singapore InvoiceNow (Peppol) e-invoicing · NTU AI Engineering Module 2 · no backend of its own</text>
+
+  <!-- Legend -->
+  <g font-size="10" fill="#475569">
+    <line x1="1080" y1="38" x2="1110" y2="38" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)"/>
+    <text x="1118" y="42">live data / dependency</text>
+    <line x1="1080" y1="56" x2="1110" y2="56" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+    <text x="1118" y="60">fallback / optional path</text>
+    <line x1="1080" y1="74" x2="1110" y2="74" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#ahv)"/>
+    <text x="1118" y="78">CI / ops flow</text>
+  </g>
+
+  <!-- ===== Client (browser) ===== -->
+  <g>
+    <rect x="40" y="96" width="540" height="472" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+    <path d="M40,130 v-22 a12,12 0 0 1 12,-12 h516 a12,12 0 0 1 12,12 v22 Z" fill="#e2e8f0"/>
+    <text x="56" y="118" font-size="13" font-weight="700" fill="#1e293b">Browser — EasyInvoice SPA<tspan font-weight="400" font-size="11.5" fill="#475569">  ·  React 19 · Vite 8 · Tailwind 4 · React Router 7</tspan></text>
+
+    <!-- L1 UI -->
+    <rect x="60" y="140" width="500" height="88" rx="8" fill="#eaf2fd" stroke="#2563eb"/>
+    <text x="74" y="158" font-size="12" font-weight="700" fill="#1e40af">UI — pages &amp; components</text>
+    <g font-size="10.5" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="74" y="178">pages:  Login · Tour · Dashboard · Create · Edit · Customers · Products</text>
+      <text x="74" y="193">shell:  AppShell · Navbar · RequireAuth · Toast · ErrorBanner · Hint</text>
+      <text x="74" y="208">invoice: InvoiceList · InvoiceCard · InvoiceForm · PeppolStatusBadge</text>
+      <text x="74" y="223">dash:   StatCards · FxRatesCard · SearchFilter · LoadingSpinner</text>
+    </g>
+
+    <!-- L2 State -->
+    <rect x="60" y="242" width="500" height="88" rx="8" fill="#e6f5f1" stroke="#0f766e"/>
+    <text x="74" y="260" font-size="12" font-weight="700" fill="#115e59">State &amp; logic — hooks + context</text>
+    <g font-size="10.5" fill="#334155">
+      <text x="74" y="280">AuthContext — SHA-256 login gate; session in sessionStorage (ends with tab)</text>
+      <text x="74" y="295">useInvoices — useReducer store; UI updates only after the API confirms</text>
+      <text x="74" y="310">useFetch — live FX + contacts · roles.can(user, action, invoice)</text>
+      <text x="74" y="325" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="10">session: { username, name, role, loginAt }</text>
+    </g>
+
+    <!-- L3 API -->
+    <rect x="60" y="344" width="500" height="88" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="74" y="362" font-size="12" font-weight="700" fill="#1e293b">API layer — src/api/ (plain fetch, no libs)</text>
+    <g font-size="10.5" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="74" y="382">client.js — base = VITE_MOCKAPI_URL · throws on non-2xx</text>
+      <text x="74" y="397">invoices.js — GET list / one · POST · PUT · DELETE  →  /invoices</text>
+      <text x="74" y="412">referenceData.js — GET /referenceData, filter type: customer | product</text>
+      <text x="74" y="427">all functions take an AbortSignal; writes return the saved record</text>
+    </g>
+
+    <!-- L4 Domain -->
+    <rect x="60" y="446" width="500" height="92" rx="8" fill="#fbf3e4" stroke="#b45309"/>
+    <text x="74" y="464" font-size="12" font-weight="700" fill="#92400e">Domain rules — src/utils/ + src/data/</text>
+    <g font-size="10.5" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="74" y="484">invoice.js — GST 9% totals · INV-YYYY-NNN · SGD format · overdue</text>
+      <text x="74" y="499">constants.js — UEN regex · status enum · free-API URLs · GST rate</text>
+      <text x="74" y="514">hash.js — SHA-256 (WebCrypto) · users.js — 4 demo accounts</text>
+      <text x="74" y="529">roles.js — can(user, action, invoice): VIEW_ONLY vs EDIT</text>
+    </g>
+    <text x="74" y="556" font-size="10.5" font-style="italic" fill="#92400e">No own backend — the Peppol “Access Point” transmission is simulated in-browser.</text>
+
+    <!-- intra-layer flow -->
+    <g stroke="#94a3b8" stroke-width="1.2">
+      <line x1="310" y1="229" x2="310" y2="240" marker-end="url(#ahf)"/>
+      <line x1="310" y1="331" x2="310" y2="342" marker-end="url(#ahf)"/>
+      <line x1="310" y1="433" x2="310" y2="444" marker-end="url(#ahf)"/>
+    </g>
+  </g>
+
+  <!-- ===== External services ===== -->
+  <g>
+    <rect x="660" y="96" width="280" height="560" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+    <path d="M660,130 v-22 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v22 Z" fill="#e2e8f0"/>
+    <text x="676" y="118" font-size="13" font-weight="700" fill="#1e293b">External services</text>
+
+    <rect x="680" y="150" width="240" height="96" rx="8" fill="#fff7e6" stroke="#d97706"/>
+    <text x="692" y="168" font-size="12" font-weight="700" fill="#92400e">mockapi.io — MockAPI</text>
+    <g font-size="10.5" fill="#334155">
+      <text x="692" y="186">shared JSON storage — every browser</text>
+      <text x="692" y="201" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="10">resources: /invoices · /referenceData</text>
+      <text x="692" y="216">free tier: 2 resources · 429 rate limits</text>
+      <text x="692" y="231">all CRUD + status writes land here</text>
+    </g>
+
+    <rect x="680" y="262" width="240" height="72" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-dasharray="5 4"/>
+    <text x="692" y="280" font-size="12" font-weight="700" fill="#334155">public/api/*.json (same origin)</text>
+    <g font-size="10.5" fill="#475569">
+      <text x="692" y="298">read-only offline demo data</text>
+      <text x="692" y="313">invoices · customers · products</text>
+      <text x="692" y="328">used when VITE_MOCKAPI_URL is unset</text>
+    </g>
+
+    <rect x="680" y="350" width="240" height="64" rx="8" fill="#fff7e6" stroke="#d97706"/>
+    <text x="692" y="368" font-size="12" font-weight="700" fill="#92400e">api.frankfurter.dev/v1</text>
+    <g font-size="10.5" fill="#334155">
+      <text x="692" y="386">live SGD → USD, EUR, MYR, JPY, CNY</text>
+      <text x="692" y="401">no key · CORS · feeds the FX card</text>
+    </g>
+
+    <rect x="680" y="430" width="240" height="64" rx="8" fill="#fff7e6" stroke="#d97706"/>
+    <text x="692" y="448" font-size="12" font-weight="700" fill="#92400e">randomuser.me/api</text>
+    <g font-size="10.5" fill="#334155">
+      <text x="692" y="466">6 contact persons, stable (seeded)</text>
+      <text x="692" y="481">paired with each buyer on /customers</text>
+    </g>
+
+    <g font-size="10.5" font-style="italic" fill="#64748b">
+      <text x="692" y="524">No own backend — the Peppol “Access Point”</text>
+      <text x="692" y="539">is simulated in-browser (900 ms delay,</text>
+      <text x="692" y="554">then a UEN validity check).</text>
+    </g>
+  </g>
+
+  <!-- ===== Engineering & delivery ===== -->
+  <g>
+    <rect x="960" y="96" width="280" height="560" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+    <path d="M960,130 v-22 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v22 Z" fill="#e2e8f0"/>
+    <text x="976" y="118" font-size="13" font-weight="700" fill="#1e293b">Engineering &amp; delivery</text>
+
+    <rect x="980" y="150" width="240" height="82" rx="8" fill="#f3f0ff" stroke="#6d28d9"/>
+    <text x="992" y="168" font-size="12" font-weight="700" fill="#5b21b6">CI — GitHub Actions (main, PRs)</text>
+    <g font-size="10.5" fill="#334155">
+      <text x="992" y="186">Node 22 · npm ci</text>
+      <text x="992" y="201">npm test — Vitest (unit + component)</text>
+      <text x="992" y="216">npm run build — Vite + Tailwind 4</text>
+    </g>
+
+    <rect x="980" y="248" width="240" height="88" rx="8" fill="#f3f0ff" stroke="#6d28d9"/>
+    <text x="992" y="266" font-size="12" font-weight="700" fill="#5b21b6">Ops scripts (Node, one-off)</text>
+    <g font-size="10.5" fill="#334155">
+      <text x="992" y="284">seed-mockapi — purge + reseed MockAPI</text>
+      <text x="992" y="299">from public/api/*.json (350 ms throttle)</text>
+      <text x="992" y="314">postbuild — index.html per route (nginx)</text>
+      <text x="992" y="329">deploy.ps1 — build, mirror to site + NAS</text>
+    </g>
+
+    <rect x="980" y="352" width="240" height="96" rx="8" fill="#f3f0ff" stroke="#6d28d9"/>
+    <text x="992" y="370" font-size="12" font-weight="700" fill="#5b21b6">Deploy — static, no server runtime</text>
+    <g font-size="10.5" fill="#334155">
+      <text x="992" y="390">Vercel / Netlify — vercel.json SPA rewrites</text>
+      <text x="992" y="405">NAS nginx — /easyinvoice/ sub-path</text>
+      <text x="992" y="420" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="10">artificialintelligence.sg</text>
+      <text x="992" y="435">live demo, behind the login gate</text>
+    </g>
+
+    <rect x="980" y="464" width="240" height="60" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="992" y="482" font-size="12" font-weight="700" fill="#334155">Public aids (no auth needed)</text>
+    <g font-size="10.5" fill="#475569">
+      <text x="992" y="500">/tour — React concepts with real code</text>
+      <text x="992" y="515">hints toggle in navbar (localStorage)</text>
+    </g>
+  </g>
+
+  <!-- ===== Connections ===== -->
+  <g stroke="#475569" stroke-width="1.5" fill="none">
+    <path d="M580,360 H630 V198 H678" marker-end="url(#ah)"/>
+    <path d="M630,360 V298 H678" marker-end="url(#ah)"/>
+    <path d="M630,360 V382 H678" marker-end="url(#ah)"/>
+    <path d="M630,360 V462 H678" marker-end="url(#ah)"/>
+  </g>
+  <path d="M630,246 V298" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+  <path d="M630,334 V360" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+  <g font-size="10" fill="#475569">
+    <text x="606" y="192">REST (shared)</text>
+    <text x="606" y="294">offline fallback</text>
+    <text x="606" y="378">FX rates</text>
+    <text x="606" y="458">contacts</text>
+  </g>
+
+  <!-- seed: scripts card -> MockAPI (over the top) -->
+  <path d="M1220,292 H1232 V88 H820 V148" stroke="#7c3aed" stroke-width="1.5" fill="none" marker-end="url(#ahv)"/>
+  <text x="1026" y="82" font-size="10" fill="#7c3aed" text-anchor="middle">npm run seed — one-off</text>
+
+  <!-- static assets: deploy -> browser (dashed, below) -->
+  <path d="M1220,400 H1236 V684 H540 V570" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#ahf)"/>
+  <text x="880" y="678" font-size="10" fill="#64748b">static SPA assets (dist/)</text>
+
+  <!-- ===== Invoice lifecycle ===== -->
+  <g>
+    <rect x="40" y="712" width="1200" height="140" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="60" y="736" font-size="13" font-weight="700" fill="#0f172a">Invoice lifecycle — simulated state machine (useInvoices · 900 ms transmission delay)</text>
+
+    <rect x="80" y="756" width="110" height="34" rx="17" fill="#eaf2fd" stroke="#2563eb"/>
+    <text x="135" y="777" font-size="11.5" font-weight="700" fill="#1e40af" text-anchor="middle">Draft</text>
+    <rect x="290" y="756" width="110" height="34" rx="17" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="345" y="777" font-size="11.5" font-weight="700" fill="#334155" text-anchor="middle">Queued</text>
+    <rect x="560" y="756" width="130" height="34" rx="17" fill="#e6f5f1" stroke="#0f766e"/>
+    <text x="625" y="777" font-size="11.5" font-weight="700" fill="#115e59" text-anchor="middle">Transmitted</text>
+    <rect x="820" y="756" width="110" height="34" rx="17" fill="#e8f6ee" stroke="#16a34a"/>
+    <text x="875" y="777" font-size="11.5" font-weight="700" fill="#166534" text-anchor="middle">Paid</text>
+    <rect x="465" y="800" width="110" height="34" rx="17" fill="#fdecec" stroke="#dc2626"/>
+    <text x="520" y="821" font-size="11.5" font-weight="700" fill="#b91c1c" text-anchor="middle">Failed</text>
+
+    <g stroke="#475569" stroke-width="1.5" fill="none">
+      <path d="M190,773 H288" marker-end="url(#ah)"/>
+      <path d="M400,773 H558" marker-end="url(#ah)"/>
+      <path d="M520,777 V798" marker-end="url(#ah)"/>
+      <path d="M690,773 H818" marker-end="url(#ah)"/>
+      <path d="M465,817 H345 V792" marker-end="url(#ah)"/>
+    </g>
+    <circle cx="520" cy="773" r="3" fill="#475569"/>
+    <g font-size="9.5" fill="#475569" text-anchor="middle">
+      <text x="239" y="765">transmit</text>
+      <text x="479" y="765">900 ms · UEN check</text>
+      <text x="754" y="765">mark paid</text>
+      <text x="536" y="795" text-anchor="start">invalid UEN</text>
+      <text x="405" y="811">retry (re-transmit)</text>
+    </g>
+
+    <g font-size="10.5" fill="#475569">
+      <text x="960" y="770" font-weight="700" font-size="11">Permissions (roles.can)</text>
+      <text x="960" y="788">· create — EDIT role only</text>
+      <text x="960" y="804">· edit / transmit — Draft or Failed only</text>
+      <text x="960" y="820">· mark paid — Transmitted only</text>
+      <text x="960" y="836">· delete — never on Paid (read-only)</text>
+      <text x="960" y="848" fill="#64748b">· VIEW_ONLY — everything read-only</text>
+    </g>
+  </g>
+
+  <text x="1240" y="884" font-size="10" fill="#94a3b8" text-anchor="end">Generated 2026-09-27 00:08 SGT · Qwen3.8-27B-MLX-4bit · source: m2-b2b-invoice-mgmt-sys</text>
+</svg>
