@@ -27,8 +27,10 @@ tested locally.
 - **Folder restructure** (handoff §6's proposed `components/layout/`, `components/invoices/`
   split) — explicitly excluded from the rename PR; needs the team's sign-off on the proposed
   layout before anyone starts it.
-- **NAS deploy** (`scripts/deploy.ps1`, `artificialintelligence.sg/invoicenow/`) — still exists
-  alongside the new Vercel deploy; not yet decided whether to keep, retire, or update to the
-  EasyInvoice path/branding.
+- **NAS deploy** (`scripts/deploy.ps1`, `artificialintelligence.sg/invoicenow/`) — was Ralph's
+  original prototype deployment, not the project's canonical one. **Vercel is the project's live
+  deployment** (`https://aie1f-easyinvoice.vercel.app`). The NAS script/URL are kept only as
+  reference and are not being updated to track the app's current state (still pre-rename,
+  pre-MockAPI, old credentials).
 - **`InvoiceForm`, `CreateInvoicePage`/`EditInvoicePage` guards, `CustomersPage`/`ProductsPage`
   tests** — see `docs/engineering/testing.md` "Not yet covered."

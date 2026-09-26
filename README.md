@@ -1,8 +1,11 @@
 # InvoiceNow SG
 
 A React + Vite simulation of Singapore's Peppol e-invoicing network (InvoiceNow), built for the
-NTU AI Engineering Module 2 group project. Live at https://artificialintelligence.sg/invoicenow/
-behind a login gate.
+NTU AI Engineering Module 2 group project.
+
+**Live at https://aie1f-easyinvoice.vercel.app** (behind a login gate — see "Login" below). The
+`artificialintelligence.sg/invoicenow/` NAS deployment mentioned later in this file was Ralph's
+original prototype; Vercel is the project's actual deployment.
 
 ## Run it locally
 
@@ -57,7 +60,7 @@ learning-project demo gate, not production security:
 | Form with controlled inputs to create an item | `src/components/InvoiceForm.jsx`, `src/pages/CreateInvoicePage.jsx` |
 | Displays the collection (Read) and deletes an item | `src/components/InvoiceList.jsx`, `InvoiceCard.jsx`, `DashboardPage.jsx` |
 | Bonus: edit an existing item | `src/pages/EditInvoicePage.jsx` |
-| Deployed to a public URL | https://artificialintelligence.sg/invoicenow/ (static nginx on a NAS behind Cloudflare) |
+| Deployed to a public URL | https://aie1f-easyinvoice.vercel.app (Vercel, tracks `main`, auto-redeploys on merge) |
 
 ## Data sources
 
@@ -94,13 +97,17 @@ scripts/        seed-mockapi.mjs (one-off MockAPI seed), postbuild.mjs (route fo
 
 ## Deploy
 
-**Vercel / Netlify / GitHub Pages (domain root):** `npm run build` with no extra settings. The
-build uses base path `/`, and `vercel.json` rewrites every route to `index.html` for React Router.
+**Vercel (canonical — live at https://aie1f-easyinvoice.vercel.app):** connected via Vercel's
+GitHub integration, tracking `main` as the production branch — every merge to `main`
+auto-redeploys, no manual step needed. `npm run build` with no extra settings; base path `/`, and
+`vercel.json` rewrites every route to `index.html` for React Router.
 
-**artificialintelligence.sg/invoicenow/ (sub-folder on the NAS):** `powershell -File scripts/deploy.ps1`
-copies the source to a local build folder, sets `BASE_PATH=/invoicenow/`, runs `npm install` and
-`npm run build`, then mirrors `dist/` into the artificialintelligence.sg site repo (`invoicenow/`)
-and the NAS web root. Pass `-SkipNas` to stop after the site repo copy.
+**artificialintelligence.sg/invoicenow/ (Ralph's original prototype, on his NAS — not the
+project's deployment):** `powershell -File scripts/deploy.ps1` copies the source to a local build
+folder, sets `BASE_PATH=/invoicenow/`, runs `npm install` and `npm run build`, then mirrors `dist/`
+into the artificialintelligence.sg site repo (`invoicenow/`) and the NAS web root. Pass `-SkipNas`
+to stop after the site repo copy. Kept for reference; not being kept in sync with the app's
+current state (see `docs/planning/roadmap.md`).
 
 ## More documentation
 

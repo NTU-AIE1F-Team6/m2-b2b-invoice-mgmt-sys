@@ -128,7 +128,7 @@ export default function TourPage() {
       </main>
 
       <footer className="text-center text-xs text-slate-400 py-8">
-        Source: React 18, Vite 5, React Router 6, Tailwind CSS 4. Hosted on artificialintelligence.sg.
+        Source: React 18, Vite 5, React Router 6, Tailwind CSS 4. Hosted on Vercel.
       </footer>
     </div>
   )
