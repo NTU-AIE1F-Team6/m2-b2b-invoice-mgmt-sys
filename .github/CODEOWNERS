@@ -1,0 +1,21 @@
+# Suggested reviewers per area. Note: this repo is on GitHub Free (private), so CODEOWNERS review
+# cannot be *enforced* via branch protection yet (see docs/handoffs/John/github-structure-review.md)
+# -- treat this as a routing hint until the plan allows enforcement.
+
+# CI / MockAPI / data layer / roles
+/.github/                     @johnphs-9
+/src/api/                     @johnphs-9
+/src/hooks/useInvoices.js     @johnphs-9
+/src/data/users.js            @johnphs-9
+/src/data/roles.js            @johnphs-9
+
+# Invoice form / create / edit
+/src/components/InvoiceForm.jsx   @angjennfang
+/src/pages/CreateInvoicePage.jsx  @angjennfang
+/src/pages/EditInvoicePage.jsx    @angjennfang
+
+# Dashboard / list
+/src/pages/DashboardPage.jsx      @koh-ralph
+/src/components/InvoiceList.jsx   @koh-ralph
+/src/components/InvoiceCard.jsx   @koh-ralph
+/src/components/StatCards.jsx     @koh-ralph
