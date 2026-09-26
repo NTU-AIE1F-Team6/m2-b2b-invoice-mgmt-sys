@@ -101,3 +101,14 @@ build uses base path `/`, and `vercel.json` rewrites every route to `index.html`
 copies the source to a local build folder, sets `BASE_PATH=/invoicenow/`, runs `npm install` and
 `npm run build`, then mirrors `dist/` into the artificialintelligence.sg site repo (`invoicenow/`)
 and the NAS web root. Pass `-SkipNas` to stop after the site repo copy.
+
+## More documentation
+
+- `docs/engineering/architecture.md` — system architecture, MockAPI schema and API design, state
+  management, roles/permissions
+- `docs/engineering/testing.md` — what's tested, test conventions, what isn't covered yet
+- `docs/planning/roadmap.md` — open branches, merge order, deferred work
+- `docs/planning/presentation-outline.md` — outline for the Lesson 2.19 slide deck
+- `docs/decisions/decisions-log.md` — running log of team decisions outside the PRD's formal
+  decision register
+- `docs/handoffs/` — per-person task lists and detailed working notes
