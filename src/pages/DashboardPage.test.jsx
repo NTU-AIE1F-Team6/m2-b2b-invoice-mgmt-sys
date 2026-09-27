@@ -48,7 +48,7 @@ function createStore() {
 }
 
 beforeEach(() => {
-  sessionStorage.setItem('invoicenow-session', JSON.stringify(EDIT_SESSION))
+  sessionStorage.setItem('easyinvoice-session', JSON.stringify(EDIT_SESSION))
   vi.spyOn(global, 'fetch').mockResolvedValue({
     ok: true,
     json: async () => ({
