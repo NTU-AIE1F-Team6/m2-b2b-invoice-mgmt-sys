@@ -1,14 +1,14 @@
-# InvoiceNow SG
+# EasyInvoice
 
 A React + Vite simulation of Singapore's Peppol e-invoicing network (InvoiceNow), built for the
-NTU AI Engineering Module 2 group project. Live at https://artificialintelligence.sg/invoicenow/
+NTU AI Engineering Module 2 group project. Live at https://artificialintelligence.sg/easyinvoice/
 behind a login gate.
 
 ## Run it locally
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173/invoicenow/
+npm run dev        # http://localhost:5173/easyinvoice/
 npm run build      # writes dist/ (plus one index.html per route for static hosting)
 npm run preview
 ```
@@ -36,7 +36,7 @@ learning-project demo gate, not production security:
 
 ## Demo aids
 
-- **Tour page** at `/invoicenow/tour/` (public, no login): one card per React concept with the file
+- **Tour page** at `/easyinvoice/tour/` (public, no login): one card per React concept with the file
   names, the real code lines, and a "See it live" link. Content lives in `src/data/tour.js`.
 - **Hints toggle** in the app navbar: adds `.hints-on` to the app wrapper so every `<Hint>` label
   (`src/components/Hint.jsx`) appears, naming the React feature behind that part of the screen.
@@ -57,7 +57,7 @@ learning-project demo gate, not production security:
 | Form with controlled inputs to create an item | `src/components/InvoiceForm.jsx`, `src/pages/CreateInvoicePage.jsx` |
 | Displays the collection (Read) and deletes an item | `src/components/InvoiceList.jsx`, `InvoiceCard.jsx`, `DashboardPage.jsx` |
 | Bonus: edit an existing item | `src/pages/EditInvoicePage.jsx` |
-| Deployed to a public URL | https://artificialintelligence.sg/invoicenow/ (static nginx on a NAS behind Cloudflare) |
+| Deployed to a public URL | https://artificialintelligence.sg/easyinvoice/ (static nginx on a NAS behind Cloudflare) |
 
 ## Data sources
 
@@ -97,7 +97,7 @@ scripts/        seed-mockapi.mjs (one-off MockAPI seed), postbuild.mjs (route fo
 **Vercel / Netlify / GitHub Pages (domain root):** `npm run build` with no extra settings. The
 build uses base path `/`, and `vercel.json` rewrites every route to `index.html` for React Router.
 
-**artificialintelligence.sg/invoicenow/ (sub-folder on the NAS):** `powershell -File scripts/deploy.ps1`
-copies the source to a local build folder, sets `BASE_PATH=/invoicenow/`, runs `npm install` and
-`npm run build`, then mirrors `dist/` into the artificialintelligence.sg site repo (`invoicenow/`)
+**artificialintelligence.sg/easyinvoice/ (sub-folder on the NAS):** `powershell -File scripts/deploy.ps1`
+copies the source to a local build folder, sets `BASE_PATH=/easyinvoice/`, runs `npm install` and
+`npm run build`, then mirrors `dist/` into the artificialintelligence.sg site repo (`easyinvoice/`)
 and the NAS web root. Pass `-SkipNas` to stop after the site repo copy.

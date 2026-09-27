@@ -16,7 +16,7 @@ with sync_playwright() as p:
     page.on("dialog", lambda d: d.accept())
 
     page.goto(BASE + "tour/")
-    page.wait_for_selector("h1:has-text('How InvoiceNow SG is built')")
+    page.wait_for_selector("h1:has-text('How EasyInvoice is built')")
     concepts = page.locator("article[data-concept]").count()
     assert concepts >= 11, f"expected 11+ concept cards on the tour, got {concepts}"
     print(f"0. public tour page renders {concepts} concept cards without login")
@@ -49,7 +49,7 @@ with sync_playwright() as p:
     page.wait_for_selector(".react-hint", state="hidden")
     print(f"3b. hints toggle shows {shown} React labels, then hides them again")
 
-    assert page.url.endswith("/invoicenow/"), f"dashboard URL should end with a slash, got {page.url}"
+    assert page.url.endswith("/easyinvoice/"), f"dashboard URL should end with a slash, got {page.url}"
     page.wait_for_selector("text=Live FX", timeout=10000)
     page.wait_for_selector("li:has-text('USD')", timeout=15000)
     print("4. FX rates loaded from api.frankfurter.dev:", page.inner_text("li:has-text('USD')"))
