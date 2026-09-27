@@ -311,7 +311,7 @@ const canEdit = can(user, 'edit', invoice)
 ]
 
 export const TREE = `main.jsx
-└─ <BrowserRouter basename="/invoicenow/">
+└─ <BrowserRouter basename="/easyinvoice/">
    └─ <AuthProvider>                      Context: session
       └─ App                              Routes
          ├─ /login   LoginPage            useState, useAuth(), useNavigate

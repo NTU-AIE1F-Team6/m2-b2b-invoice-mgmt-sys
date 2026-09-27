@@ -10,7 +10,7 @@ import ProductsPage from '../pages/ProductsPage.jsx'
 import { useInvoices } from '../hooks/useInvoices.js'
 import { useAuth } from '../context/AuthContext.jsx'
 
-const HINTS_KEY = 'invoicenow-hints'
+const HINTS_KEY = 'easyinvoice-hints'
 
 function readHints() {
   try {
@@ -69,7 +69,7 @@ export default function AppShell() {
         </Routes>
       </main>
       <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400 mt-12 px-4">
-        InvoiceNow SG simulation. Built with React, Vite and Tailwind CSS for the NTU AI Engineering Module 2 group project.
+        EasyInvoice simulation. Built with React, Vite and Tailwind CSS for the NTU AI Engineering Module 2 group project.
         Not connected to the real Peppol network.{' '}
         <Link to="/tour" className="underline">
           How it is built

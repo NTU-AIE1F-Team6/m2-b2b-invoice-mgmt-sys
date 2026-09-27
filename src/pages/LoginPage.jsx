@@ -43,7 +43,7 @@ export default function LoginPage() {
         <div className="text-4xl mb-3" aria-hidden="true">
           🔒
         </div>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">InvoiceNow SG</h1>
+        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">EasyInvoice</h1>
         <p className="text-sm text-slate-500 mt-2 mb-6">
           This portal is for invited users. Sign in to reach the Peppol e-invoicing dashboard.
         </p>

@@ -1,9 +1,9 @@
 {
-  "name": "invoicenow-sg",
+  "name": "easyinvoice",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "InvoiceNow SG: a React + Vite simulation of the Singapore Peppol e-invoicing network (NTU AI Engineering, Module 2 group project).",
+  "description": "EasyInvoice: a React + Vite simulation of the Singapore Peppol e-invoicing network (NTU AI Engineering, Module 2 group project).",
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/postbuild.mjs",
