@@ -11,7 +11,7 @@ original prototype; Vercel is the project's actual deployment.
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173/easyinvoice/
+npm run dev        # http://localhost:5173/ (Vite picks another port if 5173 is busy)
 npm run build      # writes dist/ (plus one index.html per route for static hosting)
 npm run preview
 ```
@@ -39,8 +39,9 @@ learning-project demo gate, not production security:
 
 ## Demo aids
 
-- **Tour page** at `/easyinvoice/tour/` (public, no login): one card per React concept with the file
-  names, the real code lines, and a "See it live" link. Content lives in `src/data/tour.js`.
+- **Tour page** at `/tour` (public, no login — `/easyinvoice/tour/` only on the NAS sub-folder
+  deploy): one card per React concept with the file names, the real code lines, and a "See it
+  live" link. Content lives in `src/data/tour.js`.
 - **Hints toggle** in the app navbar: adds `.hints-on` to the app wrapper so every `<Hint>` label
   (`src/components/Hint.jsx`) appears, naming the React feature behind that part of the screen.
   The choice is remembered in localStorage.
