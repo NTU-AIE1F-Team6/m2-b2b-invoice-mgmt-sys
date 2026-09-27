@@ -344,5 +344,5 @@ export const CHECKLIST = [
   ['Form with controlled inputs to create a new item', 'InvoiceForm on /create'],
   ['Displays the collection (Read) and deletes an item', 'InvoiceList and InvoiceCard on /'],
   ['Bonus: editing an existing item (Update)', 'EditInvoicePage on /edit?id='],
-  ['Deployed to a public URL', 'artificialintelligence.sg/easyinvoice/'],
+  ['Deployed to a public URL', 'aie1f-easyinvoice.vercel.app'],
 ]
