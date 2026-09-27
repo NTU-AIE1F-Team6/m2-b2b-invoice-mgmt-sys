@@ -1,14 +1,18 @@
 import { STATUS } from '../data/constants.js'
+import { can } from '../data/roles.js'
 import { formatSGD, invoiceTotal, isOverdue } from '../utils/invoice.js'
 import PeppolStatusBadge from './PeppolStatusBadge.jsx'
 import Hint from './Hint.jsx'
 
 const btn = 'text-xs font-semibold px-2.5 py-1.5 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed'
 
-export default function InvoiceCard({ invoice, busy, onTransmit, onMarkPaid, onEdit, onDelete }) {
+export default function InvoiceCard({ invoice, user, busy, onTransmit, onMarkPaid, onEdit, onDelete }) {
   const total = invoiceTotal(invoice)
   const overdue = invoice.status === STATUS.TRANSMITTED && isOverdue(invoice)
-  const canTransmit = invoice.status === STATUS.DRAFT || invoice.status === STATUS.FAILED
+  const canTransmit = can(user, 'transmit', invoice)
+  const canMarkPaid = can(user, 'markPaid', invoice)
+  const canEdit = can(user, 'edit', invoice)
+  const canDelete = can(user, 'delete', invoice)
   const itemCount = invoice.items.length
 
   return (
@@ -16,7 +20,7 @@ export default function InvoiceCard({ invoice, busy, onTransmit, onMarkPaid, onE
       <div className="flex justify-between items-start gap-3">
         <div className="min-w-0">
           <Hint label="Props in (invoice), callbacks out (onDelete...)" className="mb-1" />
-          <div className="text-xs font-semibold text-slate-400">{invoice.id}</div>
+          <div className="text-xs font-semibold text-slate-400">{invoice.invoiceNumber}</div>
           <h3 className="font-semibold text-slate-900 truncate">{invoice.buyerName}</h3>
           <div className="text-xs text-slate-500 mt-0.5">UEN {invoice.buyerUEN}</div>
         </div>
@@ -69,31 +73,36 @@ export default function InvoiceCard({ invoice, busy, onTransmit, onMarkPaid, onE
               {busy ? 'Sending...' : invoice.status === STATUS.FAILED ? 'Retry' : 'Transmit'}
             </button>
           )}
-          {invoice.status === STATUS.TRANSMITTED && (
+          {canMarkPaid && (
             <button
               type="button"
               onClick={() => onMarkPaid(invoice.id)}
+              disabled={busy}
               className={`${btn} bg-emerald-50 hover:bg-emerald-100 text-emerald-700`}
             >
               Mark paid
             </button>
           )}
-          <button
-            type="button"
-            onClick={() => onEdit(invoice.id)}
-            disabled={busy}
-            className={`${btn} bg-slate-100 hover:bg-slate-200 text-slate-700`}
-          >
-            Edit
-          </button>
-          <button
-            type="button"
-            onClick={() => onDelete(invoice.id)}
-            disabled={busy}
-            className={`${btn} bg-rose-50 hover:bg-rose-100 text-rose-600`}
-          >
-            Delete
-          </button>
+          {canEdit && (
+            <button
+              type="button"
+              onClick={() => onEdit(invoice.id)}
+              disabled={busy}
+              className={`${btn} bg-slate-100 hover:bg-slate-200 text-slate-700`}
+            >
+              Edit
+            </button>
+          )}
+          {canDelete && (
+            <button
+              type="button"
+              onClick={() => onDelete(invoice.id)}
+              disabled={busy}
+              className={`${btn} bg-rose-50 hover:bg-rose-100 text-rose-600`}
+            >
+              Delete
+            </button>
+          )}
         </div>
       </div>
     </article>

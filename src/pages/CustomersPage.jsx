@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useFetch } from '../hooks/useFetch.js'
+import { listCustomers } from '../api/referenceData.js'
 import { CONTACTS_API } from '../data/constants.js'
 import LoadingSpinner from '../components/LoadingSpinner.jsx'
 import ErrorBanner from '../components/ErrorBanner.jsx'
 import Hint from '../components/Hint.jsx'
 
-// Two sources joined on screen: the mock buyer directory (static JSON served with the app) and
-// free public API #2, randomuser.me, which supplies a contact person for each buyer.
+// Two sources joined on screen: the buyer directory (MockAPI `referenceData`, or the static JSON
+// fallback) and free public API #2, randomuser.me, which supplies a contact person for each buyer.
 export default function CustomersPage() {
-  const customers = useFetch(`${import.meta.env.BASE_URL}api/customers.json`, { transform: (j) => j.customers })
+  const customers = useFetch(listCustomers)
   const contacts = useFetch(CONTACTS_API, { transform: (j) => j.results })
 
   return (
@@ -19,7 +20,7 @@ export default function CustomersPage() {
           Companies from the mock directory API, each paired with a contact person fetched live from randomuser.me.
         </p>
         <div className="flex flex-wrap gap-1.5 mt-2">
-          <Hint label="useFetch #1: mock customers.json" />
+          <Hint label="useFetch #1: MockAPI referenceData" />
           <Hint label="useFetch #2: randomuser.me (free API)" />
           <Hint label="Link to /create?uen=... (React Router)" />
         </div>

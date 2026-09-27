@@ -1,10 +1,10 @@
 """Headless smoke test of the built app. Run `npm run preview` first, then:
-    python scripts/smoke_test.py http://localhost:4173/easyinvoice/ <admin-password>
+    python scripts/smoke_test.py http://localhost:4173/invoicenow/ <password>
 Needs Python Playwright with Chromium (pip install playwright; playwright install chromium)."""
 import sys
 from playwright.sync_api import sync_playwright
 
-BASE = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:4173/easyinvoice/"
+BASE = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:4173/invoicenow/"
 PASSWORD = sys.argv[2] if len(sys.argv) > 2 else "Password123"
 errors = []
 
@@ -25,7 +25,7 @@ with sync_playwright() as p:
     assert "/login" in page.url, f"expected redirect to login, got {page.url}"
     print("1. unauthenticated visit redirected to login:", page.url)
 
-    page.fill("#username", "admin")
+    page.fill("#username", "john")
     page.fill("#password", "wrong-password")
     page.click("button[type=submit]")
     page.wait_for_selector("text=Incorrect username or password")

@@ -3,21 +3,26 @@ import userEvent from '@testing-library/user-event'
 import InvoiceCard from './InvoiceCard.jsx'
 
 const invoice = {
-  id: 'INV-2026-001',
+  id: 'mock-id-1',
+  invoiceNumber: 'INV-2026-001',
   buyerName: 'Temasek Tech Solutions Pte Ltd',
   buyerUEN: '202012345E',
   peppolId: '202012345E@SGUEN',
   issueDate: '2026-09-01',
   dueDate: '2099-10-01',
   items: [
-    { description: 'Cloud setup', qty: 2, unitPrice: 100 },
+    { description: 'Cloud setup', sku: '', qty: 2, unitPrice: 100 },
   ],
   includePayNowQR: true,
   status: 'Draft',
 }
 
+const editUser = { username: 'john', name: 'John', role: 'EDIT' }
+const viewOnlyUser = { username: 'viewer', name: 'View-only User', role: 'VIEW_ONLY' }
+
 const defaultProps = {
   invoice,
+  user: editUser,
   busy: false,
   onTransmit: vi.fn(),
   onMarkPaid: vi.fn(),
@@ -51,7 +56,7 @@ describe('InvoiceCard', () => {
 
     await user.click(screen.getByRole('button', { name: 'Transmit' }))
 
-    expect(onTransmit).toHaveBeenCalledWith('INV-2026-001')
+    expect(onTransmit).toHaveBeenCalledWith('mock-id-1')
   })
 
   it('calls edit and delete callbacks', async () => {
@@ -70,8 +75,8 @@ describe('InvoiceCard', () => {
     await user.click(screen.getByRole('button', { name: 'Edit' }))
     await user.click(screen.getByRole('button', { name: 'Delete' }))
 
-    expect(onEdit).toHaveBeenCalledWith('INV-2026-001')
-    expect(onDelete).toHaveBeenCalledWith('INV-2026-001')
+    expect(onEdit).toHaveBeenCalledWith('mock-id-1')
+    expect(onDelete).toHaveBeenCalledWith('mock-id-1')
   })
 
   it('shows Mark paid for a transmitted invoice', () => {
@@ -84,5 +89,19 @@ describe('InvoiceCard', () => {
 
     expect(screen.getByRole('button', { name: 'Mark paid' })).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Transmit' })).not.toBeInTheDocument()
+  })
+
+  it('hides edit, delete and transmit for a view-only user', () => {
+    render(<InvoiceCard {...defaultProps} user={viewOnlyUser} />)
+
+    expect(screen.queryByRole('button', { name: 'Transmit' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Edit' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Delete' })).not.toBeInTheDocument()
+  })
+
+  it('hides delete for a paid invoice even for an editor', () => {
+    render(<InvoiceCard {...defaultProps} invoice={{ ...invoice, status: 'Paid' }} />)
+
+    expect(screen.queryByRole('button', { name: 'Delete' })).not.toBeInTheDocument()
   })
 })
