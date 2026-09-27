@@ -169,17 +169,16 @@
   <!-- ===== Connections ===== -->
   <g stroke="#475569" stroke-width="1.5" fill="none">
     <path d="M580,360 H630 V198 H678" marker-end="url(#ah)"/>
-    <path d="M630,360 V298 H678" marker-end="url(#ah)"/>
+    <path d="M630,360 V298"/>
     <path d="M630,360 V382 H678" marker-end="url(#ah)"/>
     <path d="M630,360 V462 H678" marker-end="url(#ah)"/>
   </g>
-  <path d="M630,246 V298" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
-  <path d="M630,334 V360" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
-  <g font-size="10" fill="#475569">
-    <text x="606" y="192">REST (shared)</text>
-    <text x="606" y="294">offline fallback</text>
-    <text x="606" y="378">FX rates</text>
-    <text x="606" y="458">contacts</text>
+  <path d="M630,298 H678" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#ah)"/>
+  <g font-size="10" fill="#475569" text-anchor="middle">
+    <text x="654" y="192">REST</text>
+    <text x="654" y="292">fallback</text>
+    <text x="654" y="376">FX rates</text>
+    <text x="654" y="456">contacts</text>
   </g>
 
   <!-- seed: scripts card -> MockAPI (over the top) -->
