@@ -63,6 +63,12 @@ EBADF; copy the folder to a local disk first (`scripts/deploy.ps1` does this aut
 To connect a shared MockAPI backend instead of the static offline demo data, copy `.env.example`
 to `.env.local` and set `VITE_MOCKAPI_URL` (see "MockAPI setup" below).
 
+**Optional manual E2E check:** `scripts/smoke_test.py` (Ralph's, from the original scaffold) drives
+a full click-through against a running `npm run preview` build using Python Playwright. It's
+separate from the npm/JS toolchain and not run by CI — only needed if you want to run it yourself:
+`pip install playwright && playwright install chromium`, then
+`python scripts/smoke_test.py http://localhost:4173/ <password>`.
+
 ## Login
 
 The app is gated like artificialintelligence.sg/citylife/: the password is hashed with SHA-256 in
@@ -135,6 +141,7 @@ src/
   utils/        invoice maths and formatting, sha256
 public/api/     static JSON, used only as the offline demo-data fallback
 scripts/        seed-mockapi.mjs (one-off MockAPI seed), postbuild.mjs (route folders for static hosting), deploy.ps1 (build + copy to site)
+                smoke_test.py (optional manual E2E check, see below — not part of npm install/test/CI)
 ```
 
 ## Deploy
