@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router'
 import { useAuth } from '../context/AuthContext.jsx'
 import { can } from '../data/roles.js'
 import InvoiceForm from '../components/InvoiceForm.jsx'

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useFetch } from '../hooks/useFetch.js'
 import { listProducts } from '../api/referenceData.js'
 import { formatSGD } from '../utils/invoice.js'

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useFetch } from '../hooks/useFetch.js'
 import { listCustomers } from '../api/referenceData.js'
 import { CONTACTS_API } from '../data/constants.js'

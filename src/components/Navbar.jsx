@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router'
 import { useAuth } from '../context/AuthContext.jsx'
 import { ROLES, can } from '../data/roles.js'
 import Hint from './Hint.jsx'

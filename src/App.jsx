@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router'
 import LoginPage from './pages/LoginPage.jsx'
 import TourPage from './pages/TourPage.jsx'
 import RequireAuth from './components/RequireAuth.jsx'

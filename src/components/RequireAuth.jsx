@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router'
 import { useAuth } from '../context/AuthContext.jsx'
 
 // Route guard: unauthenticated visitors are bounced to /login and returned here afterwards.

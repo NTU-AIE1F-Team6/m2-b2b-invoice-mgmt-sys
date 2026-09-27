@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { Link, Navigate, Route, Routes } from 'react-router-dom'
+import { Link, Navigate, Route, Routes } from 'react-router'
 import Navbar from './Navbar.jsx'
 import Toast from './Toast.jsx'
 import DashboardPage from '../pages/DashboardPage.jsx'

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { CONCEPTS, TREE, CHECKLIST } from '../data/tour.js'
 import { useAuth } from '../context/AuthContext.jsx'
 
