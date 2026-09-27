@@ -16,7 +16,7 @@ export function invoiceTotal(invoice) {
 
 export function nextInvoiceId(invoices, year = new Date().getFullYear()) {
   const max = invoices.reduce((m, inv) => {
-    const match = /^INV-(\d{4})-(\d+)$/.exec(inv.id)
+    const match = /^INV-(\d{4})-(\d+)$/.exec(inv.invoiceNumber)
     return match && Number(match[1]) === year ? Math.max(m, Number(match[2])) : m
   }, 0)
   return `INV-${year}-${String(max + 1).padStart(3, '0')}`

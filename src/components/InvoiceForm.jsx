@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { UEN_PATTERN } from '../data/constants.js'
 import { computeTotals } from '../utils/invoice.js'
 import { useFetch } from '../hooks/useFetch.js'
+import { listCustomers, listProducts } from '../api/referenceData.js'
 import Hint from './Hint.jsx'
 
 const today = () => new Date().toISOString().slice(0, 10)
@@ -11,7 +12,7 @@ const itemInput = 'px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm
 const label = 'block text-xs font-semibold text-slate-600 uppercase mb-1'
 const primary = 'px-5 py-2.5 rounded-xl text-sm font-medium text-white shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed'
 
-const EMPTY_ITEM = { description: '', qty: 1, unitPrice: '' }
+const EMPTY_ITEM = { description: '', sku: '', qty: 1, unitPrice: '' }
 
 // Controlled form used by both Create and Edit. `mode` decides which submit buttons appear.
 // onSubmit(payload, action) where action is 'draft' | 'transmit' | 'save'.
@@ -30,19 +31,19 @@ export default function InvoiceForm({ initialValues, mode = 'create', busy = fal
 
   // Two reference-data endpoints: the buyer directory feeds the buyer autocomplete (picking a known
   // buyer fills the UEN), the product catalogue feeds the per-line dropdown (filling description + price).
-  const customers = useFetch(`${import.meta.env.BASE_URL}api/customers.json`, { transform: (j) => j.customers })
-  const products = useFetch(`${import.meta.env.BASE_URL}api/products.json`, { transform: (j) => j.products })
+  const customers = useFetch(listCustomers)
+  const products = useFetch(listProducts)
   const { subtotal, gst, total } = computeTotals(items)
 
   const pickProduct = (index, sku) => {
     const product = products.data?.find((p) => p.sku === sku)
     if (!product) return
     setItems((prev) =>
-      prev.map((item, i) => (i === index ? { ...item, description: product.description, unitPrice: product.unitPrice } : item)),
+      prev.map((item, i) =>
+        i === index ? { ...item, description: product.description, sku: product.sku, unitPrice: product.unitPrice } : item,
+      ),
     )
   }
-  // Derived, not stored: a row's dropdown shows the product whose description matches the row.
-  const skuFor = (item) => products.data?.find((p) => p.description === item.description)?.sku ?? ''
 
   const handleBuyerName = (value) => {
     setBuyerName(value)
@@ -51,7 +52,11 @@ export default function InvoiceForm({ initialValues, mode = 'create', busy = fal
   }
 
   const updateItem = (index, field, value) => {
-    setItems((prev) => prev.map((item, i) => (i === index ? { ...item, [field]: value } : item)))
+    setItems((prev) =>
+      prev.map((item, i) =>
+        i === index ? { ...item, [field]: value, ...(field === 'description' ? { sku: '' } : {}) } : item,
+      ),
+    )
   }
   const addItem = () => setItems((prev) => [...prev, { ...EMPTY_ITEM }])
   const removeItem = (index) => setItems((prev) => (prev.length > 1 ? prev.filter((_, i) => i !== index) : prev))
@@ -86,7 +91,12 @@ export default function InvoiceForm({ initialValues, mode = 'create', busy = fal
         issueDate,
         dueDate,
         includePayNowQR,
-        items: items.map((i) => ({ description: i.description.trim(), qty: Number(i.qty), unitPrice: Number(i.unitPrice) })),
+        items: items.map((i) => ({
+          description: i.description.trim(),
+          sku: i.sku || '',
+          qty: Number(i.qty),
+          unitPrice: Number(i.unitPrice),
+        })),
       },
       action,
     )
@@ -172,7 +182,7 @@ export default function InvoiceForm({ initialValues, mode = 'create', busy = fal
           >
             <select
               aria-label={`Item ${index + 1} product`}
-              value={skuFor(item)}
+              value={item.sku || ''}
               onChange={(e) => pickProduct(index, e.target.value)}
               disabled={!products.data}
               className={`col-span-2 sm:col-span-1 ${itemInput} disabled:text-slate-400`}

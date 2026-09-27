@@ -4,7 +4,7 @@ import { sha256 } from '../utils/hash.js'
 
 // Context is justified here: the session is read by the navbar, the route guard and the login
 // page, which sit far apart in the tree. Everything else in the app uses plain props.
-const SESSION_KEY = 'invoicenow-session'
+const SESSION_KEY = 'easyinvoice-session'
 const AuthContext = createContext(null)
 
 function readSession() {

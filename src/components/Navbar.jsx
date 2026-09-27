@@ -1,6 +1,9 @@
 import { Link, NavLink, useNavigate } from 'react-router'
 import { useAuth } from '../context/AuthContext.jsx'
+import { ROLES, can } from '../data/roles.js'
 import Hint from './Hint.jsx'
+
+const ROLE_LABEL = { [ROLES.EDIT]: 'Editor', [ROLES.VIEW_ONLY]: 'View only' }
 
 const linkClass = ({ isActive }) =>
   `text-sm font-medium px-3 py-2 rounded-lg transition ${
@@ -28,7 +31,7 @@ export default function Navbar({ hints, onToggleHints }) {
             </div>
             <div>
               <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-300 bg-clip-text text-transparent">
-                InvoiceNow SG
+                EasyInvoice
               </span>
               <span className="hidden sm:block text-xs text-slate-400">Singapore Peppol E-Invoicing Portal</span>
             </div>
@@ -45,16 +48,18 @@ export default function Navbar({ hints, onToggleHints }) {
             <NavLink to="/products" className={linkClass}>
               Products
             </NavLink>
-            <Link
-              to="/create"
-              className="inline-flex items-center gap-1 text-sm font-medium bg-blue-600 hover:bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-lg shadow-sm transition"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-              </svg>
-              <span className="hidden sm:inline">New E-Invoice</span>
-              <span className="sm:hidden">New</span>
-            </Link>
+            {can(user, 'create') && (
+              <Link
+                to="/create"
+                className="inline-flex items-center gap-1 text-sm font-medium bg-blue-600 hover:bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-lg shadow-sm transition"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                </svg>
+                <span className="hidden sm:inline">New E-Invoice</span>
+                <span className="sm:hidden">New</span>
+              </Link>
+            )}
             <button
               type="button"
               onClick={onToggleHints}
@@ -72,7 +77,9 @@ export default function Navbar({ hints, onToggleHints }) {
               <Hint label="useAuth(): Context" />
               <span className="hidden md:block text-xs text-slate-300 leading-tight">
                 <span className="block font-semibold text-white">{user?.name}</span>
-                <span className="text-slate-400">@{user?.username}</span>
+                <span className="text-slate-400">
+                  @{user?.username} &middot; {ROLE_LABEL[user?.role] || user?.role}
+                </span>
               </span>
               <button
                 type="button"

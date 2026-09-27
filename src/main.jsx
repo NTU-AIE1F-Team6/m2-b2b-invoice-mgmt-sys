@@ -5,8 +5,8 @@ import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import './index.css'
 
-// Vite injects the `base` from vite.config.js ("/invoicenow/"). Keeping the trailing slash makes the
-// dashboard URL "/invoicenow/" (a directory the static host can serve) rather than "/invoicenow".
+// Vite injects the `base` from vite.config.js ("/easyinvoice/"). Keeping the trailing slash makes the
+// dashboard URL "/easyinvoice/" (a directory the static host can serve) rather than "/easyinvoice".
 const basename = import.meta.env.BASE_URL
 
 ReactDOM.createRoot(document.getElementById('root')).render(

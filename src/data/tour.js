@@ -42,26 +42,29 @@ const [status, setStatus] = useState('All')`,
   {
     id: 'usereducer',
     title: 'useReducer for the invoice store',
-    what: 'The invoice list has many kinds of change (add, update, delete, status). A reducer keeps every transition in one place and the pages only dispatch actions.',
+    what: 'The invoice list has many kinds of change (add, replace, remove, busy). A reducer keeps every transition in one place; the pages only dispatch actions, and state only changes after MockAPI confirms the write.',
     files: ['src/hooks/useInvoices.js'],
     live: { to: '/', label: 'Dashboard: Transmit, Mark paid, Delete all dispatch actions' },
     code: `// useInvoices.js
 function reducer(state, action) {
   switch (action.type) {
     case 'add':
-      return { ...state, invoices: [action.invoice, ...state.invoices] }
-    case 'delete':
-      return { ...state, invoices: state.invoices.filter((i) => i.id !== action.id) }
-    case 'status':
+      return { ...state, invoices: [action.invoice, ...state.invoices], busyId: null }
+    case 'replace':
       return { ...state, invoices: state.invoices.map((i) =>
-        i.id === action.id ? { ...i, status: action.status } : i) }
+        i.id === action.invoice.id ? action.invoice : i), busyId: null }
+    case 'remove':
+      return { ...state, invoices: state.invoices.filter((i) => i.id !== action.id), busyId: null }
     default:
       return state
   }
 }
 
 const [state, dispatch] = useReducer(reducer, initialState)
-const deleteInvoice = useCallback((id) => dispatch({ type: 'delete', id }), [])`,
+const deleteInvoice = useCallback(async (id) => {
+  await invoicesApi.deleteInvoice(id) // only dispatch once the API confirms
+  dispatch({ type: 'remove', id })
+}, [])`,
   },
   {
     id: 'useeffect',
@@ -115,17 +118,15 @@ export default function AppShell() {
     files: ['src/pages/DashboardPage.jsx', 'src/components/InvoiceForm.jsx'],
     live: { to: '/', label: 'Dashboard: Delete asks for confirmation, Transmit is async' },
     code: `// DashboardPage.jsx
-const handleDelete = (id) => {
-  if (window.confirm(\`Delete invoice \${id}? This cannot be undone.\`)) {
-    store.deleteInvoice(id)
-    notify(\`Invoice \${id} deleted.\`, 'info')
+const handleDelete = async (id) => {
+  const label = labelFor(id)
+  if (!window.confirm(\`Delete invoice \${label}? This cannot be undone.\`)) return
+  try {
+    await store.deleteInvoice(id) // waits for MockAPI to confirm
+    notify(\`Invoice \${label} deleted.\`, 'info')
+  } catch (err) {
+    notify(\`Could not delete invoice \${label}: \${err.message}\`, 'error')
   }
-}
-
-const handleTransmit = async (id) => {
-  const ok = await store.transmitInvoice(id)
-  if (ok) notify(\`Invoice \${id} routed via the InvoiceNow Access Point.\`)
-  else notify(\`Invoice \${id} was rejected by the Access Point.\`, 'error')
 }
 
 // InvoiceForm.jsx: one submit handler, parameterised by the button pressed
@@ -151,10 +152,10 @@ const submit = (action) => (e) => {
   <InvoiceList invoices={visible} ... />
 )}
 
-// InvoiceCard.jsx
-const canTransmit = invoice.status === STATUS.DRAFT || invoice.status === STATUS.FAILED
+// InvoiceCard.jsx: status AND role both decide what renders
+const canTransmit = can(user, 'transmit', invoice)
 {canTransmit && <button>{invoice.status === STATUS.FAILED ? 'Retry' : 'Transmit'}</button>}
-{invoice.status === STATUS.TRANSMITTED && <button>Mark paid</button>}`,
+{can(user, 'markPaid', invoice) && <button>Mark paid</button>}`,
   },
   {
     id: 'lists',
@@ -228,66 +229,89 @@ const invoice = store.invoices.find((i) => i.id === params.get('id'))`,
   {
     id: 'hooks',
     title: 'Custom hooks',
-    what: 'Repeated logic is extracted into hooks: useFetch wraps fetch + loading + error + abort, useInvoices wraps the reducer, the mock API load and localStorage persistence.',
+    what: 'Repeated logic is extracted into hooks: useFetch wraps fetch + loading + error + abort (and can take either a URL or an API-layer function), useInvoices wraps the reducer and every MockAPI call.',
     files: ['src/hooks/useFetch.js', 'src/hooks/useInvoices.js'],
     live: { to: '/customers', label: 'Customers: two useFetch calls joined on one screen' },
     code: `// FxRatesCard.jsx
 const { data, loading, error, refetch } = useFetch(FX_API)
 
-// CustomersPage.jsx: a mock JSON endpoint and a free public API
-const customers = useFetch(\`\${import.meta.env.BASE_URL}api/customers.json\`, { transform: (j) => j.customers })
+// CustomersPage.jsx: an API-layer function (MockAPI or static fallback) and a free public API
+const customers = useFetch(listCustomers)
 const contacts = useFetch(CONTACTS_API, { transform: (j) => j.results })
 
 // AppShell.jsx
-const store = useInvoices()`,
+const store = useInvoices(user?.username)`,
   },
   {
     id: 'endpoints',
     title: 'Data endpoints: Invoices, Customers, Products (+ hardcoded Users)',
-    what: 'The course suggests three endpoints with hardcoded users. Each endpoint is a JSON file served next to the app and fetched with the same hook; users stay hardcoded because the login runs entirely in the browser on a static host.',
-    files: ['public/api/invoices.json', 'public/api/customers.json', 'public/api/products.json', 'src/data/users.js'],
+    what: 'Invoices and reference data (customers + products, told apart by a `type` field) live in a MockAPI project, shared by everyone using the app. Users stay hardcoded in code, with roles (VIEW_ONLY / EDIT) controlling what each account can do.',
+    files: ['src/api/invoices.js', 'src/api/referenceData.js', 'src/data/users.js', 'src/data/roles.js'],
     live: { to: '/products', label: 'Products page, then "Add to new invoice"' },
-    code: `// Endpoint 1: invoices (useInvoices.js) -> reducer store, persisted to localStorage
-const API_URL = \`\${import.meta.env.BASE_URL}api/invoices.json\`
-
-// Endpoint 2: customers (CustomersPage.jsx, InvoiceForm.jsx) -> buyer autocomplete fills the UEN
-const customers = useFetch(\`\${import.meta.env.BASE_URL}api/customers.json\`, { transform: (j) => j.customers })
-
-// Endpoint 3: products (ProductsPage.jsx, InvoiceForm.jsx) -> line-item dropdown fills description + price
-const products = useFetch(\`\${import.meta.env.BASE_URL}api/products.json\`, { transform: (j) => j.products })
-const pickProduct = (index, sku) => {
-  const product = products.data?.find((p) => p.sku === sku)
-  setItems((prev) => prev.map((item, i) =>
-    i === index ? { ...item, description: product.description, unitPrice: product.unitPrice } : item))
+    code: `// Endpoint 1: invoices (src/api/invoices.js) -> reducer store in useInvoices.js
+export function listInvoices(signal) {
+  return hasMockApi() ? request('/invoices', { signal }) : loadStaticInvoices(signal)
 }
 
-// Users: hardcoded with SHA-256 password digests (users.js)
-export const USERS = [{ username: 'admin', name: 'Finance Manager', passwordHash: '7f9d...' }]`,
+// Endpoints 2 & 3: customers + products share one MockAPI resource, "referenceData"
+// (src/api/referenceData.js), told apart by a type field.
+export async function listCustomers(signal) {
+  const rows = await request('/referenceData', { signal })
+  return rows.filter((row) => row.type === 'customer')
+}
+
+// Users: hardcoded with SHA-256 password digests and a role (users.js)
+export const USERS = [{ username: 'john', name: 'John', role: ROLES.EDIT, passwordHash: 'b4b5...' }]`,
   },
   {
     id: 'persist',
-    title: 'Persisting data (mock API + localStorage)',
-    what: 'On first load the store fetches seed invoices from a mock JSON API. After that, an effect writes every change to localStorage so the demo survives a refresh. Reset demo clears it.',
-    files: ['src/hooks/useInvoices.js', 'public/api/invoices.json'],
-    live: { to: '/', label: 'Dashboard: create an invoice, refresh, it is still there' },
+    title: 'Persisting data (MockAPI, shared across browsers)',
+    what: 'On first load the store GETs invoices from MockAPI. Every change (create, edit, transmit, delete) is a POST/PUT/DELETE, and the reducer only updates once the API confirms, so a failed write leaves the list exactly as it was. Without a MockAPI project configured, the app falls back to read-only static demo JSON.',
+    files: ['src/hooks/useInvoices.js', 'src/api/client.js', 'src/api/invoices.js'],
+    live: { to: '/', label: 'Dashboard: create an invoice, refresh, it is still there for everyone' },
     code: `// useInvoices.js
-const API_URL = \`\${import.meta.env.BASE_URL}api/invoices.json\`
+const load = useCallback(async (signal) => {
+  dispatch({ type: 'load/start' })
+  try {
+    const invoices = await invoicesApi.listInvoices(signal)
+    dispatch({ type: 'load/success', invoices })
+  } catch (err) {
+    if (err.name !== 'AbortError') dispatch({ type: 'load/error', error: err.message })
+  }
+}, [])
 
-useEffect(() => {
-  const controller = new AbortController()
-  load(controller.signal) // cache hit, or fetch(API_URL)
-  return () => controller.abort()
-}, [load])
+const deleteInvoice = useCallback(async (id) => {
+  await invoicesApi.deleteInvoice(id) // dispatch only after the API confirms
+  dispatch({ type: 'remove', id })
+}, [])`,
+  },
+  {
+    id: 'roles',
+    title: 'Roles and permissions',
+    what: 'A single can(user, action, invoice) function is the one place permission rules live. It both hides/disables buttons and guards the /create and /edit routes, so the UI and the guard can never disagree.',
+    files: ['src/data/roles.js', 'src/components/InvoiceCard.jsx', 'src/pages/CreateInvoicePage.jsx'],
+    live: { to: '/', label: 'Log in as viewer (view-only) vs john (editor) and compare the buttons shown' },
+    code: `// roles.js
+export function can(user, action, invoice) {
+  if (!user || user.role !== ROLES.EDIT) return false
+  switch (action) {
+    case 'create': return true
+    case 'edit':
+    case 'transmit': return invoice?.status === STATUS.DRAFT || invoice?.status === STATUS.FAILED
+    case 'markPaid': return invoice?.status === STATUS.TRANSMITTED
+    case 'delete': return invoice?.status !== STATUS.PAID
+    default: return false
+  }
+}
 
-useEffect(() => {
-  if (!state.loaded) return
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state.invoices))
-}, [state.invoices, state.loaded])`,
+// InvoiceCard.jsx: same check drives which buttons render
+const canEdit = can(user, 'edit', invoice)
+{canEdit && <button onClick={() => onEdit(invoice.id)}>Edit</button>}`,
   },
 ]
 
 export const TREE = `main.jsx
-└─ <BrowserRouter basename="/invoicenow/">
+└─ <BrowserRouter basename="/easyinvoice/">
    └─ <AuthProvider>                      Context: session
       └─ App                              Routes
          ├─ /login   LoginPage            useState, useAuth(), useNavigate
@@ -316,9 +340,9 @@ export const CHECKLIST = [
   ['At least two client-side routes with React Router', '/login, /tour, /, /create, /edit, /customers, /products'],
   ['Shared state with useState / useReducer; Context only where it helps', 'useInvoices (reducer), AuthContext'],
   ['Fetches or persists data with loading and error handling', 'useFetch, useInvoices, 3 endpoints, 2 free APIs'],
-  ['Endpoints: Invoices, Customers, Products; users hardcoded', 'public/api/*.json, src/data/users.js'],
+  ['Endpoints: Invoices, Customers, Products (MockAPI); users + roles hardcoded', 'src/api/*.js, src/data/users.js, src/data/roles.js'],
   ['Form with controlled inputs to create a new item', 'InvoiceForm on /create'],
   ['Displays the collection (Read) and deletes an item', 'InvoiceList and InvoiceCard on /'],
   ['Bonus: editing an existing item (Update)', 'EditInvoicePage on /edit?id='],
-  ['Deployed to a public URL', 'artificialintelligence.sg/invoicenow/'],
+  ['Deployed to a public URL', 'aie1f-easyinvoice.vercel.app'],
 ]

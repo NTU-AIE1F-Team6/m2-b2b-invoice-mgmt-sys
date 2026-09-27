@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { CONCEPTS, TREE, CHECKLIST } from '../data/tour.js'
 import { useAuth } from '../context/AuthContext.jsx'
 
-const HINTS_KEY = 'invoicenow-hints'
+const HINTS_KEY = 'easyinvoice-hints'
 
 // Public page (no login) that maps each React concept from the course to the file and the
 // lines that use it. "Open the app with hints on" switches on the in-app labels first.
@@ -22,7 +22,7 @@ export default function TourPage() {
       <header className="bg-slate-900 text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
           <Link to="/tour" className="font-bold tracking-tight">
-            InvoiceNow SG <span className="text-slate-400 font-normal">/ how it is built</span>
+            EasyInvoice <span className="text-slate-400 font-normal">/ how it is built</span>
           </Link>
           <nav className="flex items-center gap-2 text-sm">
             <Link to="/" onClick={enableHints} className="bg-violet-600 hover:bg-violet-500 px-3 py-2 rounded-lg font-semibold">
@@ -38,7 +38,7 @@ export default function TourPage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-12">
         <section>
           <p className="text-xs font-bold uppercase tracking-widest text-violet-600 mb-2">NTU AI Engineering, Module 2</p>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">How InvoiceNow SG is built</h1>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">How EasyInvoice is built</h1>
           <p className="text-slate-600 mt-3 max-w-3xl">
             A React + Vite app that simulates Singapore&apos;s Peppol e-invoicing network. Below, each React idea from the
             course is matched to the file that uses it, with the real lines of code. Inside the app, switch on
@@ -128,7 +128,7 @@ export default function TourPage() {
       </main>
 
       <footer className="text-center text-xs text-slate-400 py-8">
-        Source: React 18, Vite 5, React Router 6, Tailwind CSS 4. Hosted on artificialintelligence.sg.
+        Source: React 18, Vite 5, React Router 6, Tailwind CSS 4. Hosted on Vercel.
       </footer>
     </div>
   )
