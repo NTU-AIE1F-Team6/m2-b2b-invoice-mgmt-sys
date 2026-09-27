@@ -7,11 +7,52 @@ NTU AI Engineering Module 2 group project.
 `artificialintelligence.sg/easyinvoice/` NAS deployment mentioned later in this file was Ralph's
 original prototype; Vercel is the project's actual deployment.
 
+## Team and work division
+
+| Member | GitHub | Main contributions |
+|---|---|---|
+| Ralph Koh | [@koh-ralph](https://github.com/koh-ralph) | Initial app scaffold: login, dashboard, invoice create/edit/delete, customers, products, tour page (PR #1) |
+| Ang Jenn Fang | [@angjennfang](https://github.com/angjennfang) | Test infrastructure: Vitest + React Testing Library setup, initial component/page tests (PR #2) |
+| John Phang | [@johnphs-9](https://github.com/johnphs-9) | MockAPI backend, roles/permissions, GitHub workflow governance, EasyInvoice rename, dependency upgrade, Vercel deployment (PRs #3-#9) |
+
+Full detail in each person's `docs/handoffs/Tasklist-*.md` and in commit/PR history.
+
+## Screenshot
+
+![Dashboard, logged in as Finance Manager](docs/screenshots/dashboard.jpg)
+
+## Bonus challenges completed
+
+- **Easy:** search/status filter on the invoice list (`SearchFilter.jsx`); loading spinners for
+  async data (`LoadingSpinner.jsx`); responsive layout down to mobile widths (Tailwind breakpoints
+  throughout)
+- **Medium:** editing an existing invoice, i.e. Update (`EditInvoicePage.jsx`); a mock
+  authentication flow (SHA-256 password gate, see "Login" below); automated tests with React
+  Testing Library (`npm test`, 37 tests)
+
+Not attempted: optimistic UI updates (writes intentionally wait for the API to confirm rather than
+update the UI early — see `docs/engineering/architecture.md`), drag-and-drop reordering.
+
+## AI and Tools
+
+Claude Code (Claude Sonnet 5) was used extensively for John's contributions: scaffolding the
+MockAPI API layer, rewriting the invoice store off localStorage, implementing roles/permissions,
+writing tests, setting up CI and repo governance, the EasyInvoice rename, the React 19/Vite 8
+dependency upgrade, and the Vercel deployment. Working notes are in
+`docs/handoffs/John/HANDOFF-easyinvoice-mockapi.md` and `docs/handoffs/John/github-structure-review.md`.
+
+Jenn and Ralph: please add a line here on any AI tools (Copilot, ChatGPT, etc.) you used for your
+own parts, and what for.
+
+No code was copied from an external tutorial. The "CRM base project" mentioned in the PRD
+(`docs/requirements/PRD-B2B Invoice Management System-V1.md`) was used only as a stylistic/
+architectural reference (Context + reducer patterns), not copied from.
+
 ## Run it locally
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173/easyinvoice/
+npm run dev        # http://localhost:5173/ (Vite picks another port if 5173 is busy)
 npm run build      # writes dist/ (plus one index.html per route for static hosting)
 npm run preview
 ```
@@ -39,8 +80,9 @@ learning-project demo gate, not production security:
 
 ## Demo aids
 
-- **Tour page** at `/easyinvoice/tour/` (public, no login): one card per React concept with the file
-  names, the real code lines, and a "See it live" link. Content lives in `src/data/tour.js`.
+- **Tour page** at `/tour` (public, no login — `/easyinvoice/tour/` only on the NAS sub-folder
+  deploy): one card per React concept with the file names, the real code lines, and a "See it
+  live" link. Content lives in `src/data/tour.js`.
 - **Hints toggle** in the app navbar: adds `.hints-on` to the app wrapper so every `<Hint>` label
   (`src/components/Hint.jsx`) appears, naming the React feature behind that part of the screen.
   The choice is remembered in localStorage.
