@@ -118,7 +118,7 @@ export default function InvoiceForm({ initialValues, mode = 'create', busy = fal
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <Hint label="Controlled inputs: value={state} + onChange -> setState" className="mb-1" />
+          <Hint label="Whatever you type here is stored by React as you type, so the form always knows its current values and can validate them before saving (controlled inputs)" className="mb-1" />
           <label htmlFor="buyerName" className={label}>Buyer company name</label>
           <input
             id="buyerName"
@@ -164,8 +164,8 @@ export default function InvoiceForm({ initialValues, mode = 'create', busy = fal
       <div className="space-y-3 pt-2">
         <div className="flex justify-between items-center">
           <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
-            Invoice line items <Hint label="Array in state: map / filter / spread, never mutate" className="ml-2" />{' '}
-            <Hint label="Dropdown fed by useFetch(products.json); selected SKU is derived, not stored" />
+            Invoice line items <Hint label="Line items are kept as a list in memory. Adding, editing or removing a row makes a fresh copy of the list, which is how React notices the change and updates the screen (array state)" className="ml-2" />{' '}
+            <Hint label="This product dropdown is filled from the products data. Choosing one copies its name and price into the row (useFetch + derived value)" />
           </h3>
           <button
             type="button"
@@ -246,7 +246,7 @@ export default function InvoiceForm({ initialValues, mode = 'create', busy = fal
           <span className="text-sm font-medium text-slate-700">Embed PayNow UEN QR code for instant B2B settlement</span>
         </label>
         <div className="text-right space-y-1 w-full sm:w-auto">
-          <Hint label="Derived from items on each render (computeTotals)" />
+          <Hint label="Subtotal, GST and total are recalculated from the line items every time they change. They are never typed in or stored, so they cannot disagree with the rows (derived values)" />
           <div className="text-xs text-slate-500">Subtotal: ${subtotal.toFixed(2)}</div>
           <div className="text-xs text-slate-500">GST (9%): ${gst.toFixed(2)}</div>
           <div className="text-base font-bold text-slate-900">Total due: ${total.toFixed(2)} SGD</div>
@@ -254,7 +254,7 @@ export default function InvoiceForm({ initialValues, mode = 'create', busy = fal
       </div>
 
       <div className="flex flex-wrap justify-end gap-3 pt-4 border-t border-slate-100">
-        <Hint label="onSubmit handler: validate, then call the onSubmit prop" className="self-center" />
+        <Hint label="Pressing this button checks the form for mistakes first. Only if everything is valid is the invoice passed up to the page to be saved (submit handler)" className="self-center" />
         <button type="button" onClick={onCancel} className="px-5 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 transition">
           Cancel
         </button>

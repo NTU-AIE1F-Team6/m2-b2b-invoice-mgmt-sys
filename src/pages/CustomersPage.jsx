@@ -20,9 +20,9 @@ export default function CustomersPage() {
           Companies from the mock directory API, each paired with a contact person fetched live from randomuser.me.
         </p>
         <div className="flex flex-wrap gap-1.5 mt-2">
-          <Hint label="useFetch #1: MockAPI referenceData" />
-          <Hint label="useFetch #2: randomuser.me (free API)" />
-          <Hint label="Link to /create?uen=... (React Router)" />
+          <Hint label="This customer list is downloaded from the shared MockAPI server, with loading and error messages while it arrives (useFetch)" />
+          <Hint label="These contacts come from a free public internet service, to show the app can talk to outside systems (useFetch, external API)" />
+          <Hint label="Clicking a customer opens the new-invoice form with that buyer already filled in, by putting their details in the web address (React Router Link)" />
         </div>
       </div>
 

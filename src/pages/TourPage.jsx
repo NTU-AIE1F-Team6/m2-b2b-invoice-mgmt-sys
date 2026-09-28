@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { CONCEPTS, TREE, CHECKLIST } from '../data/tour.js'
+import { CONCEPTS, TREE } from '../data/tour.js'
 import { useAuth } from '../context/AuthContext.jsx'
 
 const HINTS_KEY = 'easyinvoice-hints'
@@ -90,28 +90,13 @@ export default function TourPage() {
           ))}
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-2">
+        <section>
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6">
             <h2 className="text-xl font-bold text-slate-900">Component tree</h2>
             <p className="text-sm text-slate-600 mt-1 mb-4">Who renders whom, and which React feature each one leans on.</p>
             <pre className="bg-slate-900 text-slate-100 text-[11.5px] leading-relaxed rounded-xl p-4 overflow-x-auto">
               <code>{TREE}</code>
             </pre>
-          </div>
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6">
-            <h2 className="text-xl font-bold text-slate-900">Requirement checklist</h2>
-            <p className="text-sm text-slate-600 mt-1 mb-4">From the Module 2 project brief.</p>
-            <ul className="space-y-2">
-              {CHECKLIST.map(([req, where]) => (
-                <li key={req} className="flex gap-3 text-sm">
-                  <span className="text-emerald-600 font-bold shrink-0" aria-hidden="true">&#10003;</span>
-                  <span>
-                    <span className="text-slate-800">{req}</span>
-                    <span className="block text-xs text-slate-500 font-mono">{where}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
