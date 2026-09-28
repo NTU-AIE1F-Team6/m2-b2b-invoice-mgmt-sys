@@ -12,7 +12,7 @@ export default function FxRatesCard() {
       <div className="flex items-center justify-between gap-3 mb-3">
         <div>
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-            Live FX: 1 SGD buys <Hint label="useFetch: useEffect + fetch, loading and error state" className="ml-2" />
+            Live FX: 1 SGD buys <Hint label="Live rates are downloaded from a public exchange-rate website when this card appears. It shows a loading message while waiting and an error if the download fails (useEffect + fetch)" className="ml-2" />
           </p>
           <p className="text-xs text-slate-400 mt-0.5">
             {data ? `ECB reference rates, ${data.date}` : 'Source: api.frankfurter.dev'}

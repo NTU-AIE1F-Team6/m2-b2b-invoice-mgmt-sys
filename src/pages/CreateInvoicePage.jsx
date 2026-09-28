@@ -51,8 +51,8 @@ export default function CreateInvoicePage({ store, notify }) {
           <h1 className="text-xl font-bold text-slate-900">Create a Peppol e-invoice</h1>
           <p className="text-sm text-slate-500">Follows the Singapore InvoiceNow (PINT-SG) structure with 9% GST.</p>
           <div className="flex flex-wrap gap-1.5 mt-2">
-            <Hint label="useSearchParams prefill (?uen=&name= or ?item=&price=)" />
-            <Hint label="async handler: await store.addInvoice, then notify + navigate" />
+            <Hint label="If you arrived here from Customers or Products, the buyer or product is read from the web address and filled in for you (useSearchParams)" />
+            <Hint label="Saving waits for the store to confirm, then shows a toast message and sends you back to the dashboard (async event handler)" />
           </div>
         </div>
         <InvoiceForm mode="create" initialValues={initialValues} busy={busy} onSubmit={handleSubmit} onCancel={() => navigate('/')} />

@@ -60,9 +60,9 @@ export default function EditInvoicePage({ store, notify }) {
             <h1 className="text-xl font-bold text-slate-900">Edit invoice {invoice.invoiceNumber}</h1>
             <p className="text-sm text-slate-500">Changes are saved locally; the network status stays as it is.</p>
             <div className="flex flex-wrap gap-1.5 mt-2">
-              <Hint label="useSearchParams reads ?id=" />
-              <Hint label="key={invoice.id} resets the form state" />
-              <Hint label="dispatches 'update' to the reducer" />
+              <Hint label="The invoice number to edit is read from the web address, so this page can be bookmarked or shared (useSearchParams)" />
+              <Hint label="Switching to a different invoice resets the form completely, so old values never leak into the next one (key prop)" />
+              <Hint label="Saving sends an update action to the central store, which replaces the old invoice with the edited one (useReducer dispatch)" />
             </div>
           </div>
           <PeppolStatusBadge status={invoice.status} />

@@ -38,7 +38,7 @@ export default function Navbar({ hints, onToggleHints }) {
           </Link>
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <Hint label="NavLink: React Router" />
+            <Hint label="These menu links switch pages instantly without reloading the browser, and the current page is highlighted (React Router NavLink)" />
             <NavLink to="/" end className={linkClass}>
               Dashboard
             </NavLink>
@@ -74,7 +74,7 @@ export default function Navbar({ hints, onToggleHints }) {
               {hints ? 'Hints on' : 'Hints'}
             </button>
             <div className="flex items-center gap-2 pl-2 sm:pl-3 border-l border-slate-700">
-              <Hint label="useAuth(): Context" />
+              <Hint label="Who is signed in is stored once and shared with any part of the app that needs it, so it is not passed hand to hand (React Context)" />
               <span className="hidden md:block text-xs text-slate-300 leading-tight">
                 <span className="block font-semibold text-white">{user?.name}</span>
                 <span className="text-slate-400">

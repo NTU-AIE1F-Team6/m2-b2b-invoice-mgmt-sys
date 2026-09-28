@@ -19,8 +19,8 @@ export default function ProductsPage() {
           Items you can bill. Pick one here or from the line-item dropdown on the invoice form.
         </p>
         <div className="flex flex-wrap gap-1.5 mt-2">
-          <Hint label="useFetch #3: MockAPI referenceData" />
-          <Hint label="Link to /create?item=&price= (React Router)" />
+          <Hint label="This product list is downloaded from the shared MockAPI server, with loading and error messages while it arrives (useFetch)" />
+          <Hint label="Clicking a product opens the new-invoice form with that item and price already entered as the first line (React Router Link)" />
         </div>
       </div>
 

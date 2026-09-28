@@ -5,7 +5,7 @@ export default function SearchFilter({ search, onSearch, status, onStatus }) {
   return (
     <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col lg:flex-row justify-between gap-4">
       <div className="relative flex-1">
-        <Hint label="Controlled input; state lives in DashboardPage (lifted up)" className="mb-2" />
+        <Hint label="Every keystroke in this box is saved by React and the list below filters straight away. The search text is kept by the page, not the box, so both can read it (controlled input, state lifted up)" className="mb-2" />
         <div className="relative">
           <svg className="w-5 h-5 absolute left-3.5 top-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -21,7 +21,7 @@ export default function SearchFilter({ search, onSearch, status, onStatus }) {
         </div>
       </div>
       <div className="flex items-center gap-2 overflow-x-auto pb-1 lg:pb-0">
-        <Hint label="STATUS_FILTERS.map() with key" />
+        <Hint label="These buttons are generated from a list of statuses rather than typed out one by one, so adding a status is a one-line change (array map with key)" />
         {STATUS_FILTERS.map((s) => (
           <button
             key={s}
