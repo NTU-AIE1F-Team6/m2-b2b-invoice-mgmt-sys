@@ -1,0 +1,693 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/zvwiak",
+    "id": "zvwiak",
+    "slide": 6,
+    "layoutId": "469939db-b9b6-4a55-858b-ba7fa2610500",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "dc7c1875-71b4-4f58-9c5a-9795b9b6c3d8",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F6F5F1",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Arial"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "469939db-b9b6-4a55-858b-ba7fa2610500",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "dc7c1875-71b4-4f58-9c5a-9795b9b6c3d8",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "dc7c1875-71b4-4f58-9c5a-9795b9b6c3d8",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6xgfmd0v",
+      "id": "1",
+      "bbox": [
+        64,
+        38,
+        1100,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Challenges and responses",
+      "textPreview": "Challenges and responses",
+      "resolvedFontSize": 42,
+      "resolvedTextStyle": {
+        "fontSize": 42,
+        "typeface": "Arial",
+        "color": "#1B211F",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Challenges and responses"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Challenges and responses",
+          "resolvedTextStyle": {
+            "fontSize": 42,
+            "typeface": "Arial",
+            "color": "#1B211F",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Challenges and responses",
+              "fontSize": 42,
+              "typeface": "Arial",
+              "color": "#1B211F",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tk7ehsjm",
+      "id": "2",
+      "bbox": [
+        64,
+        102,
+        96,
+        6
+      ],
+      "geometry": "rect",
+      "fillColor": "#EDB86C",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/szyxoni1",
+      "id": "3",
+      "bbox": [
+        64,
+        142,
+        660,
+        42
+      ],
+      "geometry": "rect",
+      "text": "MockAPI allowed two resources",
+      "textPreview": "MockAPI allowed two resources",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#0E3C75",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "MockAPI allowed two resources"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "MockAPI allowed two resources",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#0E3C75",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "MockAPI allowed two resources",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#0E3C75",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jupwby14",
+      "id": "4",
+      "bbox": [
+        64,
+        188,
+        650,
+        62
+      ],
+      "geometry": "rect",
+      "text": "Customers and products share a typed referenceData resource",
+      "textPreview": "Customers and products share a typed referenceData resource",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Arial",
+        "color": "#1B211F",
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Customers and products share a typed referenceData"
+          },
+          {
+            "index": 2,
+            "text": "resource"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Customers and products share a typed referenceData resource",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#1B211F"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Customers and products share a typed referenceData resource",
+              "fontSize": 24,
+              "typeface": "Arial",
+              "color": "#1B211F"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/itwfit0z",
+      "id": "5",
+      "bbox": [
+        64,
+        262,
+        650,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#D5D8D3",
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5w7ed8ja",
+      "id": "6",
+      "bbox": [
+        64,
+        280,
+        660,
+        42
+      ],
+      "geometry": "rect",
+      "text": "The schema editor could erase records",
+      "textPreview": "The schema editor could erase records",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#0E3C75",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The schema editor could erase records"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The schema editor could erase records",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#0E3C75",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The schema editor could erase records",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#0E3C75",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4vyxk3ip",
+      "id": "7",
+      "bbox": [
+        64,
+        326,
+        650,
+        62
+      ],
+      "geometry": "rect",
+      "text": "The team documented the risk and added repeatable seed data",
+      "textPreview": "The team documented the risk and added repeatable seed data",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Arial",
+        "color": "#1B211F",
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The team documented the risk and added repeatable seed"
+          },
+          {
+            "index": 2,
+            "text": "data"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The team documented the risk and added repeatable seed data",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#1B211F"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The team documented the risk and added repeatable seed data",
+              "fontSize": 24,
+              "typeface": "Arial",
+              "color": "#1B211F"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3q9gn21o",
+      "id": "8",
+      "bbox": [
+        64,
+        400,
+        650,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#D5D8D3",
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2p0fux03",
+      "id": "9",
+      "bbox": [
+        64,
+        418,
+        660,
+        42
+      ],
+      "geometry": "rect",
+      "text": "Session-key mismatch after integration",
+      "textPreview": "Session-key mismatch after integration",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#0E3C75",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Session-key mismatch after integration"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Session-key mismatch after integration",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#0E3C75",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Session-key mismatch after integration",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#0E3C75",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0v6dcnid",
+      "id": "10",
+      "bbox": [
+        64,
+        464,
+        650,
+        62
+      ],
+      "geometry": "rect",
+      "text": "Tests caught the regression before release",
+      "textPreview": "Tests caught the regression before release",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Arial",
+        "color": "#1B211F",
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Tests caught the regression before release"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Tests caught the regression before release",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#1B211F"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Tests caught the regression before release",
+              "fontSize": 24,
+              "typeface": "Arial",
+              "color": "#1B211F"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1gfe5sjy",
+      "id": "11",
+      "bbox": [
+        770,
+        132,
+        446,
+        430
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFDF9",
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/98fuxwry",
+      "id": "12",
+      "bbox": [
+        794,
+        154,
+        398,
+        386
+      ],
+      "geometry": "roundRect",
+      "alt": "EasyInvoice hints mode screenshot",
+      "contentType": "image/png",
+      "imageCrop": {
+        "left": 0.04,
+        "top": 0.03,
+        "right": 0.04,
+        "bottom": 0.1
+      },
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 2073"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "a820fbd2-b5e8-40e0-9698-e378a6d07a69",
+        "contentType": "image/png",
+        "byteLength": 343024
+      }
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fuxc3i1s",
+      "id": "13",
+      "bbox": [
+        64,
+        594,
+        1152,
+        72
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#EDB86C",
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/srmd8ni1",
+      "id": "14",
+      "bbox": [
+        92,
+        611,
+        1100,
+        40
+      ],
+      "geometry": "rect",
+      "text": "Live demo next: viewer permissions, create and transmit, mark paid",
+      "textPreview": "Live demo next: viewer permissions, create and transmit, mark paid",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#1B211F",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Live demo next: viewer permissions, create and transmit, mark paid"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Live demo next: viewer permissions, create and transmit, mark paid",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#1B211F",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Live demo next: viewer permissions, create and transmit, mark paid",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#1B211F",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

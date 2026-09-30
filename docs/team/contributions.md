@@ -19,9 +19,9 @@ data-fetching or component-composition task.
 
 | Member | State management | Route | Data fetching/composition | 
 |---|---|---|---|
-| Ralph | Initial `useInvoices`, auth/form/dashboard state | Initial login, tour, dashboard, create/edit, customer/product routes | Initial reusable UI and data-source composition | 
-| Jenn | Tests exercise hook and page state | Dashboard-page tests exercise routed navigation | Component/page test composition and mocked store behaviour | 
-| John | MockAPI-backed reducer/store integration and mutation states | Role guards and route integration fixes | API clients, reference-data composition, useFetch/store integration |
+| Ralph KOH Kwan Liang  | Initial `useInvoices`, auth/form/dashboard state | Initial login, tour, dashboard, create/edit, customer/product routes | Initial reusable UI and data-source composition | 
+| ANG Jenn Fang | Tests exercise hook and page state | Dashboard-page tests exercise routed navigation | Component/page test composition and mocked store behaviour | 
+| John PHANG | MockAPI-backed reducer/store integration and mutation states | Role guards and route integration fixes | API clients, reference-data composition, useFetch/store integration |
 
 
 

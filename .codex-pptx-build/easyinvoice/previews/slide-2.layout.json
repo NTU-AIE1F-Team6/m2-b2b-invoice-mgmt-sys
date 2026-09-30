@@ -1,0 +1,593 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/nfato3",
+    "id": "nfato3",
+    "slide": 2,
+    "layoutId": "469939db-b9b6-4a55-858b-ba7fa2610500",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "dc7c1875-71b4-4f58-9c5a-9795b9b6c3d8",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F6F5F1",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Arial"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "469939db-b9b6-4a55-858b-ba7fa2610500",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "dc7c1875-71b4-4f58-9c5a-9795b9b6c3d8",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "dc7c1875-71b4-4f58-9c5a-9795b9b6c3d8",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zm1cbmto",
+      "id": "1",
+      "bbox": [
+        64,
+        38,
+        1100,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Problem and audience",
+      "textPreview": "Problem and audience",
+      "resolvedFontSize": 42,
+      "resolvedTextStyle": {
+        "fontSize": 42,
+        "typeface": "Arial",
+        "color": "#1B211F",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Problem and audience"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Problem and audience",
+          "resolvedTextStyle": {
+            "fontSize": 42,
+            "typeface": "Arial",
+            "color": "#1B211F",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Problem and audience",
+              "fontSize": 42,
+              "typeface": "Arial",
+              "color": "#1B211F",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/knat4ru9",
+      "id": "2",
+      "bbox": [
+        64,
+        102,
+        96,
+        6
+      ],
+      "geometry": "rect",
+      "fillColor": "#EDB86C",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lojudcbu",
+      "id": "3",
+      "bbox": [
+        64,
+        140,
+        560,
+        112
+      ],
+      "geometry": "rect",
+      "text": "Invoice work spans creation,\ntransmission and payment status",
+      "textPreview": "Invoice work spans creation, | transmission and payment status",
+      "resolvedFontSize": 34,
+      "resolvedTextStyle": {
+        "fontSize": 34,
+        "typeface": "Arial",
+        "color": "#0E3C75",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Invoice work spans creation,"
+          },
+          {
+            "index": 2,
+            "text": "transmission and payment status"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Invoice work spans creation,",
+          "resolvedTextStyle": {
+            "fontSize": 34,
+            "typeface": "Arial",
+            "color": "#0E3C75",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Invoice work spans creation,",
+              "fontSize": 34,
+              "typeface": "Arial",
+              "color": "#0E3C75",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "transmission and payment status",
+          "resolvedTextStyle": {
+            "fontSize": 34,
+            "typeface": "Arial",
+            "color": "#0E3C75",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "transmission and payment status",
+              "fontSize": 34,
+              "typeface": "Arial",
+              "color": "#0E3C75",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qh8byxc7",
+      "id": "4",
+      "bbox": [
+        64,
+        274,
+        180,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Audience",
+      "textPreview": "Audience",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "fontSize": 25,
+        "typeface": "Arial",
+        "color": "#A45F3F",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Audience"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Audience",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "typeface": "Arial",
+            "color": "#A45F3F",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Audience",
+              "fontSize": 25,
+              "typeface": "Arial",
+              "color": "#A45F3F",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bihs72ts",
+      "id": "5",
+      "bbox": [
+        64,
+        312,
+        520,
+        82
+      ],
+      "geometry": "rect",
+      "text": "Small business finance and accounts receivable teams",
+      "textPreview": "Small business finance and accounts receivable teams",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#1B211F",
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Small business finance and accounts"
+          },
+          {
+            "index": 2,
+            "text": "receivable teams"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Small business finance and accounts receivable teams",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#1B211F"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Small business finance and accounts receivable teams",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#1B211F"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cjqt07ux",
+      "id": "6",
+      "bbox": [
+        64,
+        416,
+        200,
+        34
+      ],
+      "geometry": "rect",
+      "text": "EasyInvoice",
+      "textPreview": "EasyInvoice",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "fontSize": 25,
+        "typeface": "Arial",
+        "color": "#A45F3F",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "EasyInvoice"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "EasyInvoice",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "typeface": "Arial",
+            "color": "#A45F3F",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "EasyInvoice",
+              "fontSize": 25,
+              "typeface": "Arial",
+              "color": "#A45F3F",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dkza9cbi",
+      "id": "7",
+      "bbox": [
+        64,
+        454,
+        520,
+        88
+      ],
+      "geometry": "rect",
+      "text": "A browser demo of the invoice lifecycle using Singapore InvoiceNow concepts",
+      "textPreview": "A browser demo of the invoice lifecycle using Singapore InvoiceNow concepts",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#1B211F",
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A browser demo of the invoice lifecycle"
+          },
+          {
+            "index": 2,
+            "text": "using Singapore InvoiceNow concepts"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A browser demo of the invoice lifecycle using Singapore InvoiceNow concepts",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#1B211F"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A browser demo of the invoice lifecycle using Singapore InvoiceNow concepts",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#1B211F"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/udsba1cb",
+      "id": "8",
+      "bbox": [
+        64,
+        610,
+        510,
+        40
+      ],
+      "geometry": "rect",
+      "text": "Simulated network. Synthetic data only.",
+      "textPreview": "Simulated network. Synthetic data only.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Arial",
+        "color": "#1F5552",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Simulated network. Synthetic data only."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Simulated network. Synthetic data only.",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#1F5552",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Simulated network. Synthetic data only.",
+              "fontSize": 24,
+              "typeface": "Arial",
+              "color": "#1F5552",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/velcj6tw",
+      "id": "9",
+      "bbox": [
+        652,
+        128,
+        560,
+        520
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFDF9",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/kjq947mt",
+      "id": "10",
+      "bbox": [
+        680,
+        150,
+        504,
+        474
+      ],
+      "alt": "Peppol InvoiceNow business process diagram",
+      "contentType": "image/png",
+      "imageFit": "contain",
+      "asset": {
+        "assetId": "5fa3d59d-57c6-44ac-8936-d06df3a745c2",
+        "contentType": "image/png",
+        "byteLength": 71383
+      }
+    }
+  ],
+  "composeRuns": []
+}

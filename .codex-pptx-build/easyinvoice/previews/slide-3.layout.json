@@ -1,0 +1,501 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/dippu7",
+    "id": "dippu7",
+    "slide": 3,
+    "layoutId": "469939db-b9b6-4a55-858b-ba7fa2610500",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "dc7c1875-71b4-4f58-9c5a-9795b9b6c3d8",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F6F5F1",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Arial"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "469939db-b9b6-4a55-858b-ba7fa2610500",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "dc7c1875-71b4-4f58-9c5a-9795b9b6c3d8",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "dc7c1875-71b4-4f58-9c5a-9795b9b6c3d8",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7i90nipk",
+      "id": "1",
+      "bbox": [
+        64,
+        38,
+        1100,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Working application",
+      "textPreview": "Working application",
+      "resolvedFontSize": 42,
+      "resolvedTextStyle": {
+        "fontSize": 42,
+        "typeface": "Arial",
+        "color": "#1B211F",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Working application"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Working application",
+          "resolvedTextStyle": {
+            "fontSize": 42,
+            "typeface": "Arial",
+            "color": "#1B211F",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Working application",
+              "fontSize": 42,
+              "typeface": "Arial",
+              "color": "#1B211F",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sj2hwn65",
+      "id": "2",
+      "bbox": [
+        64,
+        102,
+        96,
+        6
+      ],
+      "geometry": "rect",
+      "fillColor": "#EDB86C",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tkbips7q",
+      "id": "3",
+      "bbox": [
+        56,
+        132,
+        566,
+        506
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFDF9",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/it0zqdo3",
+      "id": "4",
+      "bbox": [
+        658,
+        132,
+        566,
+        506
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFDF9",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ju9gjipo",
+      "id": "5",
+      "bbox": [
+        80,
+        150,
+        230,
+        38
+      ],
+      "geometry": "rect",
+      "text": "Dashboard",
+      "textPreview": "Dashboard",
+      "resolvedFontSize": 29,
+      "resolvedTextStyle": {
+        "fontSize": 29,
+        "typeface": "Arial",
+        "color": "#1F5552",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Dashboard"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Dashboard",
+          "resolvedTextStyle": {
+            "fontSize": 29,
+            "typeface": "Arial",
+            "color": "#1F5552",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Dashboard",
+              "fontSize": 29,
+              "typeface": "Arial",
+              "color": "#1F5552",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kvihs369",
+      "id": "6",
+      "bbox": [
+        80,
+        188,
+        450,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Search, filter, status and actions",
+      "textPreview": "Search, filter, status and actions",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Arial",
+        "color": "#5F6662",
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Search, filter, status and actions"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Search, filter, status and actions",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#5F6662"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Search, filter, status and actions",
+              "fontSize": 24,
+              "typeface": "Arial",
+              "color": "#5F6662"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/cre5wbid",
+      "id": "7",
+      "bbox": [
+        80,
+        232,
+        518,
+        380
+      ],
+      "geometry": "roundRect",
+      "alt": "EasyInvoice dashboard screenshot",
+      "contentType": "image/png",
+      "imageCrop": {
+        "left": 0.04,
+        "top": 0.08,
+        "right": 0.04,
+        "bottom": 0.22
+      },
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 2105"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "decbf9a4-349b-4464-8854-ab456758a2e7",
+        "contentType": "image/png",
+        "byteLength": 398205
+      }
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2pkz2xo7",
+      "id": "8",
+      "bbox": [
+        682,
+        150,
+        260,
+        38
+      ],
+      "geometry": "rect",
+      "text": "Create invoice",
+      "textPreview": "Create invoice",
+      "resolvedFontSize": 29,
+      "resolvedTextStyle": {
+        "fontSize": 29,
+        "typeface": "Arial",
+        "color": "#1F5552",
+        "bold": true,
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Create invoice"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Create invoice",
+          "resolvedTextStyle": {
+            "fontSize": 29,
+            "typeface": "Arial",
+            "color": "#1F5552",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Create invoice",
+              "fontSize": 29,
+              "typeface": "Arial",
+              "color": "#1F5552",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3qd0v2ps",
+      "id": "9",
+      "bbox": [
+        682,
+        188,
+        480,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Controlled form, catalogue items and GST",
+      "textPreview": "Controlled form, catalogue items and GST",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "Arial",
+        "color": "#5F6662",
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Controlled form, catalogue items and GST"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Controlled form, catalogue items and GST",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#5F6662"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Controlled form, catalogue items and GST",
+              "fontSize": 24,
+              "typeface": "Arial",
+              "color": "#5F6662"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/gvu10ril",
+      "id": "10",
+      "bbox": [
+        682,
+        232,
+        518,
+        380
+      ],
+      "geometry": "roundRect",
+      "alt": "EasyInvoice create invoice form screenshot",
+      "contentType": "image/png",
+      "imageCrop": {
+        "left": 0.04,
+        "top": 0.04,
+        "right": 0.04,
+        "bottom": 0.05
+      },
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 2105"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "56430060-3f85-497e-9370-c9fa578058e0",
+        "contentType": "image/png",
+        "byteLength": 228166
+      }
+    }
+  ],
+  "composeRuns": []
+}

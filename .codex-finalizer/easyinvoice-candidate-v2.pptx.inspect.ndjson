@@ -1,0 +1,95 @@
+{"kind":"deck","id":"pr/f1tuyu","name":"Deck"}
+{"kind":"layout","layoutId":"351ac364-d6fd-4d97-b8c9-a0708afec6cb","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"9c31f130-d90d-46c3-82e7-b1ff28e2aef7","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/843hw2","slide":1,"title":"EasyInvoice","textShapes":8}
+{"kind":"shape","id":"sh/8vutsvud","slide":1,"bbox":[68,112,112,10]}
+{"kind":"textbox","id":"sh/7a1cjqd8","slide":1,"text":"EasyInvoice","textPreview":"EasyInvoice","textChars":11,"textLines":1,"bbox":[68,150,600,100]}
+{"kind":"textbox","id":"sh/69sbqlcn","slide":1,"text":"React learning project\nfor B2B e-invoicing","textPreview":"React learning project | for B2B e-invoicing","textChars":42,"textLines":2,"bbox":[70,268,570,92]}
+{"kind":"textbox","id":"sh/h03upkba","slide":1,"text":"NTU AI Engineering, Module 2","textPreview":"NTU AI Engineering, Module 2","textChars":28,"textLines":1,"bbox":[70,392,570,40]}
+{"kind":"textbox","id":"sh/gzutwfup","slide":1,"text":"TEAM 6","textPreview":"TEAM 6","textChars":6,"textLines":1,"bbox":[718,108,450,38]}
+{"kind":"shape","id":"sh/vylcnat4","slide":1,"bbox":[684,162,150,150]}
+{"kind":"textbox","id":"sh/x4judgvq","slide":1,"text":"Ralph Koh\nKwan Liang","textPreview":"Ralph Koh | Kwan Liang","textChars":20,"textLines":2,"bbox":[672,326,174,68]}
+{"kind":"shape","id":"sh/w3atkbul","slide":1,"bbox":[878,162,150,150]}
+{"kind":"textbox","id":"sh/nmt03m98","slide":1,"text":"Ang Jenn\nFang","textPreview":"Ang Jenn | Fang","textChars":13,"textLines":2,"bbox":[866,326,174,68]}
+{"kind":"shape","id":"sh/8n21crqt","slide":1,"bbox":[1072,162,150,150]}
+{"kind":"textbox","id":"sh/ap4je18z","slide":1,"text":"John\nPhang","textPreview":"John | Phang","textChars":10,"textLines":2,"bbox":[1060,326,174,68]}
+{"kind":"textbox","id":"sh/vqd076pk","slide":1,"text":"Live demo follows this short overview","textPreview":"Live demo follows this short overview","textChars":37,"textLines":1,"bbox":[70,610,620,38]}
+{"kind":"image","id":"im/rat4vets","slide":1,"name":"","geometry":"ellipse","alt":"Ralph Koh Kwan Liang portrait","bbox":[690,168,138,138]}
+{"kind":"image","id":"im/hgz2ps7m","slide":1,"name":"","geometry":"ellipse","alt":"Ang Jenn Fang portrait","bbox":[884,168,138,138]}
+{"kind":"image","id":"im/udojudov","slide":1,"name":"","geometry":"ellipse","alt":"John Phang portrait","bbox":[1078,168,138,138]}
+{"kind":"notes","id":"nt/843hw2","slide":1,"text":"Timing: 25 seconds. Introduce EasyInvoice as the team's React learning project. The slides take about four minutes, followed by the working demo. Sources: README.md and docs/planning/presentation-outline.md."}
+{"kind":"slide","id":"sl/k5ysg5","slide":2,"title":"Problem and audience","textShapes":7}
+{"kind":"textbox","id":"sh/id4ba98f","slide":2,"text":"Problem and audience","textPreview":"Problem and audience","textChars":20,"textLines":1,"bbox":[64,38,1100,58]}
+{"kind":"shape","id":"sh/5gfu5o76","slide":2,"bbox":[64,102,96,6]}
+{"kind":"textbox","id":"sh/4f6tcjql","slide":2,"text":"Invoice work spans creation,\ntransmission and payment status","textPreview":"Invoice work spans creation, | transmission and payment status","textChars":60,"textLines":2,"bbox":[64,140,560,100]}
+{"kind":"textbox","id":"sh/vadczepo","slide":2,"text":"Audience","textPreview":"Audience","textChars":8,"textLines":1,"bbox":[64,274,180,34]}
+{"kind":"textbox","id":"sh/u94b6983","slide":2,"text":"Small business finance and accounts receivable teams","textPreview":"Small business finance and accounts receivable teams","textChars":52,"textLines":1,"bbox":[64,312,520,70]}
+{"kind":"textbox","id":"sh/hcvu147u","slide":2,"text":"EasyInvoice","textPreview":"EasyInvoice","textChars":11,"textLines":1,"bbox":[64,416,200,34]}
+{"kind":"textbox","id":"sh/wbmt8zq9","slide":2,"text":"A browser demo of the invoice lifecycle using Singapore InvoiceNow concepts","textPreview":"A browser demo of the invoice lifecycle using Singapore InvoiceNow concepts","textChars":75,"textLines":1,"bbox":[64,454,520,88]}
+{"kind":"textbox","id":"sh/7mtcvups","slide":2,"text":"Simulated network. Synthetic data only.","textPreview":"Simulated network. Synthetic data only.","textChars":39,"textLines":1,"bbox":[64,610,510,40]}
+{"kind":"shape","id":"sh/mlkb2p87","slide":2,"bbox":[652,128,560,520]}
+{"kind":"image","id":"im/nap03up0","slide":2,"name":"","alt":"Peppol InvoiceNow business process diagram","bbox":[680,150,504,474]}
+{"kind":"notes","id":"nt/k5ysg5","slide":2,"text":"Timing: 40 seconds. Explain that small finance teams need one view of invoice creation, transmission and collection status. EasyInvoice demonstrates that workflow but does not connect to the real InvoiceNow network. Sources: README.md and docs/images/Peppol-InvoiceNow.png."}
+{"kind":"slide","id":"sl/saqvjq","slide":3,"title":"Working application","textShapes":5}
+{"kind":"textbox","id":"sh/kjyxs365","slide":3,"text":"Working application","textPreview":"Working application","textChars":19,"textLines":1,"bbox":[64,38,1100,58]}
+{"kind":"shape","id":"sh/zy5gzypk","slide":3,"bbox":[64,102,96,6]}
+{"kind":"shape","id":"sh/yxwfqtof","slide":3,"bbox":[56,132,566,506]}
+{"kind":"shape","id":"sh/xwnexo7u","slide":3,"bbox":[658,132,566,506]}
+{"kind":"textbox","id":"sh/cvexo369","slide":3,"text":"Dashboard","textPreview":"Dashboard","textChars":9,"textLines":1,"bbox":[80,150,230,38]}
+{"kind":"textbox","id":"sh/bu5wvypo","slide":3,"text":"Search, filter, status and actions","textPreview":"Search, filter, status and actions","textChars":34,"textLines":1,"bbox":[80,188,450,34]}
+{"kind":"textbox","id":"sh/hsry9s7y","slide":3,"text":"Create invoice","textPreview":"Create invoice","textChars":14,"textLines":1,"bbox":[682,150,260,38]}
+{"kind":"textbox","id":"sh/grix0n6d","slide":3,"text":"Controlled form, catalogue items and GST","textPreview":"Controlled form, catalogue items and GST","textChars":40,"textLines":1,"bbox":[682,188,480,34]}
+{"kind":"image","id":"im/76t8ru54","slide":3,"name":"","geometry":"roundRect","alt":"EasyInvoice dashboard screenshot","bbox":[80,232,518,380]}
+{"kind":"image","id":"im/lgf6d8j2","slide":3,"name":"","geometry":"roundRect","alt":"EasyInvoice create invoice form screenshot","bbox":[682,232,518,380]}
+{"kind":"notes","id":"nt/saqvjq","slide":3,"text":"Timing: 40 seconds. Point out the dashboard's operational view and the controlled create form. The live demo will show search, invoice creation, simulated transmission and status changes. Sources: docs/images/dashboard.png and docs/images/create-invoice.png."}
+{"kind":"slide","id":"sl/n0wr2a","slide":4,"title":"Technology and data","textShapes":12}
+{"kind":"textbox","id":"sh/wf29o7i9","slide":4,"text":"Technology and data","textPreview":"Technology and data","textChars":19,"textLines":1,"bbox":[64,38,1100,58]}
+{"kind":"shape","id":"sh/vet8f21o","slide":4,"bbox":[64,102,96,6]}
+{"kind":"textbox","id":"sh/adkrmx03","slide":4,"text":"React 19 + Vite 8","textPreview":"React 19 + Vite 8","textChars":17,"textLines":1,"bbox":[64,140,450,34]}
+{"kind":"textbox","id":"sh/5kbqlcjq","slide":4,"text":"Components, hooks and fast local builds","textPreview":"Components, hooks and fast local builds","textChars":39,"textLines":1,"bbox":[64,178,500,48]}
+{"kind":"shape","id":"sh/kj29s7i5","slide":4,"bbox":[64,232,500,2]}
+{"kind":"textbox","id":"sh/jit8jm1k","slide":4,"text":"React Router 7","textPreview":"React Router 7","textChars":14,"textLines":1,"bbox":[64,242,450,34]}
+{"kind":"textbox","id":"sh/ihkrqh0f","slide":4,"text":"Public login/tour and protected app routes","textPreview":"Public login/tour and protected app routes","textChars":42,"textLines":1,"bbox":[64,280,500,48]}
+{"kind":"shape","id":"sh/t8vapwj2","slide":4,"bbox":[64,334,500,2]}
+{"kind":"textbox","id":"sh/snm9wrih","slide":4,"text":"MockAPI","textPreview":"MockAPI","textChars":7,"textLines":1,"bbox":[64,344,450,34]}
+{"kind":"textbox","id":"sh/apwr6tkr","slide":4,"text":"Shared CRUD persistence, no custom server","textPreview":"Shared CRUD persistence, no custom server","textChars":41,"textLines":1,"bbox":[64,382,500,48]}
+{"kind":"shape","id":"sh/vqpszy1c","slide":4,"bbox":[64,436,500,2]}
+{"kind":"textbox","id":"sh/wry9832x","slide":4,"text":"Vitest + React Testing Library","textPreview":"Vitest + React Testing Library","textChars":30,"textLines":1,"bbox":[64,446,450,34]}
+{"kind":"textbox","id":"sh/xs7a18ji","slide":4,"text":"37 behaviour tests in GitHub Actions","textPreview":"37 behaviour tests in GitHub Actions","textChars":36,"textLines":1,"bbox":[64,484,500,48]}
+{"kind":"shape","id":"sh/itgbadk3","slide":4,"bbox":[64,538,500,2]}
+{"kind":"textbox","id":"sh/jups3i1o","slide":4,"text":"Public APIs","textPreview":"Public APIs","textChars":11,"textLines":1,"bbox":[64,548,450,34]}
+{"kind":"textbox","id":"sh/kfytcni9","slide":4,"text":"FX rates and illustrative customer contacts","textPreview":"FX rates and illustrative customer contacts","textChars":43,"textLines":1,"bbox":[64,586,500,48]}
+{"kind":"shape","id":"sh/5g7a58je","slide":4,"bbox":[620,132,596,508]}
+{"kind":"textbox","id":"sh/yxcry9kz","slide":4,"text":"MockAPI reference data","textPreview":"MockAPI reference data","textChars":22,"textLines":1,"bbox":[648,152,420,38]}
+{"kind":"image","id":"im/4rat8n65","slide":4,"name":"","geometry":"roundRect","alt":"MockAPI customer reference data screenshot","bbox":[648,202,540,408]}
+{"kind":"notes","id":"nt/n0wr2a","slide":4,"text":"Timing: 50 seconds. Explain why each technology was chosen. MockAPI provides shared persistence without a custom backend. The free tier allowed two resources, so customers and products share referenceData. Sources: README.md, docs/engineering/architecture-design.md and docs/images/referenceData-customers.png."}
+{"kind":"slide","id":"sl/6mwejd","slide":5,"title":"Team learnings","textShapes":7}
+{"kind":"textbox","id":"sh/ry9sjmh8","slide":5,"text":"Team learnings","textPreview":"Team learnings","textChars":14,"textLines":1,"bbox":[80,38,1084,58]}
+{"kind":"shape","id":"sh/szi9srit","slide":5,"bbox":[80,102,96,6]}
+{"kind":"textbox","id":"sh/t0ralwze","slide":5,"text":"Ralph Koh","textPreview":"Ralph Koh","textChars":9,"textLines":1,"bbox":[64,154,420,38]}
+{"kind":"textbox","id":"sh/e10ru10z","slide":5,"text":"Structured a complete React app with reusable components, routes and shared state","textPreview":"Structured a complete React app with reusable components, routes and shared state","textChars":81,"textLines":1,"bbox":[64,200,520,82]}
+{"kind":"shape","id":"sh/f29sn6hk","slide":5,"bbox":[64,294,520,2]}
+{"kind":"textbox","id":"sh/g3i9wby5","slide":5,"text":"Ang Jenn Fang","textPreview":"Ang Jenn Fang","textChars":13,"textLines":1,"bbox":[64,320,420,38]}
+{"kind":"textbox","id":"sh/14bapgza","slide":5,"text":"Tested user behaviour with Vitest, React Testing Library and mocks","textPreview":"Tested user behaviour with Vitest, React Testing Library and mocks","textChars":66,"textLines":1,"bbox":[64,366,520,82]}
+{"kind":"shape","id":"sh/u5grih0v","slide":5,"bbox":[64,460,520,2]}
+{"kind":"textbox","id":"sh/v6psb2h0","slide":5,"text":"John Phang","textPreview":"John Phang","textChars":10,"textLines":1,"bbox":[64,486,420,38]}
+{"kind":"textbox","id":"sh/r6h03m1g","slide":5,"text":"Integrated hosted persistence, role checks and CI across parallel branches","textPreview":"Integrated hosted persistence, role checks and CI across parallel branches","textChars":74,"textLines":1,"bbox":[64,532,520,82]}
+{"kind":"shape","id":"sh/q58zuhkb","slide":5,"bbox":[642,132,574,510]}
+{"kind":"image","id":"im/qpcrilcn","slide":5,"name":"","geometry":"roundRect","alt":"EasyInvoice React learning tour screenshot","bbox":[668,152,522,468]}
+{"kind":"notes","id":"nt/6mwejd","slide":5,"text":"Timing: 45 seconds. Summarise each member's learning focus. Ralph built the initial React application, Jenn established behavioural testing, and John integrated persistence, permissions and repository automation. Sources: docs/planning/presentation-outline.md, README.md and docs/images/Full_tour_with_code.png."}
+{"kind":"slide","id":"sl/oma002","slide":6,"title":"Challenges and responses","textShapes":8}
+{"kind":"textbox","id":"sh/b65kf69o","slide":6,"text":"Challenges and responses","textPreview":"Challenges and responses","textChars":24,"textLines":1,"bbox":[64,38,1100,58]}
+{"kind":"shape","id":"sh/w7el8bat","slide":6,"bbox":[64,102,96,6]}
+{"kind":"textbox","id":"sh/x8n2hgre","slide":6,"text":"MockAPI allowed two resources","textPreview":"MockAPI allowed two resources","textChars":29,"textLines":1,"bbox":[64,142,660,42]}
+{"kind":"textbox","id":"sh/mhc321sr","slide":6,"text":"Customers and products share a typed referenceData resource","textPreview":"Customers and products share a typed referenceData resource","textChars":59,"textLines":1,"bbox":[64,188,650,62]}
+{"kind":"shape","id":"sh/nilkb69c","slide":6,"bbox":[64,262,650,2]}
+{"kind":"textbox","id":"sh/ojul4bax","slide":6,"text":"The schema editor could erase records","textPreview":"The schema editor could erase records","textChars":37,"textLines":1,"bbox":[64,280,660,42]}
+{"kind":"textbox","id":"sh/9kn2dgri","slide":6,"text":"The team documented the risk and added repeatable seed data","textPreview":"The team documented the risk and added repeatable seed data","textChars":59,"textLines":1,"bbox":[64,326,650,62]}
+{"kind":"shape","id":"sh/6dg3elsb","slide":6,"bbox":[64,400,650,2]}
+{"kind":"textbox","id":"sh/7ep4nq9g","slide":6,"text":"Parallel branches caused a session-key mismatch","textPreview":"Parallel branches caused a session-key mismatch","textChars":47,"textLines":1,"bbox":[64,418,660,42]}
+{"kind":"textbox","id":"sh/3698j2pk","slide":6,"text":"Tests caught the regression before release","textPreview":"Tests caught the regression before release","textChars":42,"textLines":1,"bbox":[64,464,650,62]}
+{"kind":"shape","id":"sh/250rax8z","slide":6,"bbox":[770,132,446,430]}
+{"kind":"shape","id":"sh/o7i9c7q5","slide":6,"bbox":[64,594,1152,72]}
+{"kind":"textbox","id":"sh/batsn2pg","slide":6,"text":"Live demo next: viewer permissions, create and transmit, mark paid","textPreview":"Live demo next: viewer permissions, create and transmit, mark paid","textChars":66,"textLines":1,"bbox":[92,611,1100,40]}
+{"kind":"image","id":"im/u5k3y5or","slide":6,"name":"","geometry":"roundRect","alt":"EasyInvoice hints mode screenshot","bbox":[794,154,398,386]}
+{"kind":"notes","id":"nt/oma002","slide":6,"text":"Timing: 50 seconds. Describe the resource-limit decision, the destructive schema-editor risk and the integration bug found by tests. Then move directly to the live demo: compare viewer and editor access, create and transmit an invoice, and mark a transmitted invoice paid. Sources: docs/planning/presentation-outline.md, docs/decisions/decisions-log.md and docs/images/Hints-ON.png."}

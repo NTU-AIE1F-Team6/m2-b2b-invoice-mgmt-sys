@@ -101,18 +101,18 @@ layouts, editing existing items, mock authentication, and automated React Testin
 
 
 ## Documentation Map
-| #  | Name | Document | Remarks |
-| --+|---|---|---|
-| 1.  | EasyInvoice architecture diagram | [docs/engineering/easyinvoice-architecture.svg](docs/engineering/easyinvoice-architecture.svg) | |
-| 2.  | Application Architecture and Design | [docs/engineering/architecture-design.md](docs/engineering/architecture-design.md) | React routing, component composition, data fetching, Tech Stack, API schema, App Design, etc. |
-| 3.  | Testing | [docs/engineering/testing.md](docs/engineering/testing.md) | The suite uses Vitest 5, React Testing Library, @testing-library/jest-dom, @testing-library/user-event, and jsdom. GitHub Actions runs npm ci, npm test, and npm run build on every pull request and push to main. |
-| 4.  | Deployment | [docs/engineering/deployment.md](docs/engineering/deployment.md) | Environments, CI/CD, configuration, release checks, rollback limitations, and software-engineering practices. |
-| 5.  | Hints On/Off rendering | [docs/engineering/Hints.md](docs/engineering/Hints.md) | Every component defines their hint text. CSS renders or hides every .react-hint descendant based on Hints button toggle. |
-| 6.  | Implemented scope, contraints and limitations | [`docs/requirements/scope-and-limitations.md`](docs/requirements/scope-and-limitations.md) | Implemented scope, deferred scope, constraints, and future phases |
-| 7.  | name | [`docs/team/contributions.md`](docs/team/contributions.md) | Team contributions and assignment collaboration evidence |
-| 8.  | name | [`docs/releases/release-log.md`](docs/releases/release-log.md) | Release history |
-| 9.  | name | [`docs/decisions/decisions-log.md`](docs/decisions/decisions-log.md) | Decision history |
-| 10. | name | [`docs/requirements/PRD-B2B Invoice Management System-V1.md`](docs/requirements/PRD-B2B%20Invoice%20Management%20System-V1.md) | Product requirements and original decision register |
+| #   | Name | Document | Remarks |
+| --: |---|---|---|
+| 1. | EasyInvoice architecture diagram | [docs/engineering/easyinvoice-architecture.svg](docs/engineering/easyinvoice-architecture.svg) | |
+| 2. | Application Architecture and Design | [docs/engineering/architecture-design.md](docs/engineering/architecture-design.md) | React routing, component composition, data fetching, Tech Stack, API schema, App Design, etc. |
+| 3. | Testing | [docs/engineering/testing.md](docs/engineering/testing.md) | The suite uses Vitest 5, React Testing Library, @testing-library/jest-dom, @testing-library/user-event, and jsdom. GitHub Actions runs npm ci, npm test, and npm run build on every pull request and push to main. |
+| 4. | Deployment | [docs/engineering/deployment.md](docs/engineering/deployment.md) | Environments, CI/CD, configuration, release checks, rollback limitations, and software-engineering practices. |
+| 5. | Hints On/Off rendering | [docs/engineering/Hints.md](docs/engineering/Hints.md) | Every component defines their hint text. CSS renders or hides every .react-hint descendant based on Hints button toggle. |
+| 6. | Implemented scope, contraints and limitations | [`docs/requirements/scope-and-limitations.md`](docs/requirements/scope-and-limitations.md) | Implemented scope, deferred scope, constraints, and future phases |
+| 7. | Team member contributions | [`docs/team/contributions.md`](docs/team/contributions.md) | Team contributions and assignment collaboration evidence |
+| 8. | Release log | [`docs/releases/release-log.md`](docs/releases/release-log.md) | Release history |
+| 9. | Decisions log | [`docs/decisions/decisions-log.md`](docs/decisions/decisions-log.md) | Decision history |
+| 10.| Product Requirements Document (PRD) | [`docs/requirements/PRD-B2B Invoice Management System-V1.md`](docs/requirements/PRD-B2B%20Invoice%20Management%20System-V1.md) | Product requirements and original decision register |
 
 
 ## CI/CD and tests
@@ -162,7 +162,7 @@ Do not commit `.env.local` or place real customer/invoice data in this demo serv
 
 | Team member | Contribution |
 |---|---|
-| Ralph Koh | Built the initial InvoiceNow SG React/Vite prototype: routes, invoice UI/workflows, customer/product/tour pages, static data, styling, and the original deployment scripts. |
+| Ralph Koh Kwan Liang | Built the initial InvoiceNow SG React/Vite prototype: routes, invoice UI/workflows, customer/product/tour pages, static data, styling, and the original deployment scripts. |
 | Ang Jenn Fang | Proposed Peppol-InvoiceNow topic using html mockup. Coded Vitest, jsdom, React Testing Library, user-event, test setup/scripts, and the first utility, hook, component, and page test suites. |
 | John Phang | Developed the PRD and architecture; integrated MockAPI persistence, roles, API/store tests, seed tooling, CI and repository governance; led the EasyInvoice rename, framework upgrades, integration fixes, and engineering documentation. |
 
