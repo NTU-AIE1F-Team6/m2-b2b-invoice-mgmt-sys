@@ -27,3 +27,9 @@ dist-ssr
 .env*
 !.env.example
 docs/handoffs/**/*.tmp.*
+
+# Local Codex-generated working files
+.codex-finalizer/
+.codex-pptx-build/
+
+
