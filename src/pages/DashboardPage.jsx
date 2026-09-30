@@ -77,8 +77,8 @@ export default function DashboardPage({ store, notify }) {
             Send machine-readable e-invoices to any Singapore UEN on the InvoiceNow network.
           </p>
           <div className="flex flex-wrap gap-1.5 mt-2">
-            <Hint label="store prop = useReducer state lifted to AppShell" />
-            <Hint label="useState: search + status filter" />
+            <Hint label="All invoices live in one central store that every page shares. Changes are made by sending named actions like add, update or delete (useReducer, state lifted up)" />
+            <Hint label="The search text and the chosen status filter are remembered by this page, and the list re-filters the moment either changes (useState)" />
           </div>
         </div>
         {can(user, 'create') && (
@@ -102,7 +102,7 @@ export default function DashboardPage({ store, notify }) {
 
       {loading ? (
         <div className="bg-white rounded-2xl shadow-sm border border-slate-100 py-14 text-center">
-          <Hint label="Conditional rendering: loading / error / data" className="mb-3" />
+          <Hint label="This area shows one of three things depending on what is happening: a loading spinner, an error message, or the invoice list (conditional rendering)" className="mb-3" />
           <LoadingSpinner label="Fetching invoices from the mock Access Point API..." />
         </div>
       ) : (

@@ -93,7 +93,7 @@ with sync_playwright() as p:
     print("7. new invoice INV-2026-005 created and transmitted; cards:", page.locator("article").count())
 
     page.click("article:has-text('INV-2026-005') >> button:has-text('Mark paid')")
-    page.wait_for_selector("article:has-text('INV-2026-005') >> text=Paid")
+    page.wait_for_selector("article:has-text('INV-2026-005') >> :not(.react-hint):text-is('Paid')")
     print("8. marked paid")
 
     page.click("article:has-text('INV-2026-005') >> button:has-text('Edit')")

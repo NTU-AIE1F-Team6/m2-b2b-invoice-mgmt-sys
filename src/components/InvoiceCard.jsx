@@ -19,7 +19,7 @@ export default function InvoiceCard({ invoice, user, busy, onTransmit, onMarkPai
     <article className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-4 hover:shadow-md transition">
       <div className="flex justify-between items-start gap-3">
         <div className="min-w-0">
-          <Hint label="Props in (invoice), callbacks out (onDelete...)" className="mb-1" />
+          <Hint label="This card receives the invoice details from its parent and hands button clicks (transmit, paid, delete) back up to it. The card itself decides nothing (props in, callbacks out)" className="mb-1" />
           <div className="text-xs font-semibold text-slate-400">{invoice.invoiceNumber}</div>
           <h3 className="font-semibold text-slate-900 truncate">{invoice.buyerName}</h3>
           <div className="text-xs text-slate-500 mt-0.5">UEN {invoice.buyerUEN}</div>
@@ -62,7 +62,7 @@ export default function InvoiceCard({ invoice, user, busy, onTransmit, onMarkPai
           <div className="text-lg font-bold text-slate-900">{formatSGD(total)}</div>
         </div>
         <div className="flex flex-wrap justify-end gap-1.5">
-          <Hint label="Conditional buttons by status" />
+          <Hint label="Only the buttons that make sense for this status appear: a draft can be transmitted, a sent one can be marked paid (conditional rendering)" />
           {canTransmit && (
             <button
               type="button"

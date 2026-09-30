@@ -37,7 +37,7 @@ export default function StatCards({ invoices }) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-      <Hint label="Values derived from props on every render (no extra state)" className="sm:col-span-2 xl:col-span-4 justify-self-start" />
+      <Hint label="These totals are worked out fresh from the invoice list each time it changes. Nothing is stored separately, so they can never go stale (derived from props)" className="sm:col-span-2 xl:col-span-4 justify-self-start" />
       <Card
         label="Collected revenue"
         value={formatSGD(collected)}
