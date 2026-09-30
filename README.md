@@ -2,7 +2,7 @@
 
 Peppol in Singapore powers InvoiceNow, a nationwide e-invoicing network managed by the Infocomm Media Development Authority (IMDA) that allows businesses to send and receive structured digital invoices directly between accounting systems.
 
-EasyInvoice demonstrates how users can create, find, edit, transmit, mark paid, and delete B2B invoices while simulating Singapore's Peppol/InvoiceNow network. 
+EasyInvoice demonstrates how users can create, find, edit, transmit, mark paid, and delete B2B invoices while simulating Singapore's Peppol/InvoiceNow network.
 
 This is a learning-focused React application for a small-business finance or accounts
 receivable team, developed as an AI Engineering group project. It is not a production-grade application for accounting, tax, payment, or use in the real Peppol/InvoiceNow network.
@@ -10,7 +10,7 @@ receivable team, developed as an AI Engineering group project. It is not a produ
 
 ## Purpose and audience
 
-EasyInvoice demonstrates React application engineering through an invoice-management domain. The demo user is a representative example of a small-business finance or accounts receivable team member. 
+EasyInvoice demonstrates React application engineering through an invoice-management domain. The demo user is a representative example of a small-business finance or accounts receivable team member.
 
 The intended audience is the project team, learners in the course and course assessors.
 
@@ -52,7 +52,7 @@ See [Product scope, constraints, and limitations](docs/requirements/scope-and-li
 
 ## Screenshots
 
-Selected screenshots as required. 
+Selected screenshots as required.
 
 | Description | Screenshot |
 |---|---|
@@ -78,7 +78,7 @@ real data.***
 | `jennfang` | `EDIT` | Create and manage eligible invoices |
 | `ralph` | `EDIT` | Create and manage eligible invoices |
 
-The password hash and users are shipped in the browser bundle, and the session is local to browser. 
+The password hash and users are shipped in the browser bundle, and the session is local to browser.
 
 
 ## Implemented scope
@@ -159,7 +159,6 @@ Do not commit `.env.local` or place real customer/invoice data in this demo serv
 
 ## Team contributions
 
-
 | Team member | Contribution |
 |---|---|
 | Ralph Koh Kwan Liang | Built the initial InvoiceNow SG React/Vite prototype: routes, invoice UI/workflows, customer/product/tour pages, static data, styling, and the original deployment scripts. |
@@ -180,4 +179,3 @@ the submitted code.
 The supplied `mockup/singapore_invoicenow_app.html` informed the initial visual and interaction
 direction. No other externally copied tutorial code is identified in the repository; if a team
 member used another source, add its link here before submission.
-
