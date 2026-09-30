@@ -1,8 +1,7 @@
 # Testing
 
-**Status:** describes `feat/mockapi-users-roles` (37 tests). `main` currently has the smaller,
-pre-MockAPI suite (18 tests) from PR #2 — see `docs/handoffs/John/HANDOFF-easyinvoice-mockapi.md`
-for what changed and why.
+**Status:** current `main` baseline: 6 test files and 37 passing tests, verified on 30 September
+2026. See `docs/handoffs/John/HANDOFF-easyinvoice-mockapi.md` for the implementation history.
 
 ## Stack
 
@@ -55,3 +54,5 @@ npm run test:watch  # vitest --watch - for local development
 - `CreateInvoicePage.jsx` / `EditInvoicePage.jsx` route-guard redirects — `can()` itself is fully
   tested, but the page-level "redirect a disallowed user" behaviour isn't
 - `CustomersPage.jsx` / `ProductsPage.jsx`
+- automated accessibility, visual-regression, security, and full browser end-to-end checks
+- CI lint/type/schema-contract checks (there is currently no lint script or static type system)

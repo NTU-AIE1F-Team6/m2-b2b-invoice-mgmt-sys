@@ -1,11 +1,9 @@
 # EasyInvoice — architecture and API design
 
-**Status:** describes the final intended state once PRs #3-#6 (MockAPI backend, roles, GitHub
-governance, EasyInvoice rename) are merged into `main`. As of writing, this is implemented and
-tested on `feat/mockapi-users-roles` / `chore/rename-easyinvoice`, verified working end-to-end
-against a live MockAPI project, but not yet merged. See
-`docs/handoffs/John/HANDOFF-easyinvoice-mockapi.md` for the handoff this implements, and the
-top-level `README.md` for the currently-live (pre-merge) state.
+**Status:** current `main` architecture after PRs #3-#7 and #9. The MockAPI backend, roles,
+repository governance, EasyInvoice rename, and React 19/Vite 8 upgrade are merged. See the
+top-level `README.md` for delivered scope and `docs/product/scope-and-limitations.md` for the
+boundary between this learning demo and a production design.
 
 ## 1. Overview
 
@@ -193,4 +191,5 @@ closes.
 
 Vercel project connected via GitHub integration, tracking `main` as the production branch — every
 merge to `main` auto-redeploys. `VITE_MOCKAPI_URL` is set as a Vercel environment variable so the
-production deployment talks to the shared MockAPI project once this branch merges.
+production deployment talks to the shared MockAPI project. See `docs/engineering/deployment.md`
+for the release flow, configuration, verification checklist, and operational limitations.

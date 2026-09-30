@@ -4,6 +4,20 @@ Running log of team decisions and task assignments made outside the formal PRD d
 (`docs/requirements/PRD-B2B Invoice Management System-V1.md`, §5, D1-D13). Append new dated
 entries at the top.
 
+## 30 Sep 2026
+
+- **Document the delivered release separately from the aspirational PRD.** The PRD remains the
+  requirements/planning baseline; the README and `docs/product/scope-and-limitations.md` are the
+  source of truth for implemented versus deferred scope.
+- **Treat MockAPI as persistence, not schema enforcement or security.** Record shapes stay
+  documented in the repository. A production phase would add server-side validation,
+  authorization, constraints, and concurrency control.
+- **Vercel remains canonical.** The NAS PowerShell script is retained as historical/reference
+  tooling and is not part of the supported release path.
+- **Do not fabricate submission evidence.** Application screenshots, personal learning
+  statements, final deck link, and project-board URL remain explicit TODOs until supplied or
+  confirmed by the team.
+
 ## 25 Sep 2026
 
 - **Name of the app is EasyInvoice.** (Implemented: `chore/rename-easyinvoice`.)

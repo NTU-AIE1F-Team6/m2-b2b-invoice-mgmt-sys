@@ -1,121 +1,237 @@
 # EasyInvoice
 
-A React + Vite simulation of Singapore's Peppol e-invoicing network (InvoiceNow), built for the
-NTU AI Engineering Module 2 group project.
+EasyInvoice is a learning-focused React application for a small-business finance or accounts
+receivable team. It demonstrates how users can create, find, edit, transmit, mark paid, and delete
+B2B invoices while simulating Singapore's Peppol/InvoiceNow network.
 
-**Live at https://aie1f-easyinvoice.vercel.app** (behind a login gate — see "Login" below). The
-`artificialintelligence.sg/easyinvoice/` NAS deployment mentioned later in this file was Ralph's
-original prototype; Vercel is the project's actual deployment.
+This is an NTU AI Engineering Module 2 group project, not an accounting, tax, payment, or Peppol
+production system.
 
-## Run it locally
+- **Deployed application:** <https://aie1f-easyinvoice.vercel.app>
+- **Assignment brief:** [`docs/requirements/module2-project-brief.pdf`](docs/requirements/module2-project-brief.pdf)
+- **Architecture:** [`docs/engineering/architecture.md`](docs/engineering/architecture.md)
+
+> Submission check: the URL above is the repository's recorded production URL. The team should
+> verify it from a clean browser before submitting through NTU Blackboard.
+
+## Screenshots
+
+The assignment requires screenshots or a short recording of the working application. No verified
+application screenshots are currently committed.
+
+| Required evidence | Status |
+|---|---|
+| Dashboard and invoice list | **TODO:** add `docs/screenshots/dashboard.png` |
+| Create-invoice form | **TODO:** add `docs/screenshots/create-invoice.png` |
+| VIEW_ONLY versus EDIT permissions | **TODO:** add `docs/screenshots/role-comparison.png` |
+| Successful persisted invoice change | **TODO:** add `docs/screenshots/persistence.png` or a recording link |
+
+See [`docs/screenshots/README.md`](docs/screenshots/README.md) for the capture checklist and safe-data
+guidance.
+
+## Demo login
+
+All accounts use the learning-project password `Password123`.
+
+| Username | Role | Access |
+|---|---|---|
+| `viewer` | `VIEW_ONLY` | Read invoices and reference data |
+| `john` | `EDIT` | Create and manage eligible invoices |
+| `jennfang` | `EDIT` | Create and manage eligible invoices |
+| `ralph` | `EDIT` | Create and manage eligible invoices |
+
+The password hash and users are shipped in the browser bundle, and the session is stored in
+`sessionStorage`. This is a demonstration gate, not authentication or authorization suitable for
+real data.
+
+## Implemented scope
+
+| Area | Implemented behaviour |
+|---|---|
+| Authentication demo | Login/logout, protected routes, session restored within the browser tab |
+| Invoice dashboard | Summary cards, list, empty/loading/error states, search, status filter |
+| Invoice lifecycle | Create draft, edit Draft/Failed, simulated transmit, retry failure, mark Transmitted as Paid, delete non-Paid invoices |
+| Invoice form | Controlled inputs, customer/product selection, multiple line items, 9% GST calculation, UEN/date/line validation, PayNow option flag |
+| Roles | Central `can(user, action, invoice)` policy used by action controls and route guards |
+| Persistence | MockAPI CRUD for shared invoices and reference data; read-only static JSON fallback |
+| Reference views | Customer directory, product catalogue, live FX card, generated contact examples |
+| Learning aids | Public Tour page and optional in-app React concept hints |
+| Quality checks | 37 Vitest/React Testing Library tests and a GitHub Actions test/build workflow |
+| Deployment | Vercel SPA deployment from `main`, with client-route rewrites |
+
+Completed assignment bonus challenges include search/filtering, loading indicators, responsive
+layouts, editing existing items, mock authentication, and automated React Testing Library tests.
+
+## Deferred to future phases
+
+- Maker-checker approval/rejection and a durable audit trail. The record reserves
+  `pendingRequest`, but the current application always keeps it `null`.
+- Real IRAS, InvoiceNow/Peppol Access Point, PayNow QR, email, or payment integration.
+- Server-side authentication, authorization, validation, uniqueness constraints, and atomic
+  workflow transitions.
+- Customer/product administration, multi-company tenancy, PDF invoice generation, notifications,
+  reporting, and reconciliation.
+- Optimistic writes, conflict detection, pagination, drag-and-drop, and comprehensive accessibility,
+  end-to-end, and route-guard test coverage.
+
+The implemented/deferred boundary and demo limitations are detailed in
+[`docs/product/scope-and-limitations.md`](docs/product/scope-and-limitations.md).
+
+## Architecture
+
+![EasyInvoice architecture](docs/design/easyinvoice-architecture.svg)
+
+```text
+Browser (React 19 + React Router)
+    |
+    +-- AuthContext: demo session
+    +-- AppShell: shared invoice store and routes
+    +-- useInvoices/useReducer: load and mutation state
+            |
+            +-- API client --> MockAPI
+            |                  +-- /invoices
+            |                  +-- /referenceData
+            |
+            +-- static JSON fallback (read-only)
+    |
+    +-- Frankfurter API: SGD exchange rates
+    +-- randomuser.me: illustrative customer contacts
+```
+
+The browser owns the business rules and sends JSON directly to MockAPI. MockAPI supplies hosted
+CRUD persistence and record IDs; it is not an authoritative schema validator. Record shapes,
+state transitions, and the two-resource design are described in
+[`docs/engineering/architecture.md`](docs/engineering/architecture.md).
+
+## Constraints and limitations
+
+EasyInvoice deliberately favours visible React concepts over production backend design:
+
+- All business rules and credentials are client-side and can be bypassed.
+- MockAPI has no application-specific authentication, authorization, transactions, or enforced
+  record schema. Concurrent writes can overwrite one another.
+- Invoice numbers are generated from the currently loaded list, so simultaneous users can produce
+  duplicates.
+- Transmission success is a local UEN-format check followed by a 900 ms delay; no external invoice
+  is sent. PayNow is only a stored checkbox.
+- Static fallback mode is read-only; live public APIs may fail or rate-limit independently.
+- Test coverage is meaningful but incomplete, and CI currently has no lint, type-check,
+  accessibility, security, or browser end-to-end gate.
+- Vercel deployment is automatic, but there is no documented staging environment, database
+  migration process, or automated rollback.
+
+These constraints are intentional and make the project suitable for learning React, Vitest,
+external API handling, and API persistence concepts without operating a custom backend.
+
+## Run locally
+
+### Prerequisites
+
+- Node.js `20.19+` or `22.12+` (CI uses Node 22)
+- npm
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173/easyinvoice/
-npm run build      # writes dist/ (plus one index.html per route for static hosting)
-npm run preview
+npm run dev       # http://localhost:5173/
+npm test          # one-shot Vitest run
+npm run build     # production build in dist/
+npm run preview   # local production preview
 ```
 
-Node 18+ is required. If the project folder lives on Google Drive, `npm install` fails with
-EBADF; copy the folder to a local disk first (`scripts/deploy.ps1` does this automatically).
+If the project is stored in a cloud-synchronised folder and `npm install` fails with `EBADF`, copy
+it to a local disk before installing dependencies.
 
-To connect a shared MockAPI backend instead of the static offline demo data, copy `.env.example`
-to `.env.local` and set `VITE_MOCKAPI_URL` (see "MockAPI setup" below).
+Without environment configuration, the application loads the read-only demo records in
+`public/api/`. Create, update, transmit, mark-paid, and delete actions require MockAPI.
 
-## Login
+### Optional MockAPI persistence
 
-The app is gated like artificialintelligence.sg/citylife/: the password is hashed with SHA-256 in
-the browser and compared with a stored digest, and the session lives in `sessionStorage` (it ends
-when the tab closes). This is a demo gate, not real security: everything runs in the browser.
-Demo accounts (defined in `src/data/users.js`) all share one password, `Password123` - this is a
-learning-project demo gate, not production security:
+1. Create a MockAPI project containing `invoices` and `referenceData` resources.
+2. Copy `.env.example` to `.env.local`.
+3. Set `VITE_MOCKAPI_URL` to the project base URL, without a trailing slash or resource name.
+4. Run `npm run seed` once. **Warning:** seeding purges both resources before recreating the demo
+   records.
+5. Start the app and confirm that a write made in one browser appears after loading another.
 
-| username | password | role |
-|---|---|---|
-| `viewer` | `Password123` | VIEW_ONLY (read-only, no create/edit/transmit/delete) |
-| `john` | `Password123` | EDIT |
-| `jennfang` | `Password123` | EDIT |
-| `ralph` | `Password123` | EDIT |
+Do not commit `.env.local` or place real customer/invoice data in this demo service.
 
-## Demo aids
+## Engineering design and deployment
 
-- **Tour page** at `/easyinvoice/tour/` (public, no login): one card per React concept with the file
-  names, the real code lines, and a "See it live" link. Content lives in `src/data/tour.js`.
-- **Hints toggle** in the app navbar: adds `.hints-on` to the app wrapper so every `<Hint>` label
-  (`src/components/Hint.jsx`) appears, naming the React feature behind that part of the screen.
-  The choice is remembered in localStorage.
+- **Composition:** functional components and hooks; state is lifted into `AppShell`; Context is
+  limited to authentication state.
+- **Data boundary:** a small API layer owns HTTP and offline behaviour. Reducer state is updated
+  only after a successful mutation, preventing false success after a failed write.
+- **Permissions:** one policy function is reused by the UI and route handlers.
+- **SPA hosting:** `vercel.json` rewrites application paths to `index.html`. `postbuild.mjs` also
+  emits route folders for static hosts without rewrite support.
+- **Team workflow:** feature branches, pull requests, review rotation, CODEOWNERS hints, and a PR
+  checklist are documented in [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-## Requirement checklist
+See [`docs/engineering/deployment.md`](docs/engineering/deployment.md) for environments, CI/CD,
+configuration, release checks, rollback limitations, and software-engineering practices.
 
-| Requirement | Where |
+## CI/CD and tests
+
+GitHub Actions runs the following on pushes to `main` and every pull request:
+
+```text
+npm ci -> npm test -> npm run build
+```
+
+Current verified baseline on 30 September 2026: **6 test files, 37 passing tests**, and a successful
+Vite production build. Tests cover invoice calculations, IDs, roles, invoice API behaviour,
+invoice-store failure semantics, invoice-card actions, and dashboard filtering/navigation.
+
+Not yet covered: dedicated InvoiceForm interaction tests, create/edit route-guard tests,
+Customers/Products pages, accessibility automation, and browser end-to-end tests. See
+[`docs/engineering/testing.md`](docs/engineering/testing.md).
+
+## Team contributions
+
+The contribution summary below is based on the repository's commit history. It records delivered
+work, not effort outside Git.
+
+| Team member | Verified contribution |
 |---|---|
-| Built with Vite | `vite.config.js`, `package.json` |
-| Functional components and hooks only | every file in `src/` |
-| Multiple sensibly scoped components, props passed cleanly | `src/components/` (13 components), `src/pages/` (5 pages) |
-| At least two client-side routes with React Router | `src/App.jsx` (`/login`, `/tour`, `/*`) and `src/components/AppShell.jsx` (`/`, `/create`, `/edit`, `/customers`, `/products`) |
-| Shared state with useState / useReducer | `src/hooks/useInvoices.js` (useReducer), lifted into `AppShell` and passed down as props |
-| Context only where it genuinely helps | `src/context/AuthContext.jsx` (session read by navbar, route guard and login page) |
-| Fetches data with loading and error handling | `src/hooks/useFetch.js`, `useInvoices.js`; MockAPI via `src/api/*.js` (falls back to static `public/api/*.json` if `VITE_MOCKAPI_URL` is unset); free APIs Frankfurter (FX) and randomuser.me (contacts) |
-| Roles / permissions | `src/data/roles.js` (`can(user, action, invoice)`), enforced in `InvoiceCard`, `Navbar`, and the `/create` and `/edit` routes |
-| Form with controlled inputs to create an item | `src/components/InvoiceForm.jsx`, `src/pages/CreateInvoicePage.jsx` |
-| Displays the collection (Read) and deletes an item | `src/components/InvoiceList.jsx`, `InvoiceCard.jsx`, `DashboardPage.jsx` |
-| Bonus: edit an existing item | `src/pages/EditInvoicePage.jsx` |
-| Deployed to a public URL | https://aie1f-easyinvoice.vercel.app (Vercel, tracks `main`, auto-redeploys on merge) |
+| Ralph Koh | Built the initial InvoiceNow SG React/Vite prototype: routes, invoice UI/workflows, customer/product/tour pages, static data, styling, and the original deployment scripts. |
+| Ang Jenn Fang | Introduced Vitest, jsdom, React Testing Library, user-event, test setup/scripts, and the first utility, hook, component, and page test suites. |
+| John Phang | Developed the PRD and architecture; integrated MockAPI persistence, roles, API/store tests, seed tooling, CI and repository governance; led the EasyInvoice rename, framework upgrades, integration fixes, and engineering documentation. |
 
-## Data sources
+Detailed commit/PR evidence, assignment-role coverage, and placeholders for each member's personal
+learning statement are in [`docs/team/contributions.md`](docs/team/contributions.md).
 
-- **Invoices** (`src/api/invoices.js`): a MockAPI `invoices` resource, shared across every browser/user. GET on load; every change (create, edit, transmit, mark paid, delete) is a POST/PUT/DELETE, and the UI only updates once the API confirms.
-- **Customers + products** (`src/api/referenceData.js`): one MockAPI `referenceData` resource holding both, told apart by a `type: "customer" | "product"` field. Used by the Customers/Products pages and the invoice form's autocomplete and line-item dropdown.
-- **Offline fallback**: if `VITE_MOCKAPI_URL` is unset, both of the above read the static, read-only `public/api/*.json` files instead (a banner on the dashboard says so). Writes fail with a clear "offline demo data" message rather than pretending to succeed.
-- Users and roles are hardcoded in `src/data/users.js` / `src/data/roles.js` (course table: 3 endpoints + hardcoded users).
-- https://api.frankfurter.dev/v1: live SGD exchange rates on the dashboard (free, no key).
-- https://randomuser.me: a contact person per buyer on the Customers page (free, no key).
+## Release and decision logs
 
-## MockAPI setup
+- [`docs/releases/release-log.md`](docs/releases/release-log.md) - dated implementation and
+  documentation milestones.
+- [`docs/decisions/decisions-log.md`](docs/decisions/decisions-log.md) - product and engineering
+  decisions, including the two-resource MockAPI design and deferred maker-checker scope.
+- [`docs/planning/roadmap.md`](docs/planning/roadmap.md) - remaining submission work and future
+  phases.
 
-1. Create a project at [mockapi.io](https://mockapi.io) with two resources: `invoices` and `referenceData` (free tier is limited to 2 resources per project).
-2. Copy `.env.example` to `.env.local` and set `VITE_MOCKAPI_URL` to the project's base URL (e.g. `https://<project-id>.mockapi.io`, no `/api/v1` suffix, no trailing slash and no resource name).
-3. Run `npm run seed` once. This purges whatever MockAPI auto-generated for each new resource and POSTs the real seed data (from `public/api/*.json`) in the app's shape (see `scripts/seed-mockapi.mjs`).
-4. `npm run dev` — the dashboard should now load the seeded invoices, and a create/edit/delete in one browser should be visible in another.
+## AI and tools disclosure
 
-## Project structure
+The project records use of Claude.ai, Claude Code, and Cowork for requirements, planning,
+scaffolding, debugging, and review; Qwen3.8-27B-MLX-4bit was used to generate architecture-diagram
+variants. OpenAI Codex was used on 30 September 2026 to audit the assignment brief and repository
+and restructure the documentation. Team members remain responsible for reviewing and explaining
+the submitted code.
 
-```
-src/
-  api/          client (fetch wrapper), invoices, referenceData (MockAPI, with static fallback)
-  components/   AppShell, Navbar, RequireAuth, Toast, LoadingSpinner, ErrorBanner,
-                PeppolStatusBadge, StatCards, FxRatesCard, SearchFilter,
-                InvoiceList, InvoiceCard, InvoiceForm
-  context/      AuthContext (login, logout, session)
-  hooks/        useInvoices (useReducer + MockAPI), useFetch (generic, URL or fetcher function)
-  pages/        LoginPage, TourPage, DashboardPage, CreateInvoicePage, EditInvoicePage, CustomersPage, ProductsPage
-  data/         constants (GST rate, statuses, UEN pattern, API URLs), users (hashed demo logins), roles (can())
-  utils/        invoice maths and formatting, sha256
-public/api/     static JSON, used only as the offline demo-data fallback
-scripts/        seed-mockapi.mjs (one-off MockAPI seed), postbuild.mjs (route folders for static hosting), deploy.ps1 (build + copy to site)
-```
+The supplied `mockup/singapore_invoicenow_app.html` informed the initial visual and interaction
+direction. No other externally copied tutorial code is identified in the repository; if a team
+member used another source, add its link here before submission.
 
-## Deploy
+## Documentation map
 
-**Vercel (canonical — live at https://aie1f-easyinvoice.vercel.app):** connected via Vercel's
-GitHub integration, tracking `main` as the production branch — every merge to `main`
-auto-redeploys, no manual step needed. `npm run build` with no extra settings; base path `/`, and
-`vercel.json` rewrites every route to `index.html` for React Router.
-
-**artificialintelligence.sg/easyinvoice/ (Ralph's original prototype, on his NAS — not the
-project's deployment):** `powershell -File scripts/deploy.ps1` copies the source to a local build
-folder, sets `BASE_PATH=/easyinvoice/`, runs `npm install` and `npm run build`, then mirrors `dist/`
-into the artificialintelligence.sg site repo (`easyinvoice/`) and the NAS web root. Pass `-SkipNas`
-to stop after the site repo copy. Kept for reference; not being kept in sync with the app's
-current state (see `docs/planning/roadmap.md`).
-
-## More documentation
-
-- `docs/engineering/architecture.md` — system architecture, MockAPI schema and API design, state
-  management, roles/permissions
-- `docs/engineering/testing.md` — what's tested, test conventions, what isn't covered yet
-- `docs/planning/roadmap.md` — open branches, merge order, deferred work
-- `docs/planning/presentation-outline.md` — outline for the Lesson 2.19 slide deck
-- `docs/decisions/decisions-log.md` — running log of team decisions outside the PRD's formal
-  decision register
-- `docs/handoffs/` — per-person task lists and detailed working notes
+| Document | Purpose |
+|---|---|
+| [`docs/documentation-audit.md`](docs/documentation-audit.md) | Audit against the assignment brief and remaining evidence gaps |
+| [`docs/product/scope-and-limitations.md`](docs/product/scope-and-limitations.md) | Implemented scope, deferred scope, constraints, and future phases |
+| [`docs/engineering/architecture.md`](docs/engineering/architecture.md) | Runtime architecture, API/data model, state, roles, and auth |
+| [`docs/engineering/deployment.md`](docs/engineering/deployment.md) | Deployment, CI/CD, configuration, release, and engineering controls |
+| [`docs/engineering/testing.md`](docs/engineering/testing.md) | Test approach, coverage, conventions, and gaps |
+| [`docs/team/contributions.md`](docs/team/contributions.md) | Team contributions and assignment collaboration evidence |
+| [`docs/releases/release-log.md`](docs/releases/release-log.md) | Release history |
+| [`docs/decisions/decisions-log.md`](docs/decisions/decisions-log.md) | Decision history |
+| [`docs/screenshots/README.md`](docs/screenshots/README.md) | Screenshot/recording manifest and capture instructions |
+| [`docs/requirements/PRD-B2B Invoice Management System-V1.md`](docs/requirements/PRD-B2B%20Invoice%20Management%20System-V1.md) | Product requirements and original decision register |
