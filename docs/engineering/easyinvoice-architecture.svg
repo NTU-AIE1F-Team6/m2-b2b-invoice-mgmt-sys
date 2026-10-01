@@ -1,235 +1,359 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900" font-family="Helvetica Neue, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1288" viewBox="0 0 1440 1288" font-family="Helvetica Neue, Arial, sans-serif">
   <defs>
     <marker id="ah" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L7,3 L0,6 Z" fill="#475569"/>
     </marker>
-    <marker id="ahf" markerWidth="7" markerHeight="7" refX="5.5" refY="2.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L6,2.5 L0,5 Z" fill="#94a3b8"/>
+    <marker id="ahg" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+    <marker id="ahl" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#94a3b8"/>
     </marker>
     <marker id="ahv" markerWidth="8" markerHeight="8" refX="6.5" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L7,3 L0,6 Z" fill="#7c3aed"/>
     </marker>
+    <marker id="ahs" markerWidth="7" markerHeight="7" refX="5.5" refY="2.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L6,2.5 L0,5 Z" fill="#94a3b8"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="1280" height="900" fill="#ffffff"/>
+  <rect x="0" y="0" width="1440" height="1288" fill="#ffffff"/>
 
   <!-- ===== Header ===== -->
-  <text x="40" y="46" font-size="20" font-weight="700" fill="#0f172a">EasyInvoice — Technical Architecture</text>
-  <text x="40" y="70" font-size="11.5" fill="#64748b">React SPA simulating Singapore InvoiceNow (Peppol) e-invoicing · NTU AI Engineering Module 2 · no backend of its own</text>
+  <text x="48" y="46" font-size="21" font-weight="700" fill="#0f172a">EasyInvoice — Technical Architecture &amp; API Design</text>
+  <text x="48" y="70" font-size="11.5" fill="#64748b">React 19 SPA simulating Singapore's InvoiceNow (Peppol) e-invoicing · NTU AI Engineering Module 2 · no backend of its own</text>
 
   <!-- Legend -->
-  <g font-size="10" fill="#475569">
-    <line x1="1080" y1="38" x2="1110" y2="38" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)"/>
-    <text x="1118" y="42">live data / dependency</text>
-    <line x1="1080" y1="56" x2="1110" y2="56" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ah)"/>
-    <text x="1118" y="60">fallback / optional path</text>
-    <line x1="1080" y1="74" x2="1110" y2="74" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#ahv)"/>
-    <text x="1118" y="78">CI / ops flow</text>
+  <g font-size="10.5" fill="#475569">
+    <line x1="48" y1="84" x2="78" y2="84" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)"/>
+    <text x="86" y="88">REST / live data</text>
+    <line x1="250" y1="84" x2="280" y2="84" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ahg)"/>
+    <text x="288" y="88">offline fallback · static deploy</text>
+    <line x1="540" y1="84" x2="570" y2="84" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#ahv)"/>
+    <text x="578" y="88">CI / ops flow</text>
   </g>
 
-  <!-- ===== Client (browser) ===== -->
+  <!-- ===== Row 1: Browser SPA ===== -->
   <g>
-    <rect x="40" y="96" width="540" height="472" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
-    <path d="M40,130 v-22 a12,12 0 0 1 12,-12 h516 a12,12 0 0 1 12,12 v22 Z" fill="#e2e8f0"/>
-    <text x="56" y="118" font-size="13" font-weight="700" fill="#1e293b">Browser — EasyInvoice SPA<tspan font-weight="400" font-size="11.5" fill="#475569">  ·  React 19 · Vite 8 · Tailwind 4 · React Router 7</tspan></text>
+    <rect x="48" y="104" width="612" height="592" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+    <path d="M48,140 v-24 a12,12 0 0 1 12,-12 h588 a12,12 0 0 1 12,12 v24 Z" fill="#e2e8f0"/>
+    <text x="64" y="126" font-size="13" font-weight="700" fill="#1e293b">Browser — EasyInvoice SPA<tspan font-weight="400" font-size="11" fill="#475569">  ·  React 19 · Vite 8 · Tailwind 4 · React Router 7</tspan></text>
 
     <!-- L1 UI -->
-    <rect x="60" y="140" width="500" height="88" rx="8" fill="#eaf2fd" stroke="#2563eb"/>
-    <text x="74" y="158" font-size="12" font-weight="700" fill="#1e40af">UI — pages &amp; components</text>
-    <g font-size="10.5" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
-      <text x="74" y="178">pages:  Login · Tour · Dashboard · Create · Edit · Customers · Products</text>
-      <text x="74" y="193">shell:  AppShell · Navbar · RequireAuth · Toast · ErrorBanner · Hint</text>
-      <text x="74" y="208">invoice: InvoiceList · InvoiceCard · InvoiceForm · PeppolStatusBadge</text>
-      <text x="74" y="223">dash:   StatCards · FxRatesCard · SearchFilter · LoadingSpinner</text>
+    <rect x="64" y="156" width="580" height="118" rx="8" fill="#eaf2fd" stroke="#2563eb"/>
+    <text x="78" y="174" font-size="12" font-weight="700" fill="#1e40af">UI — pages &amp; components</text>
+    <g font-size="10" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="78" y="192">pages:  Login · Tour · Dashboard · Create · Edit · Customers · Products</text>
+      <text x="78" y="207">shell:   AppShell · Navbar · RequireAuth · Toast · ErrorBanner · Hint</text>
+      <text x="78" y="222">invoice: InvoiceList · InvoiceCard · InvoiceForm · PeppolStatusBadge</text>
+      <text x="78" y="237">dash:    StatCards · FxRatesCard · SearchFilter · LoadingSpinner</text>
+      <text x="78" y="252">form:    customer / product pickers · line items · 9% GST · validation</text>
+      <text x="78" y="267">routes:  / · /create · /edit?id= · /customers · /products  (query param survives refresh)</text>
     </g>
 
     <!-- L2 State -->
-    <rect x="60" y="242" width="500" height="88" rx="8" fill="#e6f5f1" stroke="#0f766e"/>
-    <text x="74" y="260" font-size="12" font-weight="700" fill="#115e59">State &amp; logic — hooks + context</text>
-    <g font-size="10.5" fill="#334155">
-      <text x="74" y="280">AuthContext — SHA-256 login gate; session in sessionStorage (ends with tab)</text>
-      <text x="74" y="295">useInvoices — useReducer store; UI updates only after the API confirms</text>
-      <text x="74" y="310">useFetch — live FX + contacts · roles.can(user, action, invoice)</text>
-      <text x="74" y="325" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="10">session: { username, name, role, loginAt }</text>
+    <rect x="64" y="290" width="580" height="118" rx="8" fill="#e6f5f1" stroke="#0f766e"/>
+    <text x="78" y="308" font-size="12" font-weight="700" fill="#115e59">State &amp; logic — hooks + context</text>
+    <g font-size="10" fill="#334155">
+      <text x="78" y="326">AuthContext — SHA-256 login gate · session in sessionStorage (ends with tab)</text>
+      <text x="78" y="341">useInvoices — useReducer store · UI updates only after the API confirms</text>
+      <text x="78" y="356">useFetch — generic abortable loader (FX rates, reference data)</text>
+      <text x="78" y="371">roles.can(user, action, invoice) — single source of permission truth</text>
+      <text x="78" y="386" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5">session = { username, name, role, loginAt }</text>
+      <text x="78" y="401">toast + hints toggle owned by AppShell, passed down as props</text>
     </g>
 
     <!-- L3 API -->
-    <rect x="60" y="344" width="500" height="88" rx="8" fill="#f1f5f9" stroke="#64748b"/>
-    <text x="74" y="362" font-size="12" font-weight="700" fill="#1e293b">API layer — src/api/ (plain fetch, no libs)</text>
-    <g font-size="10.5" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
-      <text x="74" y="382">client.js — base = VITE_MOCKAPI_URL · throws on non-2xx</text>
-      <text x="74" y="397">invoices.js — GET list / one · POST · PUT · DELETE  →  /invoices</text>
-      <text x="74" y="412">referenceData.js — GET /referenceData, filter type: customer | product</text>
-      <text x="74" y="427">all functions take an AbortSignal; writes return the saved record</text>
+    <rect x="64" y="424" width="580" height="118" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="78" y="442" font-size="12" font-weight="700" fill="#1e293b">API layer — src/api/ (plain fetch, no libraries)</text>
+    <g font-size="10" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="78" y="460">client.js — base = VITE_MOCKAPI_URL · throws on non-2xx · 204 → null</text>
+      <text x="78" y="475">invoices.js — GET list / one · POST · PUT · DELETE → /invoices</text>
+      <text x="78" y="490">referenceData.js — GET /referenceData, filtered by type</text>
+      <text x="78" y="505">free APIs hit directly: Frankfurter FX · randomuser contacts</text>
+      <text x="78" y="520">every fn takes AbortSignal; writes resolve to the saved record</text>
+      <text x="78" y="535">offline (no URL): reads fall back to public/api/*.json</text>
     </g>
 
     <!-- L4 Domain -->
-    <rect x="60" y="446" width="500" height="92" rx="8" fill="#fbf3e4" stroke="#b45309"/>
-    <text x="74" y="464" font-size="12" font-weight="700" fill="#92400e">Domain rules — src/utils/ + src/data/</text>
-    <g font-size="10.5" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
-      <text x="74" y="484">invoice.js — GST 9% totals · INV-YYYY-NNN · SGD format · overdue</text>
-      <text x="74" y="499">constants.js — UEN regex · status enum · free-API URLs · GST rate</text>
-      <text x="74" y="514">hash.js — SHA-256 (WebCrypto) · users.js — 4 demo accounts</text>
-      <text x="74" y="529">roles.js — can(user, action, invoice): VIEW_ONLY vs EDIT</text>
+    <rect x="64" y="558" width="580" height="118" rx="8" fill="#fff7e6" stroke="#b45309"/>
+    <text x="78" y="576" font-size="12" font-weight="700" fill="#92400e">Domain rules — src/utils/ + src/data/</text>
+    <g font-size="10" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="78" y="594">invoice.js — GST 9% totals · INV-YYYY-NNN · SGD format · overdue</text>
+      <text x="78" y="609">constants.js — UEN regex · status enum · FX / contact URLs · GST rate</text>
+      <text x="78" y="624">hash.js — SHA-256 via WebCrypto · users.js — 4 demo accounts</text>
+      <text x="78" y="639">roles.js — VIEW_ONLY vs EDIT action matrix</text>
     </g>
-    <text x="74" y="556" font-size="10.5" font-style="italic" fill="#92400e">No own backend — the Peppol “Access Point” transmission is simulated in-browser.</text>
+    <text x="78" y="656" font-size="10" font-style="italic" fill="#92400e">No own backend — the Peppol "Access Point" is simulated in-browser:</text>
+    <text x="78" y="670" font-size="10" font-style="italic" fill="#92400e">status → Queued, 900 ms delay, then UEN validity → Transmitted | Failed.</text>
 
     <!-- intra-layer flow -->
     <g stroke="#94a3b8" stroke-width="1.2">
-      <line x1="310" y1="229" x2="310" y2="240" marker-end="url(#ahf)"/>
-      <line x1="310" y1="331" x2="310" y2="342" marker-end="url(#ahf)"/>
-      <line x1="310" y1="433" x2="310" y2="444" marker-end="url(#ahf)"/>
+      <line x1="354" y1="274" x2="354" y2="288" marker-end="url(#ahs)"/>
+      <line x1="354" y1="408" x2="354" y2="422" marker-end="url(#ahs)"/>
+      <line x1="354" y1="542" x2="354" y2="556" marker-end="url(#ahs)"/>
     </g>
   </g>
 
-  <!-- ===== External services ===== -->
+  <!-- ===== Row 1: External services ===== -->
   <g>
-    <rect x="660" y="96" width="280" height="560" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-    <path d="M660,130 v-22 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v22 Z" fill="#e2e8f0"/>
-    <text x="676" y="118" font-size="13" font-weight="700" fill="#1e293b">External services</text>
+    <rect x="696" y="104" width="312" height="592" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+    <path d="M696,140 v-24 a12,12 0 0 1 12,-12 h288 a12,12 0 0 1 12,12 v24 Z" fill="#e2e8f0"/>
+    <text x="712" y="126" font-size="13" font-weight="700" fill="#1e293b">External services</text>
 
-    <rect x="680" y="150" width="240" height="96" rx="8" fill="#fff7e6" stroke="#d97706"/>
-    <text x="692" y="168" font-size="12" font-weight="700" fill="#92400e">mockapi.io — MockAPI</text>
-    <g font-size="10.5" fill="#334155">
-      <text x="692" y="186">shared JSON storage — every browser</text>
-      <text x="692" y="201" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="10">resources: /invoices · /referenceData</text>
-      <text x="692" y="216">free tier: 2 resources · 429 rate limits</text>
-      <text x="692" y="231">all CRUD + status writes land here</text>
+    <rect x="712" y="156" width="280" height="118" rx="8" fill="#fff7e6" stroke="#d97706"/>
+    <text x="726" y="174" font-size="12" font-weight="700" fill="#92400e">mockapi.io — MockAPI</text>
+    <g font-size="10" fill="#334155">
+      <text x="726" y="192">shared JSON storage — visible to every browser</text>
+      <text x="726" y="207" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5">resources: /invoices · /referenceData</text>
+      <text x="726" y="222">free tier: 2 resources · 429 rate limits</text>
+      <text x="726" y="237">no auth — the URL is public, not a secret</text>
+      <text x="726" y="252">all CRUD + status writes persist here</text>
     </g>
 
-    <rect x="680" y="262" width="240" height="72" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-dasharray="5 4"/>
-    <text x="692" y="280" font-size="12" font-weight="700" fill="#334155">public/api/*.json (same origin)</text>
-    <g font-size="10.5" fill="#475569">
-      <text x="692" y="298">read-only offline demo data</text>
-      <text x="692" y="313">invoices · customers · products</text>
-      <text x="692" y="328">used when VITE_MOCKAPI_URL is unset</text>
+    <rect x="712" y="290" width="280" height="104" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-dasharray="5 4"/>
+    <text x="726" y="308" font-size="12" font-weight="700" fill="#334155">public/api/*.json (same origin)</text>
+    <g font-size="10" fill="#475569">
+      <text x="726" y="326">read-only offline demo data</text>
+      <text x="726" y="341" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5">invoices · customers · products</text>
+      <text x="726" y="356">used when VITE_MOCKAPI_URL is unset</text>
+      <text x="726" y="371">writes rejected with a clear message</text>
     </g>
 
-    <rect x="680" y="350" width="240" height="64" rx="8" fill="#fff7e6" stroke="#d97706"/>
-    <text x="692" y="368" font-size="12" font-weight="700" fill="#92400e">api.frankfurter.dev/v1</text>
-    <g font-size="10.5" fill="#334155">
-      <text x="692" y="386">live SGD → USD, EUR, MYR, JPY, CNY</text>
-      <text x="692" y="401">no key · CORS · feeds the FX card</text>
+    <rect x="712" y="410" width="280" height="88" rx="8" fill="#fff7e6" stroke="#d97706"/>
+    <text x="726" y="428" font-size="12" font-weight="700" fill="#92400e">api.frankfurter.dev/v1</text>
+    <g font-size="10" fill="#334155">
+      <text x="726" y="446">live ECB rates: 1 SGD → USD, EUR, MYR, JPY, CNY</text>
+      <text x="726" y="461">no key · CORS enabled · feeds the FX card</text>
+      <text x="726" y="476" font-style="italic" fill="#64748b">may fail or rate-limit independently</text>
     </g>
 
-    <rect x="680" y="430" width="240" height="64" rx="8" fill="#fff7e6" stroke="#d97706"/>
-    <text x="692" y="448" font-size="12" font-weight="700" fill="#92400e">randomuser.me/api</text>
-    <g font-size="10.5" fill="#334155">
-      <text x="692" y="466">6 contact persons, stable (seeded)</text>
-      <text x="692" y="481">paired with each buyer on /customers</text>
+    <rect x="712" y="514" width="280" height="88" rx="8" fill="#fff7e6" stroke="#d97706"/>
+    <text x="726" y="532" font-size="12" font-weight="700" fill="#92400e">randomuser.me/api</text>
+    <g font-size="10" fill="#334155">
+      <text x="726" y="550">6 contact persons, stable (seeded query)</text>
+      <text x="726" y="565">paired with each buyer on /customers</text>
+      <text x="726" y="580" font-style="italic" fill="#64748b">third-party sample data only</text>
     </g>
 
-    <g font-size="10.5" font-style="italic" fill="#64748b">
-      <text x="692" y="524">No own backend — the Peppol “Access Point”</text>
-      <text x="692" y="539">is simulated in-browser (900 ms delay,</text>
-      <text x="692" y="554">then a UEN validity check).</text>
+    <g font-size="10" font-style="italic" fill="#64748b">
+      <text x="726" y="624">The Peppol Access Point is not a real service —</text>
+      <text x="726" y="638">transmission is simulated client-side; no invoice</text>
+      <text x="726" y="652">leaves the browser.</text>
     </g>
   </g>
 
-  <!-- ===== Engineering & delivery ===== -->
+  <!-- ===== Row 1: Engineering & delivery ===== -->
   <g>
-    <rect x="960" y="96" width="280" height="560" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-    <path d="M960,130 v-22 a12,12 0 0 1 12,-12 h256 a12,12 0 0 1 12,12 v22 Z" fill="#e2e8f0"/>
-    <text x="976" y="118" font-size="13" font-weight="700" fill="#1e293b">Engineering &amp; delivery</text>
+    <rect x="1044" y="104" width="348" height="592" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+    <path d="M1044,140 v-24 a12,12 0 0 1 12,-12 h324 a12,12 0 0 1 12,12 v24 Z" fill="#e2e8f0"/>
+    <text x="1060" y="126" font-size="13" font-weight="700" fill="#1e293b">Engineering &amp; delivery</text>
 
-    <rect x="980" y="150" width="240" height="82" rx="8" fill="#f3f0ff" stroke="#6d28d9"/>
-    <text x="992" y="168" font-size="12" font-weight="700" fill="#5b21b6">CI — GitHub Actions (main, PRs)</text>
-    <g font-size="10.5" fill="#334155">
-      <text x="992" y="186">Node 22 · npm ci</text>
-      <text x="992" y="201">npm test — Vitest (unit + component)</text>
-      <text x="992" y="216">npm run build — Vite + Tailwind 4</text>
+    <rect x="1060" y="156" width="316" height="104" rx="8" fill="#f3f0ff" stroke="#6d28d9"/>
+    <text x="1074" y="174" font-size="12" font-weight="700" fill="#5b21b6">CI — GitHub Actions (main + PRs)</text>
+    <g font-size="10" fill="#334155">
+      <text x="1074" y="192">Node 22 · npm ci (lockfile-exact)</text>
+      <text x="1074" y="207">npm test — Vitest 5 + Testing Library + jsdom</text>
+      <text x="1074" y="222">npm run build — Vite 8 + Tailwind 4 → dist/</text>
+      <text x="1074" y="237">runs on every pull request and push to main</text>
     </g>
 
-    <rect x="980" y="248" width="240" height="88" rx="8" fill="#f3f0ff" stroke="#6d28d9"/>
-    <text x="992" y="266" font-size="12" font-weight="700" fill="#5b21b6">Ops scripts (Node, one-off)</text>
-    <g font-size="10.5" fill="#334155">
-      <text x="992" y="284">seed-mockapi — purge + reseed MockAPI</text>
-      <text x="992" y="299">from public/api/*.json (350 ms throttle)</text>
-      <text x="992" y="314">postbuild — index.html per route (nginx)</text>
-      <text x="992" y="329">deploy.ps1 — build, mirror to site + NAS</text>
+    <rect x="1060" y="276" width="316" height="128" rx="8" fill="#f3f0ff" stroke="#6d28d9"/>
+    <text x="1074" y="294" font-size="12" font-weight="700" fill="#5b21b6">Ops scripts (Node, one-off)</text>
+    <g font-size="10" fill="#334155">
+      <text x="1074" y="312">seed-mockapi.mjs — purge + reseed MockAPI</text>
+      <text x="1074" y="327">  from public/api/*.json · 350 ms throttle · retry 429</text>
+      <text x="1074" y="342">postbuild.mjs — index.html per route (plain static hosts)</text>
+      <text x="1074" y="357">deploy.ps1 — build + mirror to site / NAS</text>
+      <text x="1074" y="372">.env.local — VITE_MOCKAPI_URL (public, not a secret)</text>
     </g>
 
-    <rect x="980" y="352" width="240" height="96" rx="8" fill="#f3f0ff" stroke="#6d28d9"/>
-    <text x="992" y="370" font-size="12" font-weight="700" fill="#5b21b6">Deploy — static, no server runtime</text>
-    <g font-size="10.5" fill="#334155">
-      <text x="992" y="390">Vercel / Netlify — vercel.json SPA rewrites</text>
-      <text x="992" y="405">NAS nginx — /easyinvoice/ sub-path</text>
-      <text x="992" y="420" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="10">artificialintelligence.sg</text>
-      <text x="992" y="435">live demo, behind the login gate</text>
+    <rect x="1060" y="420" width="316" height="108" rx="8" fill="#f3f0ff" stroke="#6d28d9"/>
+    <text x="1074" y="438" font-size="12" font-weight="700" fill="#5b21b6">Deploy — static, no server runtime</text>
+    <g font-size="10" fill="#334155">
+      <text x="1074" y="456">Vercel — vercel.json SPA rewrites (canonical)</text>
+      <text x="1074" y="471" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5">aie1f-easyinvoice.vercel.app</text>
+      <text x="1074" y="486">auto-deploys on merge to main</text>
+      <text x="1074" y="501">deep links: /edit?id= + per-route index.html</text>
     </g>
 
-    <rect x="980" y="464" width="240" height="60" rx="8" fill="#f1f5f9" stroke="#64748b"/>
-    <text x="992" y="482" font-size="12" font-weight="700" fill="#334155">Public aids (no auth needed)</text>
-    <g font-size="10.5" fill="#475569">
-      <text x="992" y="500">/tour — React concepts with real code</text>
-      <text x="992" y="515">hints toggle in navbar (localStorage)</text>
+    <rect x="1060" y="544" width="316" height="104" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="1074" y="562" font-size="12" font-weight="700" fill="#334155">Quality &amp; public aids</text>
+    <g font-size="10" fill="#475569">
+      <text x="1074" y="580">37 Vitest / React Testing Library tests</text>
+      <text x="1074" y="595">/tour — React concepts with real code snippets</text>
+      <text x="1074" y="610">in-app hints toggle (localStorage)</text>
+      <text x="1074" y="625">PR template · CODEOWNERS · docs map in-repo</text>
     </g>
   </g>
 
-  <!-- ===== Connections ===== -->
-  <g stroke="#475569" stroke-width="1.5" fill="none">
-    <path d="M580,360 H630 V198 H678" marker-end="url(#ah)"/>
-    <path d="M630,360 V298"/>
-    <path d="M630,360 V382 H678" marker-end="url(#ah)"/>
-    <path d="M630,360 V462 H678" marker-end="url(#ah)"/>
+  <!-- ===== Connections: SPA → external services ===== -->
+  <g fill="none">
+    <path d="M648,483 H678" stroke="#475569" stroke-width="1.5"/>
+    <path d="M678,215 V558" stroke="#475569" stroke-width="1.5"/>
+    <path d="M678,215 H712" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)"/>
+    <path d="M678,342 H712" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ahg)"/>
+    <path d="M678,454 H712" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)"/>
+    <path d="M678,558 H712" stroke="#475569" stroke-width="1.5" marker-end="url(#ah)"/>
   </g>
-  <path d="M630,298 H678" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#ah)"/>
-  <g font-size="10" fill="#475569" text-anchor="middle">
-    <text x="654" y="192">REST</text>
-    <text x="654" y="292">fallback</text>
-    <text x="654" y="376">FX rates</text>
-    <text x="654" y="456">contacts</text>
+  <g font-size="9.5" fill="#475569" text-anchor="middle">
+    <text x="695" y="210">REST</text>
+    <text x="695" y="337" fill="#64748b">fallback</text>
+    <text x="695" y="449">FX</text>
+    <text x="695" y="553">contacts</text>
   </g>
 
-  <!-- seed: scripts card -> MockAPI (over the top) -->
-  <path d="M1220,292 H1232 V88 H820 V148" stroke="#7c3aed" stroke-width="1.5" fill="none" marker-end="url(#ahv)"/>
-  <text x="1026" y="82" font-size="10" fill="#7c3aed" text-anchor="middle">npm run seed — one-off</text>
+  <!-- seed: ops scripts → MockAPI (violet) -->
+  <path d="M1376,340 H1408 V88 H852 V156" stroke="#7c3aed" stroke-width="1.5" fill="none" marker-end="url(#ahv)"/>
+  <text x="1130" y="82" font-size="9.5" fill="#7c3aed" text-anchor="middle">npm run seed (one-off, destructive)</text>
 
-  <!-- static assets: deploy -> browser (dashed, below) -->
-  <path d="M1220,400 H1236 V684 H540 V570" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#ahf)"/>
-  <text x="880" y="678" font-size="10" fill="#64748b">static SPA assets (dist/)</text>
+  <!-- deploy: dist → browser (dashed) -->
+  <path d="M1376,474 H1420 V704 H354 V696" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#ahl)"/>
+  <text x="890" y="699" font-size="9.5" fill="#64748b" text-anchor="middle">dist/ — deployed static assets</text>
 
-  <!-- ===== Invoice lifecycle ===== -->
+  <!-- ===== Row 2: API contract ===== -->
   <g>
-    <rect x="40" y="712" width="1200" height="140" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="60" y="736" font-size="13" font-weight="700" fill="#0f172a">Invoice lifecycle — simulated state machine (useInvoices · 900 ms transmission delay)</text>
+    <rect x="48" y="712" width="1344" height="336" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+    <path d="M48,748 v-24 a12,12 0 0 1 12,-12 h1320 a12,12 0 0 1 12,12 v24 Z" fill="#e2e8f0"/>
+    <text x="64" y="734" font-size="13" font-weight="700" fill="#1e293b">API contract — documented schema<tspan font-weight="400" font-size="10.5" fill="#64748b">  ·  MockAPI validates nothing; these shapes are the de-facto contract enforced client-side</tspan></text>
 
-    <rect x="80" y="756" width="110" height="34" rx="17" fill="#eaf2fd" stroke="#2563eb"/>
-    <text x="135" y="777" font-size="11.5" font-weight="700" fill="#1e40af" text-anchor="middle">Draft</text>
-    <rect x="290" y="756" width="110" height="34" rx="17" fill="#f1f5f9" stroke="#64748b"/>
-    <text x="345" y="777" font-size="11.5" font-weight="700" fill="#334155" text-anchor="middle">Queued</text>
-    <rect x="560" y="756" width="130" height="34" rx="17" fill="#e6f5f1" stroke="#0f766e"/>
-    <text x="625" y="777" font-size="11.5" font-weight="700" fill="#115e59" text-anchor="middle">Transmitted</text>
-    <rect x="820" y="756" width="110" height="34" rx="17" fill="#e8f6ee" stroke="#16a34a"/>
-    <text x="875" y="777" font-size="11.5" font-weight="700" fill="#166534" text-anchor="middle">Paid</text>
-    <rect x="465" y="800" width="110" height="34" rx="17" fill="#fdecec" stroke="#dc2626"/>
-    <text x="520" y="821" font-size="11.5" font-weight="700" fill="#b91c1c" text-anchor="middle">Failed</text>
+    <line x1="554" y1="756" x2="554" y2="1032" stroke="#e2e8f0"/>
+    <line x1="1070" y1="756" x2="1070" y2="1032" stroke="#e2e8f0"/>
+
+    <!-- Column A: endpoints -->
+    <text x="64" y="764" font-size="11" font-weight="700" fill="#1e293b">MockAPI endpoints — base: VITE_MOCKAPI_URL</text>
+    <g font-size="10" font-family="SFMono-Regular, Menlo, Consolas, monospace">
+      <g>
+        <text x="72" y="786" fill="#2563eb" font-weight="700">GET</text>
+        <text x="150" y="786" fill="#334155">/invoices</text>
+        <text x="290" y="786" fill="#475569" font-family="Helvetica Neue, Arial, sans-serif">list all — static JSON offline</text>
+      </g>
+      <g>
+        <text x="72" y="802" fill="#2563eb" font-weight="700">GET</text>
+        <text x="150" y="802" fill="#334155">/invoices/:id</text>
+        <text x="290" y="802" fill="#475569" font-family="Helvetica Neue, Arial, sans-serif">one record</text>
+      </g>
+      <g>
+        <text x="72" y="818" fill="#0f766e" font-weight="700">POST</text>
+        <text x="150" y="818" fill="#334155">/invoices</text>
+        <text x="290" y="818" fill="#475569" font-family="Helvetica Neue, Arial, sans-serif">create → returns saved record</text>
+      </g>
+      <g>
+        <text x="72" y="834" fill="#b45309" font-weight="700">PUT</text>
+        <text x="150" y="834" fill="#334155">/invoices/:id</text>
+        <text x="290" y="834" fill="#475569" font-family="Helvetica Neue, Arial, sans-serif">full replace: edit · transmit · paid</text>
+      </g>
+      <g>
+        <text x="72" y="850" fill="#dc2626" font-weight="700">DELETE</text>
+        <text x="150" y="850" fill="#334155">/invoices/:id</text>
+        <text x="290" y="850" fill="#475569" font-family="Helvetica Neue, Arial, sans-serif">remove → 204, no body</text>
+      </g>
+      <g>
+        <text x="72" y="866" fill="#2563eb" font-weight="700">GET</text>
+        <text x="150" y="866" fill="#334155">/referenceData</text>
+        <text x="290" y="866" fill="#475569" font-family="Helvetica Neue, Arial, sans-serif">customers + products; filter by type</text>
+      </g>
+    </g>
+    <g font-size="10" fill="#475569">
+      <text x="72" y="892">client.js: throws a readable Error on any non-2xx; 204 resolves to null.</text>
+      <text x="72" y="906">Every call accepts an AbortSignal; writes resolve to the saved record.</text>
+    </g>
+    <text x="72" y="932" font-size="11" font-weight="700" fill="#1e293b">Offline mode — VITE_MOCKAPI_URL unset</text>
+    <g font-size="10" fill="#475569">
+      <text x="72" y="950">reads → public/api/*.json (static demo data, read-only)</text>
+      <text x="72" y="966">writes → rejected with a clear "offline demo data" error</text>
+      <text x="72" y="982">dashboard shows an offline banner; no fake success</text>
+    </g>
+
+    <!-- Column B: invoices record -->
+    <text x="568" y="764" font-size="11" font-weight="700" fill="#1e293b">invoices — record shape (POST /invoices body)</text>
+    <g font-size="10" font-family="SFMono-Regular, Menlo, Consolas, monospace" fill="#334155">
+      <text x="576" y="786">{</text>
+      <text x="576" y="800">  "id": "…", <tspan fill="#94a3b8">                     // MockAPI id — routing key</tspan></text>
+      <text x="576" y="814">  "invoiceNumber": "INV-2026-001", <tspan fill="#94a3b8">// INV-YYYY-NNN, client-generated</tspan></text>
+      <text x="576" y="828">  "buyerName": "Temasek Tech Solutions Pte Ltd",</text>
+      <text x="576" y="842">  "buyerUEN": "202012345E", <tspan fill="#94a3b8">          // checked against UEN_PATTERN</tspan></text>
+      <text x="576" y="856">  "peppolId": "202012345E@SGUEN", <tspan fill="#94a3b8"> // derived: buyerUEN + "@SGUEN"</tspan></text>
+      <text x="576" y="870">  "issueDate": "2026-09-01", "dueDate": "2026-10-01", <tspan fill="#94a3b8">// YYYY-MM-DD</tspan></text>
+      <text x="576" y="884">  "items": [</text>
+      <text x="576" y="898">    { "description": "…", "sku": "SVC-CLOUD",</text>
+      <text x="576" y="912">      "qty": 1, "unitPrice": 3500 }</text>
+      <text x="576" y="926">  ],</text>
+      <text x="576" y="940">  "includePayNowQR": true,</text>
+      <text x="576" y="954">  "status": "Draft", <tspan fill="#94a3b8">              // Draft|Queued|Transmitted|Paid|Failed</tspan></text>
+      <text x="576" y="968">  "failureReason": null, <tspan fill="#94a3b8">           // set only when Failed</tspan></text>
+      <text x="576" y="982">  "createdBy": "john",   "updatedBy": null,</text>
+      <text x="576" y="996">  "createdAt": "…ISO-8601…",  "updatedAt": "…ISO-8601…",</text>
+      <text x="576" y="1010">  "pendingRequest": null <tspan fill="#94a3b8">           // reserved: maker-checker (deferred)</tspan></text>
+      <text x="576" y="1024">}</text>
+    </g>
+
+    <!-- Column C: referenceData + static -->
+    <text x="1084" y="764" font-size="11" font-weight="700" fill="#1e293b">referenceData — keyed by type</text>
+    <g font-size="10" font-family="SFMono-Regular, Menlo, Consolas, monospace" fill="#334155">
+      <text x="1092" y="786" fill="#94a3b8">// type = "customer"</text>
+      <text x="1092" y="800">{ "id": "1", "type": "customer",</text>
+      <text x="1092" y="814">  "uen": "202012345E", "name": "…",</text>
+      <text x="1092" y="828">  "industry": "…", "area": "…",</text>
+      <text x="1092" y="842">  "peppolRegistered": true }</text>
+
+      <text x="1092" y="862" fill="#94a3b8">// type = "product"</text>
+      <text x="1092" y="876">{ "id": "7", "type": "product",</text>
+      <text x="1092" y="890">  "sku": "HW-GPS", "description": "…",</text>
+      <text x="1092" y="904">  "unitPrice": 250, "unit": "each",</text>
+      <text x="1092" y="918">  "category": "Hardware" }</text>
+
+      <text x="1092" y="938" fill="#94a3b8">// static public/api/ (read-only fallback)</text>
+      <text x="1092" y="952">invoices.json   { invoices[] }</text>
+      <text x="1092" y="966">customers.json  { customers[] }</text>
+      <text x="1092" y="980">products.json   { products[] }</text>
+    </g>
+  </g>
+
+  <!-- ===== Row 3: Lifecycle + permissions ===== -->
+  <g>
+    <rect x="48" y="1064" width="1344" height="176" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="64" y="1088" font-size="13" font-weight="700" fill="#0f172a">Invoice lifecycle — simulated state machine (useInvoices)<tspan font-weight="400" font-size="10.5" fill="#64748b">  ·  transmit = PUT Queued, 900 ms delay, then UEN validity decides the outcome</tspan></text>
+
+    <rect x="84" y="1108" width="112" height="38" rx="19" fill="#eaf2fd" stroke="#2563eb"/>
+    <text x="140" y="1131" font-size="11.5" font-weight="700" fill="#1e40af" text-anchor="middle">Draft</text>
+    <rect x="316" y="1108" width="112" height="38" rx="19" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="372" y="1131" font-size="11.5" font-weight="700" fill="#334155" text-anchor="middle">Queued</text>
+    <rect x="560" y="1108" width="140" height="38" rx="19" fill="#e6f5f1" stroke="#0f766e"/>
+    <text x="630" y="1131" font-size="11.5" font-weight="700" fill="#115e59" text-anchor="middle">Transmitted</text>
+    <rect x="800" y="1108" width="112" height="38" rx="19" fill="#e8f6ee" stroke="#16a34a"/>
+    <text x="856" y="1131" font-size="11.5" font-weight="700" fill="#166534" text-anchor="middle">Paid</text>
+    <rect x="452" y="1172" width="112" height="38" rx="19" fill="#fdecec" stroke="#dc2626"/>
+    <text x="508" y="1195" font-size="11.5" font-weight="700" fill="#b91c1c" text-anchor="middle">Failed</text>
 
     <g stroke="#475569" stroke-width="1.5" fill="none">
-      <path d="M190,773 H288" marker-end="url(#ah)"/>
-      <path d="M400,773 H558" marker-end="url(#ah)"/>
-      <path d="M520,777 V798" marker-end="url(#ah)"/>
-      <path d="M690,773 H818" marker-end="url(#ah)"/>
-      <path d="M465,817 H345 V792" marker-end="url(#ah)"/>
+      <path d="M196,1127 H316" marker-end="url(#ah)"/>
+      <path d="M428,1127 H505" marker-end="none"/>
+      <circle cx="508" cy="1127" r="3.5" fill="#475569" stroke="none"/>
+      <path d="M511,1127 H558" marker-end="url(#ah)"/>
+      <path d="M508,1130 V1170" marker-end="url(#ah)"/>
+      <path d="M700,1127 H798" marker-end="url(#ah)"/>
+      <path d="M452,1191 H372 V1148" marker-end="url(#ah)"/>
     </g>
-    <circle cx="520" cy="773" r="3" fill="#475569"/>
     <g font-size="9.5" fill="#475569" text-anchor="middle">
-      <text x="239" y="765">transmit</text>
-      <text x="479" y="765">900 ms · UEN check</text>
-      <text x="754" y="765">mark paid</text>
-      <text x="536" y="795" text-anchor="start">invalid UEN</text>
-      <text x="405" y="811">retry (re-transmit)</text>
+      <text x="256" y="1119">transmit</text>
+      <text x="534" y="1117">900 ms · valid UEN</text>
+      <text x="560" y="1153" text-anchor="start">invalid UEN</text>
+      <text x="749" y="1119">mark paid</text>
+      <text x="412" y="1186" text-anchor="middle">retry</text>
     </g>
 
-    <g font-size="10.5" fill="#475569">
-      <text x="960" y="770" font-weight="700" font-size="11">Permissions (roles.can)</text>
-      <text x="960" y="788">· create — EDIT role only</text>
-      <text x="960" y="804">· edit / transmit — Draft or Failed only</text>
-      <text x="960" y="820">· mark paid — Transmitted only</text>
-      <text x="960" y="836">· delete — never on Paid (read-only)</text>
-      <text x="960" y="848" fill="#64748b">· VIEW_ONLY — everything read-only</text>
+    <line x1="940" y1="1100" x2="940" y2="1224" stroke="#e2e8f0"/>
+    <text x="956" y="1112" font-size="11.5" font-weight="700" fill="#1e293b">Permissions — roles.can(user, action, invoice)</text>
+    <g font-size="10.5" fill="#334155" font-family="SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="956" y="1134">create          <tspan font-family="Helvetica Neue, Arial, sans-serif" fill="#475569">— EDIT role only</tspan></text>
+      <text x="956" y="1150">edit · transmit <tspan font-family="Helvetica Neue, Arial, sans-serif" fill="#475569">— Draft or Failed only</tspan></text>
+      <text x="956" y="1166">mark paid       <tspan font-family="Helvetica Neue, Arial, sans-serif" fill="#475569">— Transmitted only</tspan></text>
+      <text x="956" y="1182">delete          <tspan font-family="Helvetica Neue, Arial, sans-serif" fill="#475569">— anything except Paid</tspan></text>
+      <text x="956" y="1198" fill="#64748b">VIEW_ONLY       <tspan font-family="Helvetica Neue, Arial, sans-serif">— everything read-only</tspan></text>
     </g>
+    <text x="956" y="1220" font-size="9.5" font-style="italic" fill="#94a3b8">same can() call drives UI buttons and route guards — one source of truth</text>
   </g>
 
-  <text x="1240" y="884" font-size="10" fill="#94a3b8" text-anchor="end">Generated 2026-09-27 00:08 SGT · Qwen3.8-27B-MLX-4bit · source: m2-b2b-invoice-mgmt-sys</text>
+  <text x="1392" y="1266" font-size="10" fill="#94a3b8" text-anchor="end">Generated 2026-10-01 16:32 SGT · Qwen3.8-27B-MLX-4bit · source: m2-b2b-invoice-mgmt-sys</text>
 </svg>
