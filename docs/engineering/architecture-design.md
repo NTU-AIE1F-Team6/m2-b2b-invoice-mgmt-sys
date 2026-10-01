@@ -1,8 +1,6 @@
 # EasyInvoice — architecture and API design
 
-**Status:** current `main` architecture after PRs #3-#7 and #9. The MockAPI backend, roles,
-repository governance, EasyInvoice rename, and React 19/Vite 8 upgrade are merged. See the
-top-level `README.md` for delivered scope and `docs/product/scope-and-limitations.md` for the
+See the top-level `README.md` for delivered scope and `docs/requirements/scope-and-limitations.md` for the
 boundary between this learning demo and a production design.
 
 ## 1. Overview
@@ -11,11 +9,11 @@ EasyInvoice is a React + Vite simulation of Singapore's Peppol e-invoicing netwo
 for a small business finance/AR team to create, transmit, track and collect payment on e-invoices.
 Built for the NTU AI Engineering Module 2 group project.
 
-For the architecture diagram, see `docs/design/easyinvoice-architecture_*.svg` (the superseded
+For the architecture diagram, see `docs/engineering/easyinvoice-architecture.svg` (the superseded
 pre-rename version is in `docs/archive/`) — high level, this is a single-page React app talking
 directly to a hosted mock REST API (MockAPI) and two free public APIs, with no backend of its own.
 
-## 2. Tech stack (final state)
+## 2. Tech stack
 
 | Layer | Choice |
 |---|---|
@@ -193,3 +191,44 @@ Vercel project connected via GitHub integration, tracking `main` as the producti
 merge to `main` auto-redeploys. `VITE_MOCKAPI_URL` is set as a Vercel environment variable so the
 production deployment talks to the shared MockAPI project. See `docs/engineering/deployment.md`
 for the release flow, configuration, verification checklist, and operational limitations.
+
+## 9. Module 2 core React requirements
+
+This section makes the implementation evidence for the Module 2 brief's core requirements
+explicit. The underlying architecture is described in more detail in sections 3-5 above.
+
+### 9.1 Data fetching
+
+`useInvoices` loads invoices in a `useEffect`, while the reusable `useFetch` hook loads customers,
+products, FX rates, and generated contacts. Both use `AbortController` cleanup and expose loading,
+error, and retry states. `src/api/` keeps HTTP and static-fallback behaviour outside UI components.
+
+### 9.2 Component composition
+
+Pages compose focused components through props and callbacks: for example, `DashboardPage`
+combines `SearchFilter`, `StatCards`, `FxRatesCard`, loading/error UI, and `InvoiceList`;
+`InvoiceList` maps records into `InvoiceCard` instances. `InvoiceForm` is reused by both Create and
+Edit pages, avoiding duplicate form logic.
+
+### 9.3 React Router
+
+`App.jsx` separates public `/login` and `/tour` routes from authenticated routes wrapped by
+`RequireAuth`. `AppShell.jsx` defines Dashboard, Create, Edit, Customers, and Products routes.
+`Link`/`NavLink` provide navigation, `useNavigate` handles action-driven redirects, and
+`useSearchParams` carries invoice, customer, or product selections between views.
+
+### 9.4 Shared state and Context
+
+Invoice state is lifted into `AppShell` through one `useInvoices`/`useReducer` store and passed to
+the pages that read or mutate it. Local concerns such as forms, filters, hints, and toasts use
+`useState`. Context is reserved for authentication because the current user is needed across the
+login flow, route guard, navbar, and permission checks; invoice state remains props-based because
+its consumers are close to `AppShell`.
+
+### 9.5 Data persistence
+
+MockAPI persists shared invoice CRUD data and typed customer/product `referenceData` across users
+and browser sessions. Reducer state changes only after the API confirms a mutation. Without
+`VITE_MOCKAPI_URL`, the application reads static JSON but rejects writes. `sessionStorage` retains
+the demo login for one tab and `localStorage` retains only the Hints preference; neither is the
+authoritative invoice store.

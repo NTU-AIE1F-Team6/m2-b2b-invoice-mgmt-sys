@@ -1,8 +1,6 @@
 # Decisions log
 
-Running log of team decisions and task assignments made outside the formal PRD decision register
-(`docs/requirements/PRD-B2B Invoice Management System-V1.md`, §5, D1-D13). Append new dated
-entries at the top.
+Running log of team decisions during implementation and app lifecycle. 
 
 ## 30 Sep 2026
 
@@ -28,6 +26,7 @@ entries at the top.
   the MockAPI/rename branches (`feat/mockapi-users-roles`) — fixed stale localStorage/static-JSON
   code snippets that would otherwise misdescribe the new MockAPI-backed store, and added a
   roles/permissions concept card. Coordinate before both editing the same file.
+- **Maker-Checker workflow** deferred scope for future phase (Epics E4 & E5). 
 - **Update password to same for build.** All demo accounts now share one password,
   `Password123` — this is a learning-project demo gate, not production security.
   (Implemented: `feat/mockapi-users-roles`, see `src/data/users.js`.)
