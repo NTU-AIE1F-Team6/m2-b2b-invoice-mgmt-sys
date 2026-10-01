@@ -171,11 +171,8 @@ learning statement are in [`docs/team/contributions.md`](docs/team/contributions
 ## AI and tools disclosure
 
 The project records use of Claude.ai, Claude Code, and Cowork for requirements, planning,
-scaffolding, debugging, and review; Qwen3.8-27B was used to generate architecture-diagram
-variants. OpenAI Codex was used to audit the assignment brief and repository
-and restructure the documentation. Team members remain responsible for reviewing and explaining
+scaffolding, debugging, and review; Qwen3.8-27B was used to generate architecture-diagram. OpenAI Codex was used to audit the assignment brief and repository and suggest documentation structure. Team members remain responsible for reviewing and explaining
 the submitted code.
 
 The supplied `mockup/singapore_invoicenow_app.html` informed the initial visual and interaction
-direction. No other externally copied tutorial code is identified in the repository; if a team
-member used another source, add its link here before submission.
+direction. 
